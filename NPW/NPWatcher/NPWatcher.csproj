@@ -1,0 +1,184 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9430032A-4C4A-481E-A29E-ED5D4BBC70C2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NPWatcher</RootNamespace>
+    <AssemblyName>NPWatcher</AssemblyName>
+    <ApplicationIcon>NPWatcherLogo copy.ico</ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AFDForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AFDForm.Designer.cs">
+      <DependentUpon>AFDForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomReason.Designer.cs">
+      <DependentUpon>CustomReason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomWarning.Designer.cs">
+      <DependentUpon>CustomWarning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListSource.Designer.cs">
+      <DependentUpon>ListSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NNChoices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NNChoices.Designer.cs">
+      <DependentUpon>NNChoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotEnglishLang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotEnglishLang.Designer.cs">
+      <DependentUpon>NotEnglishLang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prod.Designer.cs">
+      <DependentUpon>Prod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AFDForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>AFDForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomReason.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CustomReason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomWarning.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>CustomWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListSource.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ListSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NNChoices.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NNChoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotEnglishLang.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotEnglishLang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prod.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Prod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="key.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WikiFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NPWatcherLogo copy.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
