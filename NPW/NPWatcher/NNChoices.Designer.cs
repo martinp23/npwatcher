@@ -141,7 +141,6 @@ namespace NPWatcher
             this.Controls.Add(this.genRB);
             this.Name = "Nnchoices";
             this.Text = "Notability deletion";
-            this.Load += new System.EventHandler(this.Nnchoices_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

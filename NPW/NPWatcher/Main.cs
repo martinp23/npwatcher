@@ -36,9 +36,6 @@ namespace NPWatcher
         internal static string cwr;
         internal static bool cwsuc;
 
-
-
-
         public Main()
         {
             InitializeComponent();
@@ -46,8 +43,6 @@ namespace NPWatcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             //LOGIN AND QUIT ON CANCEL CODE
             Login login = new Login();
             login.ShowDialog();
@@ -1790,107 +1785,64 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
 
         private void Greyout()
         {
-            dbattackBtn.Enabled = false;
-            dbbioBtn.Enabled = false;
-            dbBlankBtn.Enabled = false;
-            dbBtn.Enabled = false;
-            dbemptyBtn.Enabled = false;
-            dbforeignBtn.Enabled = false;
-            dbNonsBtn.Enabled = false;
-            dbR1Btn.Enabled = false;
-            dbR2Btn.Enabled = false;
-            dbR3Btn.Enabled = false;
-            dbRepostBtn.Enabled = false;
-            dbspamBtn.Enabled = false;
-            dbtalkBtn.Enabled = false;
-            dbTest.Enabled = false;
-            dvCvBtn.Enabled = false;
-            dbvandBtn.Enabled = false;
-            db_userreq.Enabled = false;
-            prodBtn.Enabled = false;
-            cleanupBtn.Enabled = false;
-            toneBtn.Enabled = false;
-            sourcesBtn.Enabled = false;
-            stubBtn.Enabled = false;
-            advertBtn.Enabled = false;
-            nnBtn.Enabled = false;
-            wikifyBtn.Enabled = false;
-            notEngBtn.Enabled = false;
-            uncatBtn.Enabled = false;
-            rmvBtn.Enabled = false;
-            npovBtn.Enabled = false;
-            AfDBtn.Enabled = false;
-            copyBtn.Enabled = true;
-            delGivReasonBtn.Enabled = false;
-            DelCustom.Enabled = false;
-            AfDCustom.Enabled = false;
-            RmvProd.Enabled = false;
-            I1Btn.Enabled = false;
-            I2Btn.Enabled = false;
-            I3Btn.Enabled = false;
-            I4Btn.Enabled = false;
-            I5Btn.Enabled = false;
-            I6Btn.Enabled = false;
-            I7Btn.Enabled = false;
-            I8Btn.Enabled = false;
-            IotherBtn.Enabled = false;
-
-
+            Grey(false);
         }
 
         private void Greyin()
         {
-            dbattackBtn.Enabled = true;
-            dbbioBtn.Enabled = true;
-            dbBlankBtn.Enabled = true;
-            dbBtn.Enabled = true;
-            dbemptyBtn.Enabled = true;
-            dbforeignBtn.Enabled = true;
-            dbNonsBtn.Enabled = true;
-            dbR1Btn.Enabled = true;
-            dbR2Btn.Enabled = true;
-            dbR3Btn.Enabled = true;
-            dbRepostBtn.Enabled = true;
-            dbspamBtn.Enabled = true;
-            dbtalkBtn.Enabled = true;
-            dbTest.Enabled = true;
-            dvCvBtn.Enabled = true;
-            dbvandBtn.Enabled = true;
-            db_userreq.Enabled = true;
-            prodBtn.Enabled = true;
-            cleanupBtn.Enabled = true;
-            toneBtn.Enabled = true;
-            sourcesBtn.Enabled = true;
-            stubBtn.Enabled = true;
-            advertBtn.Enabled = true;
-            nnBtn.Enabled = true;
-            wikifyBtn.Enabled = true;
-            notEngBtn.Enabled = true;
-            uncatBtn.Enabled = true;
-            if (asAdmin)
-            {
-                rmvBtn.Enabled = true;
-            }
-            npovBtn.Enabled = true;
-            AfDBtn.Enabled = true;
-            copyBtn.Enabled = true;
-
-            delGivReasonBtn.Enabled = true;
-            DelCustom.Enabled = true;
-            AfDCustom.Enabled = true;
-            RmvProd.Enabled = true;
-
-            I1Btn.Enabled = true;
-            I2Btn.Enabled = true;
-            I3Btn.Enabled = true;
-            I4Btn.Enabled = true;
-            I5Btn.Enabled = true;
-            I6Btn.Enabled = true;
-            I7Btn.Enabled = true;
-            I8Btn.Enabled = true;
-            IotherBtn.Enabled = true;
+            Grey(true);
             firstarticle.Checked = false;
             notabilitywarn.Checked = false;
+        }
+
+        private void Grey(bool Enabled)
+        {
+            dbattackBtn.Enabled = Enabled;
+            dbbioBtn.Enabled = Enabled;
+            dbBlankBtn.Enabled = Enabled;
+            dbBtn.Enabled = Enabled;
+            dbemptyBtn.Enabled = Enabled;
+            dbforeignBtn.Enabled = Enabled;
+            dbNonsBtn.Enabled = Enabled;
+            dbR1Btn.Enabled = Enabled;
+            dbR2Btn.Enabled = Enabled;
+            dbR3Btn.Enabled = Enabled;
+            dbRepostBtn.Enabled = Enabled;
+            dbspamBtn.Enabled = Enabled;
+            dbtalkBtn.Enabled = Enabled;
+            dbTest.Enabled = Enabled;
+            dvCvBtn.Enabled = Enabled;
+            dbvandBtn.Enabled = Enabled;
+            db_userreq.Enabled = Enabled;
+            prodBtn.Enabled = Enabled;
+            cleanupBtn.Enabled = Enabled;
+            toneBtn.Enabled = Enabled;
+            sourcesBtn.Enabled = Enabled;
+            stubBtn.Enabled = Enabled;
+            advertBtn.Enabled = Enabled;
+            nnBtn.Enabled = Enabled;
+            wikifyBtn.Enabled = Enabled;
+            notEngBtn.Enabled = Enabled;
+            uncatBtn.Enabled = Enabled;
+            rmvBtn.Enabled = asAdmin;
+            npovBtn.Enabled = Enabled;
+            AfDBtn.Enabled = Enabled;
+            copyBtn.Enabled = Enabled;
+
+            delGivReasonBtn.Enabled = Enabled;
+            DelCustom.Enabled = Enabled;
+            AfDCustom.Enabled = Enabled;
+            RmvProd.Enabled = Enabled;
+
+            I1Btn.Enabled = Enabled;
+            I2Btn.Enabled = Enabled;
+            I3Btn.Enabled = Enabled;
+            I4Btn.Enabled = Enabled;
+            I5Btn.Enabled = Enabled;
+            I6Btn.Enabled = Enabled;
+            I7Btn.Enabled = Enabled;
+            I8Btn.Enabled = Enabled;
+            IotherBtn.Enabled = Enabled;
         }
 
         private void webBrowser1_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
@@ -1923,5 +1875,16 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
 
         }
 
+#region Context Menu
+        private void removeSelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                pageList.Items.Remove(pageList.SelectedItem);
+        }
+
+        private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pageList.Items.Clear();
+        }
     }
+#endregion
 }

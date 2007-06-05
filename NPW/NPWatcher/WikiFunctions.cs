@@ -68,10 +68,7 @@ namespace NPWatcher
             { return true; }
 
         }
-
-
-
-
+        
         ///Get newpages from 
         ///http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=20&offset=0&feed=atom
         public StringCollection getCat(string limit, string category)
@@ -108,8 +105,6 @@ namespace NPWatcher
             }
 
             return a;
-
-
         }
 
         public StringCollection getImgLinks(string limit, string image)
@@ -157,8 +152,6 @@ namespace NPWatcher
             a.Remove(image);
 
             return a;
-
-
         }
 
 
@@ -214,29 +207,21 @@ namespace NPWatcher
             try
             {
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
+                
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
-                src =  work.ReadToEnd();
+                src = work.ReadToEnd();
                 return src;
             }
-            catch (WebException e)
+            catch
             {
                 src = "";
                 return src;
             }
-            finally
-            {
-
-            }
-            return src;
         }
 
         public string GetCreator(string page)
         {
-
-
             string src = "";
             webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
             webReq.UserAgent = "NPWatcher/1.0";
@@ -254,8 +239,6 @@ namespace NPWatcher
             StreamReader work = new StreamReader(srcstrm);
             src = HttpUtility.HtmlDecode(work.ReadToEnd());
 
-
-           
             Regex getuser = new Regex("user=\"(.+?)\"");
             Match m2 = getuser.Match(src);
             string name = m2.Value;
@@ -271,7 +254,6 @@ namespace NPWatcher
             { name = ""; }
             return name;
         }
-
 
         public void Save(string page, string newtxt, string editsummary)
         {
@@ -337,14 +319,10 @@ namespace NPWatcher
                 webResp.Close();
 
             }
-            catch (Exception e)
+            catch
             {
                 System.Windows.Forms.MessageBox.Show("Something sinister has happened.  The page has been deleted/marked for deletion, but the program was unable to leave a user warning.  If possible, please could you report the page you just deleted/tagged to Martinp23, so he can look into it.  Sorry!");
             }
-
-
-
-
         }
 
         public void Save(string page, string newtxt, string editsummary, bool watchthis)
@@ -379,8 +357,7 @@ namespace NPWatcher
                 string editTime = m1.Value;
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
-
-
+                
 
                 webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
@@ -413,17 +390,11 @@ namespace NPWatcher
                 strmReader.Close();
                 webResp.Close();
             }
-            catch (Exception e)
+            catch
             {
                 System.Windows.Forms.MessageBox.Show("Something sinister has happened.  The user has not been warned - please contact Martinp23 with code E1, and mention the page (" + page + ").  Sorry!");
             }
-
-
-
-
         }
-       
-
 
         public void Deletepg(string page, string editsummary)
         {
@@ -438,8 +409,7 @@ namespace NPWatcher
             webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
+            
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = HttpUtility.HtmlDecode(work.ReadToEnd());
@@ -455,9 +425,7 @@ namespace NPWatcher
             string editTime = m1.Value;
             editTime = editTime.Substring(7);
             editTime = editTime.Substring(0, editTime.Length - 19);
-
-
-
+            
             webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=delete");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
@@ -485,12 +453,6 @@ namespace NPWatcher
             string respStr = strmReader.ReadToEnd();
             strmReader.Close();
             webResp.Close();
-
-
-
-
-
-
         }
 
         public bool getLogInStatus()
@@ -510,31 +472,22 @@ namespace NPWatcher
             {
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
-
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = HttpUtility.HtmlDecode(work.ReadToEnd());
-                
+
             }
-            catch (WebException e)
+            catch
             {
                 src = "";
-                
             }
 
             Match m = LoginRegex.Match(src);
 
-            if (!m.Success || m.Groups[1].Value == "null")
-                return false;
-            else
-                return true;
+            return !(!m.Success || m.Groups[1].Value == "null");
         }
-
     }
     
-
-
-
         [global::System.Serializable]
         public class WikiBotException : Exception
         {
@@ -562,8 +515,6 @@ namespace NPWatcher
               System.Runtime.Serialization.StreamingContext context)
                 : base(info, context) { }
         }
-    
-
     }      
 
 

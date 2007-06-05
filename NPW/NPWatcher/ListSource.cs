@@ -19,7 +19,6 @@ namespace NPWatcher
 
         private void loadBtn_Click(object sender, EventArgs e)
         {
-            
             if (NPRad.Checked)
             {
                 category = "NPRad";
@@ -35,6 +34,5 @@ namespace NPWatcher
 
             Close();
         }
-
     }
 }

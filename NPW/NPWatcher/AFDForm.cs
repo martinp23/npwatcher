@@ -71,11 +71,5 @@ namespace NPWatcher
             Main.afdsuc = true;
             Close();
         }
-
-        private void AfDForm_Load(object sender, EventArgs e)
-        {
-
-        }
-        
     }
 }

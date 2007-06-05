@@ -44,8 +44,6 @@ namespace NPWatcher
             {
                 MessageBox.Show("Please enter a warning template name, or click cancel");
             }
-
-
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

@@ -119,7 +119,6 @@ namespace NPWatcher
             this.Controls.Add(this.reasonTxt);
             this.Name = "AfDForm";
             this.Text = "AfD Details";
-            this.Load += new System.EventHandler(this.AfDForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

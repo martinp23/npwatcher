@@ -28,10 +28,5 @@ namespace NPWatcher
             Main.crsuc = false;
             this.Close();
         }
-
-        private void CustomReason_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

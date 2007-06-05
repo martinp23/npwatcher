@@ -47,10 +47,5 @@ namespace NPWatcher
             Main.nnchoicessuc = false;
             Close();
         }
-
-        private void Nnchoices_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

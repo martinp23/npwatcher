@@ -92,7 +92,6 @@ namespace NPWatcher
             this.Name = "CustomReason";
             string FormName = "Deletion Reason";
             this.Text = FormName;
-            this.Load += new System.EventHandler(this.CustomReason_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
