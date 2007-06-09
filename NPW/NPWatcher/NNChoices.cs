@@ -18,33 +18,26 @@ namespace NPWatcher
         private void okBtn_Click(object sender, EventArgs e)
         {
             if (genRB.Checked)
-            {
                 Main.nntag = "db-bio";
-            }
             else if (bandRB.Checked)
-            {
                 Main.nntag = "db-band";
-            }
             else if (clubRB.Checked)
-            {
                 Main.nntag = "db-club";
-            }
             else if (groupRB.Checked)
-            {
                 Main.nntag = "db-group";
-            }
             else if (webRB.Checked)
-            {
                 Main.nntag = "db-web";
-            }
-            Main.nnchoicessuc = true;
-            Close();
-            
+            leave(true);
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Main.nnchoicessuc = false;
+            leave(false);
+        }
+
+        private void leave(bool choice)
+        {
+            Main.nnchoicessuc = choice;
             Close();
         }
     }

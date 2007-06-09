@@ -23,7 +23,6 @@ namespace NPWatcher
 
         private void nomBtn_Click(object sender, EventArgs e)
         {
-
             Main.afdReason = reasonTxt.Text;
 
             try
@@ -54,7 +53,6 @@ namespace NPWatcher
                 else if (cat == "Unknown")
                 { catcode = "?"; }
 
-
                 Main.afdCat = catcode;
             }
             catch (NullReferenceException)
@@ -62,11 +60,9 @@ namespace NPWatcher
                 DialogResult dr = MessageBox.Show("You didn't enter an AfD category.  Would you like to use the default?", "Category",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)
-                {
                     Main.afdCat = "U";
-                }
                 else
-                { MessageBox.Show("Please enter an AfD category"); }
+                    MessageBox.Show("Please enter an AfD category");
             }
             Main.afdsuc = true;
             Close();

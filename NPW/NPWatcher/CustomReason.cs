@@ -18,7 +18,7 @@ namespace NPWatcher
         private void OKBtn_Click(object sender, EventArgs e)
         {
             if (ReasonTxt.Text != null)
-            { Main.dbReason = ReasonTxt.Text; }
+                Main.dbReason = ReasonTxt.Text;
             Main.crsuc = true;
             this.Close();
         }

@@ -29,21 +29,12 @@ namespace NPWatcher
                         
                         this.Hide();
                     }
-                    else
-                    {
-                        //do nothing
-                    }
                 }
                 else
-                {
                     MessageBox.Show("The program will automatically add the {{ and }} around the template before putting it on the page, so it's safe to leave them out here");
-
-                }
             }
             else
-            {
                 MessageBox.Show("Please enter a warning template name, or click cancel");
-            }
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)

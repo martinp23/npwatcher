@@ -77,8 +77,7 @@ namespace NPWatcher
                             if (!listofv.Contains(versioncurstr))
                             {
                                 MessageBox.Show("Please download the latest version of NPWatcher", "New Version", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                Close();
+                                                                Close();
                             }
                             else
                             {
@@ -108,7 +107,6 @@ namespace NPWatcher
                                 else
                                     MessageBox.Show("Logged in");
                             }
-
                         }
                     }
                 }
@@ -160,7 +158,6 @@ namespace NPWatcher
                     pageList.Items.Clear();
                     foreach (string p in nps)
                     { pageList.Items.Add(p); }
-
                 }
 
                 else if (category == "CSDRad")
@@ -251,7 +248,6 @@ namespace NPWatcher
                     }
                     crsuc = false;
                 }
-
             }
             Greyin();
         }
@@ -278,7 +274,6 @@ namespace NPWatcher
                     nnchoicessuc = false;
                 }
             }
-
             Greyin();
         }
 
@@ -286,10 +281,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-spam", "Blatant advertising, [[WP:CSD#G11]]");
-
-            }
             Greyin();
         }
 
@@ -297,10 +289,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-spam", "Author request, [[WP:CSD#G7]]");
-
-            }
             Greyin();
         }
 
@@ -308,10 +297,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-foreign", "Article is not in English");
-
-            }
             Greyin();
         }
 
@@ -319,10 +305,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-repost", "Repost of previously deleted material");
-
-            }
             Greyin();
         }
 
@@ -333,7 +316,6 @@ namespace NPWatcher
             {
                 Msgnons();
                 Delete("db-nonsense", "Nonsense page");
-
             }
             Greyin();
         }
@@ -345,7 +327,6 @@ namespace NPWatcher
             {
                 Msgtest();
                 Delete("db-test", "Vandalism/Test");
-
             }
             Greyin();
         }
@@ -357,7 +338,6 @@ namespace NPWatcher
             {
                 Msgvand();
                 Delete("db-vandalism", "Vandalism");
-
             }
             Greyin();
         }
@@ -366,10 +346,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-blank", "Page blanked by only editor");
-
-            }
             Greyin();
         }
 
@@ -377,10 +354,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-talk", "Talk page of non-existant article");
 
-            }
             Greyin();
         }
 
@@ -391,7 +366,6 @@ namespace NPWatcher
             {
                 Msgattack();
                 Delete("db-attack", "Attack page");
-
             }
             Greyin();
         }
@@ -400,11 +374,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
-
                 Delete("db-empty", "Empty page");
 
-            }
             Greyin();
         }
 
@@ -412,11 +383,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
-
                 Delete("db-redirnone", "Redirect to non-existant page, [[WP:CSD#R1]]");
 
-            }
             Greyin();
         }
 
@@ -424,10 +392,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-redirtypo", "Implausibe typo, [[WP:CSD#R2]]");
 
-            }
             Greyin();
         }
 
@@ -435,9 +401,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-            {
                 Delete("db-rediruser", "Redirect to user space [[WP:CSD#R3]]");
-            }
+
             Greyin();
         }
 
@@ -459,14 +424,10 @@ namespace NPWatcher
 //wf.Save(page2, newtxt, "Marking copy-violation for deletion using [[WP:NPW|NPWatcher]]");
                         Delete("db-copyvio|url=" + cvLinkTxt.Text, "[[WP:C|Copyright-violation]] - [[WP:CSD#G12]]");
                     }
-
                     else
                     {
                         MessageBox.Show("Please enter the original source of the copy-vioed text (as a URL)");
                     }
-
-
-
                 }
             }
             else
@@ -479,7 +440,6 @@ namespace NPWatcher
                 {
                     MessageBox.Show("Please enter the location of the copy-vioed text (as a URL)");
                 }
-
             }
 
             Greyin();
@@ -487,7 +447,6 @@ namespace NPWatcher
 
         private void Delete(string p, string r)
         {
-
             if (!asAdmin)
             {
                 string wikitext = wf.getWikiText(page2);
@@ -500,7 +459,6 @@ namespace NPWatcher
                     Msgnn();
                     Msgcw();
                 }
-
             }
             else
             {
@@ -510,10 +468,8 @@ namespace NPWatcher
                 if (sortlogin())
                      wf.Deletepg(page2, "Deleting page - reason was: \"" + r + "\" using [[WP:NPW|NPWatcher]]");
 
-
                 if (!page2.StartsWith("Image:"))
                 {
-
                     string talktxt = wf.getWikiText("Talk:" + page2);
                     if (talktxt != "")
                     {
@@ -525,7 +481,6 @@ namespace NPWatcher
                             wf.Deletepg("Talk:" + page2, "Deleting page as talk of deleted article using [[WP:NPW|NPWatcher]]");
                         }
                     }
-
                 }
                 else
                 {
@@ -543,7 +498,6 @@ namespace NPWatcher
                     }
                 }
             }
-
         }
 
         private void Save(string page3, string newtxt, string summary)
@@ -554,13 +508,12 @@ namespace NPWatcher
                 if (wikitextcur == "")
                 {
                     MessageBox.Show("The page appears to have been deleted by an administrator (or blanked).  The page will now reload so that you can verify this");
-                    editsuccess = false;
                 }
                 else
                 {
                     MessageBox.Show("The page have been changed since you loaded it.  It will now reload so that you can (re)consider your proposed changes");
-                    editsuccess = false;
                 }
+                editsuccess = false;
             }
             else
             {
@@ -579,7 +532,6 @@ wf.Save(page3, newtxt, summary);
         #region warnings, prods and AfD (application thereof)
         private void Msgfa()
         {
-
             if (firstarticle.Checked)
             {
                 string creator = wf.GetCreator(page2);
@@ -607,7 +559,6 @@ wf.Save(creator, newtxt, "Posting {{firstarticle}} using [[WP:NPW|NPWatcher]]");
 
         private void Msgnn()
         {
-
             if (notabilitywarn.Checked)
             {
                 string creator = wf.GetCreator(page2);
@@ -623,12 +574,9 @@ wf.Save(creator, newtxt, "Posting {{nn-warn}} using [[WP:NPW|NPWatcher]].");
                 }
                 if (asAdmin)
                 {
-                    
                         newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + page2 + "}} ~~~~";
                         if (sortlogin())
 wf.Save(creator, newtxt, "Posting {{nn-warn-deletion}} using [[WP:NPW|NPWatcher]].");
-
-                    
                 }
             }
         }
@@ -641,8 +589,6 @@ wf.Save(creator, newtxt, "Posting {{nn-warn-deletion}} using [[WP:NPW|NPWatcher]
                 cw.ShowDialog();
                 if (cw.DialogResult == DialogResult.OK)
                 {
-
-
                     string creator = wf.GetCreator(page2);
                     creator = "User_talk:" + creator;
                     string wikitext = wf.getWikiText(creator);
@@ -665,9 +611,7 @@ wf.Save(creator, newtxt, "Posting {{" + warning + "}} using [[WP:NPW|NPWatcher]]
 
                         }
                     }
-
                 }
-
                 cw.Close();
             }
         }
@@ -789,8 +733,7 @@ wf.Save(creator, newtxt, "Posting {{Attack|" + page2 + "}} using [[WP:NPW|NPWatc
                 //     message = message + " ~~~~";
 
                 //   }
-
-
+                
                 string oldtxt = wf.getWikiText(page2);
                 string newtxt = oldtxt;
                 string prod = "{{subst:prod|" + message + "}}\r\n";
@@ -813,7 +756,6 @@ wf.Save(user, userpagenew, "Warning user of prodding using [[WP:NPW|NPWatcher]]"
             doprod = false;
 
             Greyin();
-
         }
 
         private void AfDBtn_Click(object sender, EventArgs e)
@@ -840,9 +782,7 @@ wf.Save(user, userpagenew, "Warning user of prodding using [[WP:NPW|NPWatcher]]"
             {
                 if (afdsuc)
                 {
-
                     {
-
                         removetags(page2);
                         string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                         int number = 1;
@@ -905,7 +845,6 @@ wf.Save("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)", afdnom
                             if (sortlogin())
 wf.Save("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)", afdnom, "Nominating [[" + page2 + "]] for deletion using [[WP:NPW|NPWatcher]]");
                         }
-
 
                         DateTime now = new DateTime();
                         now = DateTime.UtcNow;
@@ -981,22 +920,16 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
                     string txt = wf.getWikiText(page2);
                     string newtxt = txt + "\r\n" + template;
                     Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-
                 }
-
             }
-
             else
             {
                 string template = "{{" + stubTxt.Text + "-stub}}";
                 string txt = wf.getWikiText(page2);
                 string newtxt = txt + "\r\n" + template;
                 Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-
             }
             Greyin();
-
-
         }
 
         private void advertBtn_Click(object sender, EventArgs e)
@@ -1021,7 +954,6 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
             string template = "{{Wikify|{{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}";
             Mark(template);
             Greyin();
-
         }
 
         private void npovBtn_Click(object sender, EventArgs e)
@@ -1039,8 +971,6 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
             Mark(template);
             Greyin();
         }
-
-
 
         private void ceBtn_Click(object sender, EventArgs e)
         {
@@ -1114,7 +1044,6 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
             string txt = wf.getWikiText(page2);
             string newtxt = template + "\r\n" + txt;
             Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-
         }
 
         #endregion
@@ -1136,7 +1065,6 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
             Regex hangonrx = new Regex("{{hang-?on}}", RegexOptions.IgnoreCase);
             txt1 = hangonrx.Replace(txt1, "");
             Save(page2, txt1, "Removing deletion tag(s) using [[WP:NPW|NPWatcher]]");
-
         }
 
         //Auto prod delete
@@ -1172,7 +1100,6 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
                 {
                     MessageBox.Show("Prod reason not found - please choose another option");
                 }
-
             }
             else
             {
@@ -1209,13 +1136,11 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
                         Save(page2, wikitext, "Removing prod tag using [[WP:NPW|NPWatcher]].  Reason given was \"" + reason + "\"");
                         doprod = false;
                     }
-
                 }
                 catch (ArgumentNullException)
                 {
                     MessageBox.Show("Prod reason not found - please choose another option");
                 }
-
             }
             else
             {
@@ -1614,7 +1539,6 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
 
                             break;
                         }
-
                     }
                 }
             }
