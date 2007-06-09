@@ -58,21 +58,16 @@ namespace NPWatcher
                 {
                     if (!dialogcancel)
                     {
-
                         success = wf.login(username, password);
                         if (success == false)
                         {
                             Login login1 = new Login();
                             login1.ShowDialog();
                             if (dialogcancel)
-                            {
                                 Close();
-                            }
-
                         }
                         else
                         {
-
                             string versionpg = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
                             string listofv = versionpg;
                             object[] attrs = System.Reflection.Assembly.GetEntryAssembly().GetCustomAttributes(true);
@@ -100,12 +95,9 @@ namespace NPWatcher
                                 //    goodVersions.Add(v);
                                 //}
 
-                               
                                 username = Regex.Escape(username);
                                 Regex r = new Regex(username, RegexOptions.IgnoreCase);
                                 Match m = r.Match(approved);
-
-
 
                                 if (!m.Success)
                                 {
@@ -114,9 +106,7 @@ namespace NPWatcher
                                     Close();
                                 }
                                 else
-                                {
                                     MessageBox.Show("Logged in");
-                                }
                             }
 
                         }
@@ -130,17 +120,14 @@ namespace NPWatcher
                     tabPage3.Dispose();
                     tabPage4.Dispose();
                 }
-
             }
-
-
             //MessageBox.Show("Please, read the readme.txt first!", "Important notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void pageList_DoubleClick(object sender, EventArgs e)
         {
             //string page = pageList.SelectedItem.ToString();
-            //Uri link = new Uri("http://en.wikipedia.org/w/index.php?title=" + page);
+            //Uri link = new Uri(wf.Url + page);
             //page2 = page;
             //webBrowser1.Navigate(link);
         }
@@ -229,8 +216,6 @@ namespace NPWatcher
                 pageList.Items.Clear();
                 foreach (string p in nps)
                 { pageList.Items.Add(p); }
-
-
             }
         }
 
@@ -239,9 +224,8 @@ namespace NPWatcher
             try
             {
                 string page = pageList.SelectedItem.ToString();
-                Uri link = new Uri("http://en.wikipedia.org/w/index.php?title=" + page);
                 page2 = page;
-                webBrowser1.Navigate(link);
+                webBrowser1.Navigate(wf.Url + System.Web.HttpUtility.UrlEncode(page));
                 wikitextpage2 = wf.getWikiText(page2);
             }
             catch (NullReferenceException)
@@ -1574,10 +1558,8 @@ wf.Save("User_talk:" + towarn, userpg, "Warning user with {{Idw-noncom}} using [
 
         public void OrphanImage(string image, string reason)
         {
-
             StringCollection imagelinks = new StringCollection();
             imagelinks = wf.getImgLinks("1000", page2);
-
 
             foreach (string p in imagelinks)
             {
@@ -1592,21 +1574,6 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         public string RemoveImage(string Image, string ArticleText)
         {
@@ -1643,7 +1610,6 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
 
                             Regex t = new Regex(Regex.Escape(match));
 
-
                             ArticleText = t.Replace(ArticleText, "", 1);
 
                             break;
@@ -1660,8 +1626,6 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
                 foreach (Match m in n)
                 {
                     Regex t = new Regex(Regex.Escape(m.Value));
-
-
                     ArticleText = t.Replace(ArticleText, "", 1, m.Index);
                 }
             }
@@ -1669,25 +1633,9 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
             return ArticleText;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //public string RemoveImage(string image, string articleText)
         //{
         //    ////remove image prefix
-
 
         //    string img = "";
 
@@ -1714,16 +1662,12 @@ wf.Save(p, wtq, "Removing image using [[WP:NPW|NPWatcher]].  Reason given was: \
 
         //    Regex r1 = new Regex("[\\|[Ii]mage ?= ?]?\\[\\[[Ii]mage:" + img + ".*\\]\\][\n]?[\\|]?");
 
-
-
         //    MatchCollection n1 = r1.Matches(articleText);
 
         //    if (n1.Count > 0)
         //    {
         //        articleText = r1.Replace(articleText, "");
         //    }
-
-
 
         //    MatchCollection n = r.Matches(articleText);
 

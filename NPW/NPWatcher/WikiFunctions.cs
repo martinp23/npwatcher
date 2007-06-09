@@ -18,9 +18,16 @@ namespace NPWatcher
         public static string watch = "0";
         //internal static bool asAdmin;
 
+        private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
+
+        public string Url
+        {
+            get { return wikiurl; }
+    }
+
         public bool login(string Username, string Userpass)
         {
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=Special:Userlogin&action=submitlogin&type=login");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
             String postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
                 new string[] { Username, Userpass });
             webReq.Method = "POST";
@@ -167,7 +174,7 @@ namespace NPWatcher
             Regex pageTitleTagRE = new Regex("<title>([^<]*?)</title>");
 
 
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=" + limit + "&offset=0&feed=atom");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&offset=0&feed=atom");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             CookieContainer cc = new CookieContainer();
@@ -196,7 +203,7 @@ namespace NPWatcher
         {
 
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=raw&ctype=text/plain&dontcountme=s");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=raw&ctype=text/plain&dontcountme=s");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             CookieContainer cc = new CookieContainer();
@@ -260,7 +267,7 @@ namespace NPWatcher
             try
             {
                 string src = "";
-                webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=edit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 CookieContainer cc = new CookieContainer();
@@ -290,7 +297,7 @@ namespace NPWatcher
 
 
 
-                webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=submit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 webReq.Method = "POST";
@@ -330,7 +337,7 @@ namespace NPWatcher
             try
             {
                 string src = "";
-                webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=edit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 CookieContainer cc = new CookieContainer();
@@ -359,7 +366,7 @@ namespace NPWatcher
                 editTime = editTime.Substring(0, editTime.Length - 19);
                 
 
-                webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=submit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 webReq.Method = "POST";
@@ -399,7 +406,7 @@ namespace NPWatcher
         public void Deletepg(string page, string editsummary)
         {
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=edit");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             CookieContainer cc = new CookieContainer();
@@ -426,7 +433,7 @@ namespace NPWatcher
             editTime = editTime.Substring(7);
             editTime = editTime.Substring(0, editTime.Length - 19);
             
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=" + page + "&action=delete");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=delete");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             webReq.Method = "POST";
@@ -460,7 +467,7 @@ namespace NPWatcher
             Regex LoginRegex = new Regex("var wgUserName = (.*?);", RegexOptions.Compiled);
 
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/index.php?title=Wikipedia:Sandbox&action=edit");
+            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Wikipedia:Sandbox&action=edit");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             CookieContainer cc = new CookieContainer();
