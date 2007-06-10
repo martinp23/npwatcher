@@ -23,7 +23,7 @@ namespace NPWatcher
         public string Url
         {
             get { return wikiurl; }
-    }
+        }
 
         public bool login(string Username, string Userpass)
         {
@@ -74,6 +74,64 @@ namespace NPWatcher
             else
             { return true; }
 
+        }
+
+        public bool CheckIfAdmin()
+        {
+            string userGroups;
+            List<string> Groups = new List<string>();
+
+            userGroups = GetScriptingVar("wgUserGroups");
+
+            Regex r = new Regex("\"([a-z]*)\"[,\\]]");
+
+            foreach (Match m1 in r.Matches(userGroups))
+            {
+                Groups.Add(m1.Groups[1].Value);
+            }
+
+            return (Groups.Contains("sysop") || Groups.Contains("staff"));
+        }
+
+        private string GetScriptingVar(string name)
+        {
+            string src = "";
+            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/");
+            webReq.UserAgent = "NPWatcher/1.0";
+            webReq.ContentType = "application/x-www-form-urlencoded";
+            CookieContainer cc = new CookieContainer();
+            cc.Add(cookies);
+            webReq.CookieContainer = cc;
+            webReq.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+
+            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+
+            Stream srcstrm = webResp1.GetResponseStream();
+            StreamReader work = new StreamReader(srcstrm);
+            src = work.ReadToEnd();
+
+            try
+            {
+                Regex r = new Regex("var " + name + " = (.*?);\n");
+                src = StringBetween(src, "<head>", "</head>");
+                Match m = r.Match(src);
+
+                if (!m.Groups[1].Success)
+                    return "";
+
+                string s = m.Groups[1].Value.Trim('"');
+                s = s.Replace("\\\"", "\"").Replace("\\'", "'");
+
+                return s;
+            }
+            catch { return ""; }
+        }
+
+        private string StringBetween(string source, string start, string end)
+        {
+            try { return source.Substring(source.IndexOf(start), source.IndexOf(end) - source.IndexOf(start)); }
+            catch { return ""; }
         }
         
         ///Get newpages from 

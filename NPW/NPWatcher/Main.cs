@@ -105,6 +105,7 @@ namespace NPWatcher
                                     Close();
                                 }
                                 else
+                                    asAdmin = wf.CheckIfAdmin();
                                     MessageBox.Show("Logged in");
                             }
                         }

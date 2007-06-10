@@ -19,11 +19,6 @@ namespace NPWatcher
         {
             Main.username = loginTxt.Text;
             Main.password = pwdTxt.Text;
-            if(asAdmin.Checked)
-            {
-               // WikiFunctions.asAdmin = true;
-                Main.asAdmin = true;
-            }
             this.Close();
         }
 

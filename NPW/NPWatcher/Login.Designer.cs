@@ -34,12 +34,11 @@ namespace NPWatcher
             this.pwdTxt = new System.Windows.Forms.MaskedTextBox();
             this.loginTxt = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.asAdmin = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(186, 115);
+            this.loginBtn.Location = new System.Drawing.Point(186, 84);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(75, 23);
             this.loginBtn.TabIndex = 3;
@@ -84,7 +83,7 @@ namespace NPWatcher
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(267, 115);
+            this.cancelBtn.Location = new System.Drawing.Point(267, 84);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 4;
@@ -92,25 +91,14 @@ namespace NPWatcher
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // asAdmin
-            // 
-            this.asAdmin.AutoSize = true;
-            this.asAdmin.Location = new System.Drawing.Point(33, 84);
-            this.asAdmin.Name = "asAdmin";
-            this.asAdmin.Size = new System.Drawing.Size(309, 17);
-            this.asAdmin.TabIndex = 2;
-            this.asAdmin.Text = "Use administrator functions (won\'t work if you\'re not a sysop)";
-            this.asAdmin.UseVisualStyleBackColor = true;
-            // 
             // Login
             // 
             this.AcceptButton = this.loginBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(349, 143);
+            this.ClientSize = new System.Drawing.Size(344, 113);
             this.ControlBox = false;
-            this.Controls.Add(this.asAdmin);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginTxt);
             this.Controls.Add(this.pwdTxt);
@@ -139,6 +127,5 @@ namespace NPWatcher
         private System.Windows.Forms.MaskedTextBox pwdTxt;
         private System.Windows.Forms.TextBox loginTxt;
         private System.Windows.Forms.Button cancelBtn;
-        private System.Windows.Forms.CheckBox asAdmin;
     }
 }
