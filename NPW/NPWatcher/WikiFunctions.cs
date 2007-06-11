@@ -15,10 +15,14 @@ namespace NPWatcher
     {
         private HttpWebRequest webReq;
         private CookieCollection cookies;
+        private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
+        string src;
 
         private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
+        private static string apiurl = "http://en.wikipedia.org/w/api.php";
+        private static string queryurl = "http://en.wikipedia.org/w/query.php";
 
         public string Url
         {
@@ -47,19 +51,11 @@ namespace NPWatcher
             webResp.Close();
 
 
-            string src = "";
+            src = "";
 
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/api.php?action=query&list=watchlist&wllimit=3&format=xml");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(apiurl + "?action=query&list=watchlist&wllimit=3&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -95,21 +91,21 @@ namespace NPWatcher
 
         private string GetScriptingVar(string name)
         {
-            string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            //string src = "";
+            //webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/");
+            //webReq.UserAgent = "NPWatcher/1.0";
+            //webReq.ContentType = "application/x-www-form-urlencoded";
+            //CookieContainer cc = new CookieContainer();
+            //cc.Add(cookies);
+            //webReq.CookieContainer = cc;
+            //webReq.Credentials = CredentialCache.DefaultCredentials;
+            //webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            //HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
-            Stream srcstrm = webResp1.GetResponseStream();
-            StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
+            //Stream srcstrm = webResp1.GetResponseStream();
+            //StreamReader work = new StreamReader(srcstrm);
+            //src = work.ReadToEnd();
 
             try
             {
@@ -139,18 +135,10 @@ namespace NPWatcher
         public StringCollection getCat(string limit, string category)
         {
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/query.php?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
+            
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
@@ -181,19 +169,10 @@ namespace NPWatcher
 
             do
             {
-
-                webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/query.php?what=imagelinks&titles=" + image + "&format=xml");
-                webReq.UserAgent = "NPWatcher/1.0";
-                webReq.ContentType = "application/x-www-form-urlencoded";
-                CookieContainer cc = new CookieContainer();
-                cc.Add(cookies);
-                webReq.CookieContainer = cc;
-                webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                webRequest(queryurl + "?what=imagelinks&titles=" + image + "&format=xml");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
+                
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -232,14 +211,7 @@ namespace NPWatcher
             Regex pageTitleTagRE = new Regex("<title>([^<]*?)</title>");
 
 
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&offset=0&feed=atom");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&offset=0&feed=atom");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
@@ -261,14 +233,7 @@ namespace NPWatcher
         {
 
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=raw&ctype=text/plain&dontcountme=s");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(wikiurl + page + "&action=raw&ctype=text/plain&dontcountme=s");
             try
             {
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
@@ -288,17 +253,9 @@ namespace NPWatcher
         public string GetCreator(string page)
         {
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -325,18 +282,10 @@ namespace NPWatcher
             try
             {
                 string src = "";
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
-                webReq.UserAgent = "NPWatcher/1.0";
-                webReq.ContentType = "application/x-www-form-urlencoded";
-                CookieContainer cc = new CookieContainer();
-                cc.Add(cookies);
-                webReq.CookieContainer = cc;
-                webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                webRequest(wikiurl + page + "&action=edit");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
+                
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -353,9 +302,7 @@ namespace NPWatcher
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
 
-
-
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=submit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 webReq.Method = "POST";
@@ -395,14 +342,7 @@ namespace NPWatcher
             try
             {
                 string src = "";
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
-                webReq.UserAgent = "NPWatcher/1.0";
-                webReq.ContentType = "application/x-www-form-urlencoded";
-                CookieContainer cc = new CookieContainer();
-                cc.Add(cookies);
-                webReq.CookieContainer = cc;
-                webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                webRequest(wikiurl + page + "&action=edit");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
@@ -424,7 +364,7 @@ namespace NPWatcher
                 editTime = editTime.Substring(0, editTime.Length - 19);
                 
 
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=submit");
+                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
                 webReq.Method = "POST";
@@ -464,14 +404,7 @@ namespace NPWatcher
         public void Deletepg(string page, string editsummary)
         {
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=edit");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(wikiurl + page + "&action=edit");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             
@@ -525,14 +458,7 @@ namespace NPWatcher
             Regex LoginRegex = new Regex("var wgUserName = (.*?);", RegexOptions.Compiled);
 
             string src = "";
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Wikipedia:Sandbox&action=edit");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            CookieContainer cc = new CookieContainer();
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest(wikiurl + "Wikipedia:Sandbox&action=edit");
             try
             {
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
@@ -550,6 +476,18 @@ namespace NPWatcher
             Match m = LoginRegex.Match(src);
 
             return !(!m.Success || m.Groups[1].Value == "null");
+        }
+
+        private void webRequest(string URL)
+        {
+            webReq = (HttpWebRequest)WebRequest.Create(URL);
+            webReq.UserAgent = "NPWatcher/1.0";
+            webReq.ContentType = "application/x-www-form-urlencoded";
+            cc = new CookieContainer();
+            cc.Add(cookies);
+            webReq.CookieContainer = cc;
+            webReq.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
         }
     }
     
