@@ -91,21 +91,14 @@ namespace NPWatcher
 
         private string GetScriptingVar(string name)
         {
-            //string src = "";
-            //webReq = (HttpWebRequest)WebRequest.Create("http://en.wikipedia.org/");
-            //webReq.UserAgent = "NPWatcher/1.0";
-            //webReq.ContentType = "application/x-www-form-urlencoded";
-            //CookieContainer cc = new CookieContainer();
-            //cc.Add(cookies);
-            //webReq.CookieContainer = cc;
-            //webReq.Credentials = CredentialCache.DefaultCredentials;
-            //webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            string src = "";
+            webRequest("http://en.wikipedia.org/");
 
-            //HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
-            //Stream srcstrm = webResp1.GetResponseStream();
-            //StreamReader work = new StreamReader(srcstrm);
-            //src = work.ReadToEnd();
+            Stream srcstrm = webResp1.GetResponseStream();
+            StreamReader work = new StreamReader(srcstrm);
+            src = work.ReadToEnd();
 
             try
             {
@@ -201,7 +194,6 @@ namespace NPWatcher
 
         public StringCollection getNPs(string limit)
         {
-
             string src = "";
             StringCollection strCol = new StringCollection();
            // StringCollection strCol1 = new StringCollection();
@@ -220,6 +212,7 @@ namespace NPWatcher
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
             src = HttpUtility.HtmlDecode(src);
+
             matches = pageTitleTagRE.Matches(src);
             foreach (Match match in matches)
             { strCol.Add(match.Groups[1].Value); }
