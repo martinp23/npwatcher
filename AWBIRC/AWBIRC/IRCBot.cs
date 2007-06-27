@@ -17,8 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-//You'll notice that checkSVN() and checkSVN1() output different stuff.  This is an
-// intentional bug, for now ;).
+
 
 using System;
 using System.Web;
@@ -88,7 +87,7 @@ class IrcBot
                 {
                     if (stop)
                     { break; }
-                    ircwriter.WriteLine("NickServ IDENTIFY NO-YOU-CAN'T-HAVE-IT-:P");
+                    ircwriter.WriteLine("NickServ zomg password");
                     ircwriter.Flush();
 
                     System.Timers.Timer timer = new System.Timers.Timer(90000);
@@ -254,7 +253,7 @@ class IrcBot
                     string diff = wc.DownloadString(url);
 
                     //string comment = Regex.Match(diff, "<pre class=\"vc_log\">(.+?)*</pre>", RegexOptions.Multiline).ToString();
-              
+
                     int start = diff.IndexOf("<pre class=\"vc_log\">");
                     int end = diff.IndexOf("</pre>", start);
 
@@ -266,8 +265,23 @@ class IrcBot
                     user = user.Replace("<th>Author:</th>\n<td>", "");
                     user = user.Replace("</td>", "");
                     user = HttpUtility.HtmlDecode(user);
-                    comment = comment.Replace('\n', ' ');
-                    ircwriter.WriteLine("PRIVMSG #autowikibrowser :Revision {0} committed by {1} with comment \"{2}\".  Review here: {3}", rev.ToString(), user, comment, url);
+                    //comment = comment.Replace('\r', ' ');
+                    //comment = comment.Replace("\n\n ", "\n\nPRIVMSG #autowikibrowser :");
+                    string[] s2 = { "\n" };
+                    
+                    string[] commentar = comment.Split(s2, StringSplitOptions.RemoveEmptyEntries);
+
+                    ircwriter.WriteLine("PRIVMSG #autowikibrowser :Revision {0} committed by {1} with comment:", rev.ToString(), user);
+                    ircwriter.Flush();
+
+                    foreach (string line in commentar)
+                    {
+                        ircwriter.WriteLine("PRIVMSG #autowikibrowser :" + line);
+                        ircwriter.Flush();
+                        Thread.Sleep(1000);
+                    }
+
+                    ircwriter.WriteLine("PRIVMSG #autowikibrowser :Review here: {0}", url);
                     ircwriter.Flush();
                     Thread.Sleep(1000);
                 }
@@ -317,12 +331,15 @@ class IrcBot
 
         }
 
-        if (Regex.Match(command, "reset", RegexOptions.IgnoreCase).Success)
-        {
-            ircClient.Close();
-            ircwriter.Close();
-            stop = true;
-        }
+//TO FIX!
+
+       // if (Regex.Match(command, "reset", RegexOptions.IgnoreCase).Success)
+       // {
+       //     ircClient.Close();
+       //     ircwriter.Close();
+       //     stop = true;
+      //  }
+
 
     }
     #endregion
