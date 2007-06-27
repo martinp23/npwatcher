@@ -138,8 +138,7 @@ class IrcBot
 
     public static void talkNormal(string command)
     {
-
-        if (command == "bugs")
+        if (Regex.Match(command, "bugs", RegexOptions.IgnoreCase).Success)
         {
 
             ircwriter.WriteLine("PRIVMSG #autowikibrowser :http://en.wikipedia.org/wiki/Wikipedia_talk:AutoWikiBrowser/Bugs ");
@@ -148,7 +147,7 @@ class IrcBot
 
         }
 
-        if (command == "features")
+        if (Regex.Match(command, "features", RegexOptions.IgnoreCase).Success)
         {
 
             ircwriter.WriteLine("PRIVMSG #autowikibrowser :http://en.wikipedia.org/wiki/Wikipedia_talk:AutoWikiBrowser/Feature_requests ");
@@ -157,7 +156,7 @@ class IrcBot
 
         }
 
-        if (command == "dev")
+        if (Regex.Match(command, "dev", RegexOptions.IgnoreCase).Success)
         {
 
             ircwriter.WriteLine("PRIVMSG #autowikibrowser :http://en.wikipedia.org/wiki/Wikipedia_talk:AutoWikiBrowser/Dev ");
@@ -166,7 +165,7 @@ class IrcBot
 
         }
 
-        if (command == "checkpage")
+        if (Regex.Match(command, "checkpage", RegexOptions.IgnoreCase).Success)
         {
 
             ircwriter.WriteLine("PRIVMSG #autowikibrowser :http://en.wikipedia.org/wiki/Wikipedia_talk:AutoWikiBrowser/CheckPage ");
@@ -175,7 +174,7 @@ class IrcBot
 
         }
 
-        if (command == "checkSVN1")
+        if (Regex.Match(command, "checksvn1", RegexOptions.IgnoreCase).Success)
         {
         
             WebClient wc = new WebClient();
@@ -234,7 +233,7 @@ class IrcBot
            
         }
 
-        if (command == "checkSVN")
+        if (Regex.Match(command, "checkSVN", RegexOptions.IgnoreCase).Success)
         {
             WebClient wc = new WebClient();
             string src = wc.DownloadString("http://autowikibrowser.svn.sourceforge.net/viewvc/autowikibrowser/AWB/");
@@ -282,9 +281,8 @@ class IrcBot
             Thread.Sleep(100);
 
         }
-        if (command == "help")
+        if (Regex.Match(command, "help", RegexOptions.IgnoreCase).Success)
         {
-
             ircwriter.WriteLine("PRIVMSG " + nickname + " :Place \"!\" in front of the following commands to run them:");
             ircwriter.Flush();
             Thread.Sleep(1500);
@@ -303,11 +301,10 @@ class IrcBot
             ircwriter.WriteLine("PRIVMSG " + nickname + " :\"checkSVN\" - have the bot report any recent SVN commits");
             ircwriter.Flush();
             Thread.Sleep(1500);
-
         }
-       
 
-        if (command == "quit")
+
+        if (Regex.Match(command, "quit", RegexOptions.IgnoreCase).Success)
         {
             nickname = inputLine.Substring(inputLine.IndexOf("!") + 3, (inputLine.Length - inputLine.IndexOf(" PRIVMSG") - 4));
             if (nickname == "martin@wikipedia/Martinp23")
@@ -316,12 +313,11 @@ class IrcBot
                 ircwriter.Close();
                 ircClient.Close();
                 Environment.Exit(0x000);
-
             }
 
         }
 
-        if (command == "reset")
+        if (Regex.Match(command, "reset", RegexOptions.IgnoreCase).Success)
         {
             ircClient.Close();
             ircwriter.Close();
@@ -329,8 +325,6 @@ class IrcBot
         }
 
     }
-
-
     #endregion
 
     public static void OnTimerEvent(object source, EventArgs e)
