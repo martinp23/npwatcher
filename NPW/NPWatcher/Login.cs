@@ -25,7 +25,7 @@ namespace NPWatcher
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             Main.dialogcancel = true;
-            Application.Exit();
+            this.Close();
         }
     }
 }

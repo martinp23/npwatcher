@@ -295,6 +295,14 @@ namespace NPWatcher
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
 
+                //Regex editAutoSummaryRE = new Regex("name=\"wpAutoSummary\" type=\"hidden\" value=\"([^\"]*?)\"");
+                //Match m2 = editAutoSummaryRE.Match(src);
+                //string autosummary = m2.Value;
+                //autosummary = autosummary.Substring(42);
+                //autosummary = autosummary.Substring(0, autosummary.Length - 1);
+
+               
+
                 webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
@@ -307,10 +315,10 @@ namespace NPWatcher
                 webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
                 watch = "";
 
-                string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
+                string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=0" +
                     "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
-                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), editTime,
-                HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), editToken, watch });
+                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
 
                 byte[] postBytes = Encoding.UTF8.GetBytes(postData);
                 webReq.ContentLength = postBytes.Length;
@@ -374,8 +382,8 @@ namespace NPWatcher
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
                     "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
-                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), editTime,
-                HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), editToken, watch });
+                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
 
                 byte[] postBytes = Encoding.UTF8.GetBytes(postData);
                 webReq.ContentLength = postBytes.Length;
@@ -431,8 +439,8 @@ namespace NPWatcher
 
             string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
                 "&wpReason={2}&wpConfirmB=Delete%20Page&wpEditToken={3}",
-                new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), editTime,
-                 HttpUtility.UrlEncode(editsummary), editToken });
+                new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                 HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken) });
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
             webReq.ContentLength = postBytes.Length;
