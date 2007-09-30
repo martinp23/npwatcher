@@ -221,7 +221,7 @@ namespace NPWatcher
             try
             {
                 string page = pageList.SelectedItem.ToString();
-		#should fix the ampersands issue...
+		//should fix the ampersands issue...
                 page2 = System.Web.HttpUtility.UrlEncode(page);
                 webBrowser1.Navigate(wf.Url + page2);
                 wikitextpage2 = wf.getWikiText(page2);
