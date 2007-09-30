@@ -122,7 +122,6 @@ namespace NPWatcher
             this.pageList.Size = new System.Drawing.Size(139, 147);
             this.pageList.TabIndex = 1;
             this.pageList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pageList_MouseClick);
-            this.pageList.DoubleClick += new System.EventHandler(this.pageList_DoubleClick);
             // 
             // mnuPages
             // 
@@ -165,7 +164,6 @@ namespace NPWatcher
             this.webBrowser1.Size = new System.Drawing.Size(984, 473);
             this.webBrowser1.TabIndex = 5;
             this.webBrowser1.ProgressChanged += new System.Windows.Forms.WebBrowserProgressChangedEventHandler(this.webBrowser1_ProgressChanged);
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // limitCB
             // 
