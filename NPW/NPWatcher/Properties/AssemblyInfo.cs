@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("NPWatcher")]
-[assembly: AssemblyCopyright("Copyright ©  2006")]
+[assembly: AssemblyCopyright("Copyright ©  2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.0.3.1")]
-[assembly: AssemblyFileVersion("1.0.3.1")]
+[assembly: AssemblyVersion("1.0.3.2")]
+[assembly: AssemblyFileVersion("1.0.3.2")]
