@@ -952,7 +952,7 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
         private void wikifyBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            string template = "{{Wikify|{{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}";
+            string template = "{{Wikify|date={{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}";
             Mark(template);
             Greyin();
         }
