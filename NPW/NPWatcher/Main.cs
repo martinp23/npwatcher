@@ -569,13 +569,13 @@ wf.Save(creator, newtxt, "Posting {{firstarticle}} using [[WP:NPW|NPWatcher]]");
 
                 if (!asAdmin)
                 {
-                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn|" + page2 + "|header=1}} ~~~~";
                     if (sortlogin())
 wf.Save(creator, newtxt, "Posting {{nn-warn}} using [[WP:NPW|NPWatcher]].");
                 }
                 if (asAdmin)
                 {
-                        newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + page2 + "}} ~~~~";
+                        newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + page2 + "|header=1}} ~~~~";
                         if (sortlogin())
 wf.Save(creator, newtxt, "Posting {{nn-warn-deletion}} using [[WP:NPW|NPWatcher]].");
                 }
