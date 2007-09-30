@@ -160,7 +160,6 @@ namespace NPWatcher
                     foreach (string p in nps)
                     { pageList.Items.Add(p); }
                 }
-
                 else if (category == "CSDRad")
                 {
                     string limit = "500";
@@ -393,7 +392,7 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-                Delete("db-redirtypo", "Implausibe typo, [[WP:CSD#R2]]");
+                Delete("db-rediruser", "Redirect to user space [[WP:CSD#R2]]");
 
             Greyin();
         }
@@ -402,8 +401,8 @@ namespace NPWatcher
         {
             Greyout();
             if (pageList.SelectedItem != null)
-                Delete("db-rediruser", "Redirect to user space [[WP:CSD#R3]]");
-
+                Delete("db-redirtypo", "Implausibe typo, [[WP:CSD#R3]]");
+                
             Greyin();
         }
 
