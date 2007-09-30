@@ -898,7 +898,7 @@ wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" +
         private void sourcesBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            string template = "{{sources}}";
+            string template = "{{unsourced}}";
             Mark(template);
             Greyin();
         }
