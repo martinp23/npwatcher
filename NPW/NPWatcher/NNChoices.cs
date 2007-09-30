@@ -23,6 +23,8 @@ namespace NPWatcher
                 Main.nntag = "db-band";
             else if (clubRB.Checked)
                 Main.nntag = "db-club";
+            else if (companyRB.Checked)
+                Main.nntag = "db-corp";
             else if (groupRB.Checked)
                 Main.nntag = "db-group";
             else if (webRB.Checked)

@@ -36,6 +36,7 @@ namespace NPWatcher
             this.label1 = new System.Windows.Forms.Label();
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.companyRB = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // genRB
@@ -52,7 +53,7 @@ namespace NPWatcher
             // bandRB
             // 
             this.bandRB.AutoSize = true;
-            this.bandRB.Location = new System.Drawing.Point(70, 55);
+            this.bandRB.Location = new System.Drawing.Point(70, 54);
             this.bandRB.Name = "bandRB";
             this.bandRB.Size = new System.Drawing.Size(50, 17);
             this.bandRB.TabIndex = 1;
@@ -63,7 +64,7 @@ namespace NPWatcher
             // clubRB
             // 
             this.clubRB.AutoSize = true;
-            this.clubRB.Location = new System.Drawing.Point(70, 78);
+            this.clubRB.Location = new System.Drawing.Point(70, 76);
             this.clubRB.Name = "clubRB";
             this.clubRB.Size = new System.Drawing.Size(46, 17);
             this.clubRB.TabIndex = 2;
@@ -74,7 +75,7 @@ namespace NPWatcher
             // groupRB
             // 
             this.groupRB.AutoSize = true;
-            this.groupRB.Location = new System.Drawing.Point(70, 101);
+            this.groupRB.Location = new System.Drawing.Point(70, 120);
             this.groupRB.Name = "groupRB";
             this.groupRB.Size = new System.Drawing.Size(54, 17);
             this.groupRB.TabIndex = 3;
@@ -85,7 +86,7 @@ namespace NPWatcher
             // webRB
             // 
             this.webRB.AutoSize = true;
-            this.webRB.Location = new System.Drawing.Point(70, 124);
+            this.webRB.Location = new System.Drawing.Point(70, 142);
             this.webRB.Name = "webRB";
             this.webRB.Size = new System.Drawing.Size(64, 17);
             this.webRB.TabIndex = 4;
@@ -104,7 +105,7 @@ namespace NPWatcher
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(45, 164);
+            this.okBtn.Location = new System.Drawing.Point(28, 165);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(75, 23);
             this.okBtn.TabIndex = 7;
@@ -115,7 +116,7 @@ namespace NPWatcher
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(126, 164);
+            this.cancelBtn.Location = new System.Drawing.Point(109, 165);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 8;
@@ -123,14 +124,26 @@ namespace NPWatcher
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // Nnchoices
+            // companyRB
+            // 
+            this.companyRB.AutoSize = true;
+            this.companyRB.Location = new System.Drawing.Point(70, 98);
+            this.companyRB.Name = "companyRB";
+            this.companyRB.Size = new System.Drawing.Size(69, 17);
+            this.companyRB.TabIndex = 9;
+            this.companyRB.TabStop = true;
+            this.companyRB.Text = "Company";
+            this.companyRB.UseVisualStyleBackColor = true;
+            // 
+            // NNChoices
             // 
             this.AcceptButton = this.okBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBtn;
-            this.ClientSize = new System.Drawing.Size(213, 199);
+            this.ClientSize = new System.Drawing.Size(213, 198);
             this.ControlBox = false;
+            this.Controls.Add(this.companyRB);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.label1);
@@ -139,7 +152,7 @@ namespace NPWatcher
             this.Controls.Add(this.clubRB);
             this.Controls.Add(this.bandRB);
             this.Controls.Add(this.genRB);
-            this.Name = "Nnchoices";
+            this.Name = "NNChoices";
             this.Text = "Notability deletion";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,5 +169,6 @@ namespace NPWatcher
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Button cancelBtn;
+        private System.Windows.Forms.RadioButton companyRB;
     }
 }
