@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace NPWatcher
 {
-    public partial class Login : Form
+    public partial class LogOn : Form
     {
-        public Login()
+        public LogOn()
         {
             InitializeComponent();
         }

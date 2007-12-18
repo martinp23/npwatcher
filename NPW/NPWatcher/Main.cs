@@ -33,7 +33,6 @@ namespace NPWatcher
         internal static string wikitextpage2 = "";
         internal static bool editsuccess;
         internal static string cwr;
-        internal static bool cwsuc;
 
         public Main()
         {
@@ -43,7 +42,7 @@ namespace NPWatcher
         private void Form1_Load(object sender, EventArgs e)
         {
             //LOGIN AND QUIT ON CANCEL CODE
-            Login login = new Login();
+            LogOn login = new LogOn();
             login.ShowDialog();
 
             if (dialogcancel)
@@ -60,7 +59,7 @@ namespace NPWatcher
                         success = wf.login(username, password);
                         if (success == false)
                         {
-                            Login login1 = new Login();
+                            LogOn login1 = new LogOn();
                             login1.ShowDialog();
                             if (dialogcancel)
                                 Close();
@@ -442,7 +441,7 @@ namespace NPWatcher
                 if (!page2.StartsWith("Image:"))
                 {
                     string talktxt = wf.getWikiText("Talk:" + page2);
-                    if (talktxt != "")
+                    if (string.IsNullOrEmpty(talktxt))
                     {
                         DialogResult dr = MessageBox.Show("Would you like to delete the article talk page too?", "Talk page",
                             MessageBoxButtons.YesNo);
@@ -457,7 +456,7 @@ namespace NPWatcher
                 {
                     string talktitle = "Image talk:" + page2.Substring(6);
                     string talktxt = wf.getWikiText("Talk:" + page2);
-                    if (talktxt != "")
+                    if (!string.IsNullOrEmpty(talktxt))
                     {
                         DialogResult dr = MessageBox.Show("Would you like to delete the image talk page too?", "Talk page",
                             MessageBoxButtons.YesNo);
@@ -476,7 +475,7 @@ namespace NPWatcher
             string wikitextcur = wf.getWikiText(page2);
             if (wikitextcur != wikitextpage2)
             {
-                if (wikitextcur == "")
+                if (string.IsNullOrEmpty(wikitextcur))
                 {
                     MessageBox.Show("The page appears to have been deleted by an administrator (or blanked).  The page will now reload so that you can verify this");
                 }
@@ -589,7 +588,7 @@ namespace NPWatcher
         private void Msgnons()
         {
             string creator = wf.GetCreator(page2);
-            if (creator != "")
+            if (!string.IsNullOrEmpty(creator))
             {
                 creator = "User_talk:" + creator;
                 string wikitext = wf.getWikiText(creator);
@@ -664,7 +663,7 @@ namespace NPWatcher
         private void Msgattack()
         {
             string creator = wf.GetCreator(page2);
-            if (creator != "")
+            if (!string.IsNullOrEmpty(creator))
             {
                 creator = "User_talk:" + creator;
                 string wikitext = wf.getWikiText(creator);
@@ -731,7 +730,7 @@ namespace NPWatcher
             string wikitextnew = wf.getWikiText(page2);
             if (wikitextnew != wikitextpage2)
             {
-                if (wikitextnew == "")
+                if (string.IsNullOrEmpty(wikitextnew))
                 {
                     MessageBox.Show("The page appears to have been deleted by an administrator (or blanked).  The page will now reload so that you can verify this");
                     editsuccess = false;
@@ -750,7 +749,7 @@ namespace NPWatcher
                         removetags(page2);
                         string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                         int number = 1;
-                        while (txt != "")
+                        while (!string.IsNullOrEmpty(txt))
                         {
                             number += 1;
                             if (number == 2)
@@ -870,7 +869,7 @@ namespace NPWatcher
         private void stubBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (stubTxt.Text == null || stubTxt.Text == "")
+            if (string.IsNullOrEmpty(stubTxt.Text))
             {
                 DialogResult dr = MessageBox.Show(this, "You didn't enter a stub type.  Would you like to use the generic tag?",
                     "Stub types", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1093,7 +1092,7 @@ namespace NPWatcher
                         string reason = "";
                         reason = prodreasonstr;
                         prodreasonstr = "";
-                        if (reason == "")
+                        if (string.IsNullOrEmpty(reason))
                         {
                             reason = "No reason given";
                         }
@@ -1122,7 +1121,7 @@ namespace NPWatcher
             string wikitextnew = wf.getWikiText(page2);
             if (wikitextnew != wikitextpage2)
             {
-                if (wikitextnew == "")
+                if (string.IsNullOrEmpty(wikitextnew))
                 {
                     MessageBox.Show("The page appears to have been deleted by an administrator (or blanked).  The page will now reload so that you can verify this");
                     editsuccess = false;
@@ -1140,7 +1139,7 @@ namespace NPWatcher
                     removetags(page2);
                     string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                     int number = 1;
-                    while (txt != "")
+                    while (!string.IsNullOrEmpty(txt))
                     {
                         number += 1;
                         if (number == 2)
@@ -1237,7 +1236,7 @@ namespace NPWatcher
                 string reason = "";
                 reason = prodreasonstr;
                 prodreasonstr = "";
-                if (reason == "")
+                if (string.IsNullOrEmpty(reason))
                 {
                     reason = "No reason given";
                 }
@@ -1423,10 +1422,9 @@ namespace NPWatcher
                 reason.ShowDialog();
                 if (doprod)
                 {
-                    string rat = "";
-                    rat = prodreasonstr;
+                    string rat = prodreasonstr;
                     prodreasonstr = "";
-                    if (rat == "")
+                    if (string.IsNullOrEmpty(rat))
                     {
                         rat = "No reason given";
                     }

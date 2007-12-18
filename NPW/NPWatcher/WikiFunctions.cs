@@ -32,7 +32,7 @@ namespace NPWatcher
         public bool login(string Username, string Userpass)
         {
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
-            String postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
+            string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
                 new string[] { Username, Userpass });
             webReq.Method = "POST";
             webReq.ContentType = "application/x-www-form-urlencoded";
@@ -50,7 +50,6 @@ namespace NPWatcher
             cookies = webResp.Cookies;
             webResp.Close();
 
-
             src = "";
 
             webRequest(apiurl + "?action=query&list=watchlist&wllimit=3&format=xml");
@@ -61,10 +60,13 @@ namespace NPWatcher
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
 
-
             if (src.Contains("wlnotloggedin"))
             {
-                WikiBotException ex = new WikiBotException("login failed");
+                try
+                {
+                    throw new WikiBotException("login failed");
+                }
+                catch { }
                 return false;
             }
             else
@@ -301,8 +303,6 @@ namespace NPWatcher
                 //autosummary = autosummary.Substring(42);
                 //autosummary = autosummary.Substring(0, autosummary.Length - 1);
 
-               
-
                 webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
                 webReq.ContentType = "application/x-www-form-urlencoded";
@@ -327,7 +327,7 @@ namespace NPWatcher
                 reqStrm.Close();
                 HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
                 StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
-                string respStr = strmReader.ReadToEnd();
+                strmReader.ReadToEnd();
                 strmReader.Close();
                 webResp.Close();
 
@@ -392,7 +392,7 @@ namespace NPWatcher
                 reqStrm.Close();
                 HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
                 StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
-                string respStr = strmReader.ReadToEnd();
+                strmReader.ReadToEnd();
                 strmReader.Close();
                 webResp.Close();
             }
@@ -449,7 +449,7 @@ namespace NPWatcher
             reqStrm.Close();
             HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
             StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
-            string respStr = strmReader.ReadToEnd();
+            strmReader.ReadToEnd();
             strmReader.Close();
             webResp.Close();
         }
@@ -495,7 +495,6 @@ namespace NPWatcher
         [global::System.Serializable]
         public class WikiBotException : Exception
         {
-            //
             // For guidelines regarding the creation of new exception types, see
             //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
             // and

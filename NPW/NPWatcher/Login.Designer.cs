@@ -1,6 +1,6 @@
 namespace NPWatcher
 {
-    partial class Login
+    partial class LogOn
     {
         /// <summary>
         /// Required designer variable.

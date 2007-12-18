@@ -24,7 +24,6 @@ namespace NPWatcher
                     if (!ReasonTxt.Text.Contains("|"))
                     {
                         Main.cwr = ReasonTxt.Text;
-                        Main.cwsuc = true;
                         this.DialogResult = DialogResult.OK;
                         
                         this.Hide();
@@ -39,7 +38,6 @@ namespace NPWatcher
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Main.cwsuc = false;
             this.DialogResult = DialogResult.Cancel;
             this.Hide();
         }
