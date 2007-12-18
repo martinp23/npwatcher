@@ -41,6 +41,19 @@ namespace NPWatcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
+            string versionpg = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
+            string listofv = versionpg;
+            string versioncurstr = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            this.Cursor = Cursors.Default;
+            if (!listofv.Contains(versioncurstr))
+            {
+                MessageBox.Show("Please download the latest version of NPWatcher", "New Version", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+
             //LOGIN AND QUIT ON CANCEL CODE
             LogOn login = new LogOn();
             login.ShowDialog();
@@ -57,7 +70,7 @@ namespace NPWatcher
                     if (!dialogcancel)
                     {
                         success = wf.login(username, password);
-                        if (success == false)
+                        if (!success)
                         {
                             LogOn login1 = new LogOn();
                             login1.ShowDialog();
@@ -66,35 +79,21 @@ namespace NPWatcher
                         }
                         else
                         {
-                            string versionpg = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
-                            string listofv = versionpg;
-                            object[] attrs = System.Reflection.Assembly.GetEntryAssembly().GetCustomAttributes(true);
-                            object versioncur = attrs[4];
-                            string versioncurstr = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                            string approved = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users");
 
-                            if (!listofv.Contains(versioncurstr))
+                            username = Regex.Escape(username);
+                            Regex r = new Regex(username, RegexOptions.IgnoreCase);
+                            Match m = r.Match(approved);
+
+                            if (!m.Success)
                             {
-                                MessageBox.Show("Please download the latest version of NPWatcher", "New Version", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("You are not approved to use NPWatcher.  Please request approval from Martinp23", "Not Approved", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                                 Close();
                             }
                             else
-                            {
-                                string approved = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users");
-
-                                username = Regex.Escape(username);
-                                Regex r = new Regex(username, RegexOptions.IgnoreCase);
-                                Match m = r.Match(approved);
-
-                                if (!m.Success)
-                                {
-                                    MessageBox.Show("You are not approved to use NPWatcher.  Please request approval from Martinp23", "Not Approved", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                    Close();
-                                }
-                                else
-                                    asAdmin = wf.CheckIfAdmin();
-                                MessageBox.Show("Logged in");
-                            }
+                                asAdmin = wf.CheckIfAdmin();
+                            MessageBox.Show("Logged in");
                         }
                     }
                 }

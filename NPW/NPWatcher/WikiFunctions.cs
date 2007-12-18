@@ -485,6 +485,12 @@ namespace NPWatcher
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
             cc = new CookieContainer();
+
+            if (cookies == null)
+            {
+                HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
+                cookies = webResp.Cookies;
+            }
             cc.Add(cookies);
             webReq.CookieContainer = cc;
             webReq.Credentials = CredentialCache.DefaultCredentials;
