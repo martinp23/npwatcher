@@ -70,7 +70,7 @@ namespace NPWatcher
                             string listofv = versionpg;
                             object[] attrs = System.Reflection.Assembly.GetEntryAssembly().GetCustomAttributes(true);
                             object versioncur = attrs[4];
-                            string versioncurstr = ((System.Reflection.AssemblyFileVersionAttribute)(versioncur)).Version.ToString();
+                            string versioncurstr = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
                             if (!listofv.Contains(versioncurstr))
                             {

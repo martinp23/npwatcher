@@ -14,6 +14,12 @@ namespace NPWatcher
         public ListSource()
         {
             InitializeComponent();
+            CatTxt.Click += new EventHandler(CatTxt_Click);
+        }
+
+        void CatTxt_Click(object sender, EventArgs e)
+        {
+            CustomRad.Checked = true;
         }
 
         private void loadBtn_Click(object sender, EventArgs e)

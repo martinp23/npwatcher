@@ -57,7 +57,6 @@ namespace NPWatcher
             this.CSDRad.TabStop = true;
             this.CSDRad.Text = "CAT:CSD";
             this.CSDRad.UseVisualStyleBackColor = true;
-           
             // 
             // CustomRad
             // 
@@ -98,7 +97,6 @@ namespace NPWatcher
             this.textBox2.TabIndex = 6;
             this.textBox2.Text = "Choose from below where you would like to get the list of pages from.  Custom cat" +
                 "egory can be used for image deletion and prod sorting.";
-         
             // 
             // ListSource
             // 
