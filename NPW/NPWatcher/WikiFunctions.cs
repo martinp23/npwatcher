@@ -33,7 +33,7 @@ namespace NPWatcher
         {
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
-                new string[] { System.Web.HttpUtility.UrlEncode(Username), System.Web.HttpUtility.UrlEncode(Userpass) });
+                new string[] { Username, Userpass });
             webReq.Method = "POST";
             webReq.ContentType = "application/x-www-form-urlencoded";
             webReq.UserAgent = "NPWatcher/1.0";
