@@ -82,7 +82,7 @@ namespace NPWatcher
                             string approved = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users");
 
                             username = Regex.Escape(username);
-			    username = username.Replace("-", "\-");
+			                username = username.Replace("-", "\\-");
                             Regex r = new Regex(username, RegexOptions.IgnoreCase);
                             Match m = r.Match(approved);
 
