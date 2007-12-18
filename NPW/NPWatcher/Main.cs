@@ -1299,7 +1299,7 @@ namespace NPWatcher
                 rat = "Per [[WP:CSD#I3|CSD I3]] - image has an invalid license";
                 if (orphanCB.Checked)
                 { OrphanImage(page2, rat); }
-                //I3Warn(page2);
+                I3Warn(page2);
                 Delete(page2, rat);
                 webBrowser1.Refresh();
             }
@@ -1314,9 +1314,9 @@ namespace NPWatcher
         {
             string towarn = wf.GetCreator(page2);
             string userpg = wf.getWikiText("User_talk:" + towarn);
-            userpg = userpg + "\r\n{{subst:Idw-noncom|" + System.Web.HttpUtility.UrlDecode(page2) + "}}";
+            userpg = userpg + "\r\n{{subst:Idw-noncom-deleted|" + System.Web.HttpUtility.UrlDecode(page2) + "}}";
             if (sortlogin())
-                wf.Save("User_talk:" + towarn, userpg, "Warning user with {{Idw-noncom}} using [[WP:NPW|NPWatcher]]");
+                wf.Save("User_talk:" + towarn, userpg, "Warning user with {{Idw-noncom-deleted}} using [[WP:NPW|NPWatcher]]");
         }
 
         private void I4Btn_Click(object sender, EventArgs e)
