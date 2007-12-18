@@ -510,7 +510,7 @@ namespace NPWatcher
                 string newtxt = "";
                 if (!asAdmin)
                 {
-                    newtxt = wikitext + "\r\n\r\n{{subst:firstarticle|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n\r\n{{subst:firstarticle|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{firstarticle}} using [[WP:NPW|NPWatcher]]");
                 }
@@ -518,7 +518,7 @@ namespace NPWatcher
                 {
                     if (!wikitext.Contains("<!-- Template:Firstarticle -->"))
                     {
-                        newtxt = wikitext + "\r\n\r\n{{subst:firstarticle|" + page2 + "}} ~~~~";
+                        newtxt = wikitext + "\r\n\r\n{{subst:firstarticle|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                         if (sortlogin())
                             wf.Save(creator, newtxt, "Posting {{firstarticle}} using [[WP:NPW|NPWatcher]]");
                     }
@@ -537,13 +537,13 @@ namespace NPWatcher
 
                 if (!asAdmin)
                 {
-                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn|" + page2 + "|header=1}} ~~~~";
+                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn|" + System.Web.HttpUtility.UrlDecode(page2) + "|header=1}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{nn-warn}} using [[WP:NPW|NPWatcher]].");
                 }
                 if (asAdmin)
                 {
-                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + page2 + "|header=1}} ~~~~";
+                    newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + System.Web.HttpUtility.UrlDecode(page2) + "|header=1}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{nn-warn-deletion}} using [[WP:NPW|NPWatcher]].");
                 }
@@ -566,7 +566,7 @@ namespace NPWatcher
 
                     if (!asAdmin)
                     {
-                        newtxt = wikitext + "\r\n\r\n{{subst:" + warning + "|" + page2 + "}} ~~~~";
+                        newtxt = wikitext + "\r\n\r\n{{subst:" + warning + "|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                         if (sortlogin())
                             wf.Save(creator, newtxt, "Posting {{" + warning + "}} using [[WP:NPW|NPWatcher]].");
                     }
@@ -574,7 +574,7 @@ namespace NPWatcher
                     {
                         if (!wikitext.Contains("<!-- Template:" + warning + " -->"))
                         {
-                            newtxt = wikitext + "\r\n\r\n{{subst:" + warning + "|" + page2 + "}} ~~~~";
+                            newtxt = wikitext + "\r\n\r\n{{subst:" + warning + "|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                             if (sortlogin())
                                 wf.Save(creator, newtxt, "Posting {{" + warning + "}} using [[WP:NPW|NPWatcher]].");
 
@@ -595,7 +595,7 @@ namespace NPWatcher
                 string newtxt = "";
                 if (!asAdmin)
                 {
-                    newtxt = wikitext + "\r\n{{subst:Nonsensepages|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n{{subst:Nonsensepages|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{Nonsensepages}} using [[WP:NPW|NPWatcher]].");
                 }
@@ -603,7 +603,7 @@ namespace NPWatcher
                 {
                     if (!wikitext.Contains("<!-- Template:Nonsensepages -->"))
                     {
-                        newtxt = wikitext + "\r\n{{subst:Nonsensepages|" + page2 + "}} ~~~~";
+                        newtxt = wikitext + "\r\n{{subst:Nonsensepages|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                         if (sortlogin())
                             wf.Save(creator, newtxt, "Posting {{Nonsensepages}} using [[WP:NPW|NPWatcher]].");
                     }
@@ -620,7 +620,7 @@ namespace NPWatcher
             string newtxt = "";
             if (!asAdmin)
             {
-                newtxt = wikitext + "\r\n{{subst:test1article|" + page2 + "}} ~~~~";
+                newtxt = wikitext + "\r\n{{subst:test1article|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                 if (sortlogin())
                     wf.Save(creator, newtxt, "Posting {{test1article}} using [[WP:NPW|NPWatcher]].");
             }
@@ -628,7 +628,7 @@ namespace NPWatcher
             {
                 if (!wikitext.Contains("<!-- Template:Test1article (first level warning) -->"))
                 {
-                    newtxt = wikitext + "\r\n{{subst:test1article|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n{{subst:test1article|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{test1article}} using [[WP:NPW|NPWatcher]].");
                 }
@@ -644,7 +644,7 @@ namespace NPWatcher
             string newtxt = "";
             if (!asAdmin)
             {
-                newtxt = wikitext + "\r\n{{subst:test2article-n|" + page2 + "}} ~~~~";
+                newtxt = wikitext + "\r\n{{subst:test2article-n|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                 if (sortlogin())
                     wf.Save(creator, newtxt, "Posting {{test2article}} using [[WP:NPW|NPWatcher]].");
             }
@@ -653,7 +653,7 @@ namespace NPWatcher
 
                 if (!wikitext.Contains("<!-- Template:Test2article (second level warning) -->"))
                 {
-                    newtxt = wikitext + "\r\n{{subst:test2article-n|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n{{subst:test2article-n|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{test2article}} using [[WP:NPW|NPWatcher]].");
                 }
@@ -670,17 +670,17 @@ namespace NPWatcher
                 string newtxt = "";
                 if (!asAdmin)
                 {
-                    newtxt = wikitext + "\r\n{{subst:Attack|" + page2 + "}} ~~~~";
+                    newtxt = wikitext + "\r\n{{subst:Attack|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
-                        wf.Save(creator, newtxt, "Posting {{Attack|" + page2 + "}} using [[WP:NPW|NPWatcher]].");
+                        wf.Save(creator, newtxt, "Posting {{Attack|" + System.Web.HttpUtility.UrlDecode(page2) + "}} using [[WP:NPW|NPWatcher]].");
                 }
                 else
                 {
                     if (!wikitext.Contains("<!-- Template:Attack -->"))
                     {
-                        newtxt = wikitext + "\r\n{{subst:Attack|" + page2 + "}} ~~~~";
+                        newtxt = wikitext + "\r\n{{subst:Attack|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                         if (sortlogin())
-                            wf.Save(creator, newtxt, "Posting {{Attack|" + page2 + "}} using [[WP:NPW|NPWatcher]].");
+                            wf.Save(creator, newtxt, "Posting {{Attack|" + System.Web.HttpUtility.UrlDecode(page2) + "}} using [[WP:NPW|NPWatcher]].");
                     }
                 }
             }
@@ -710,7 +710,7 @@ namespace NPWatcher
                     user = "User_talk:" + user;
                     string userpage = wf.getWikiText(user);
 
-                    string userpagenew = userpage + "\r\n{{subst:PRODWarning|" + page2 + "}} ~~~~";
+                    string userpagenew = userpage + "\r\n{{subst:PRODWarning|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
                     if (sortlogin())
                         wf.Save(user, userpagenew, "Warning user of prodding using [[WP:NPW|NPWatcher]]");
                     doprod = false;
@@ -1299,7 +1299,7 @@ namespace NPWatcher
                 rat = "Per [[WP:CSD#I3|CSD I3]] - image has an invalid license";
                 if (orphanCB.Checked)
                 { OrphanImage(page2, rat); }
-                I3Warn(page2);
+                //I3Warn(page2);
                 Delete(page2, rat);
                 webBrowser1.Refresh();
             }
@@ -1314,7 +1314,7 @@ namespace NPWatcher
         {
             string towarn = wf.GetCreator(page2);
             string userpg = wf.getWikiText("User_talk:" + towarn);
-            userpg = userpg + "\r\n{{subst:Idw-noncom|" + page2 + "}}";
+            userpg = userpg + "\r\n{{subst:Idw-noncom|" + System.Web.HttpUtility.UrlDecode(page2) + "}}";
             if (sortlogin())
                 wf.Save("User_talk:" + towarn, userpg, "Warning user with {{Idw-noncom}} using [[WP:NPW|NPWatcher]]");
         }
