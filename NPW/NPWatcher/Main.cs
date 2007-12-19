@@ -43,8 +43,7 @@ namespace NPWatcher
         {
             this.Cursor = Cursors.WaitCursor;
 
-            string versionpg = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
-            string listofv = versionpg;
+            string listofv = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
             string versioncurstr = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             this.Cursor = Cursors.Default;
@@ -79,17 +78,14 @@ namespace NPWatcher
                         }
                         else
                         {
-                            string approved = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users");
-
                             username = Regex.Escape(username);
-			    username = username.Replace("-", "[-]");
+			                username = username.Replace("-", "[-]");
                             Regex r = new Regex(username, RegexOptions.IgnoreCase);
-                            Match m = r.Match(approved);
+                            Match m = r.Match(wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users"));
 
                             if (!m.Success)
                             {
                                 MessageBox.Show("You are not approved to use NPWatcher.  Please request approval from Martinp23", "Not Approved", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                                 Close();
                             }
                             else
