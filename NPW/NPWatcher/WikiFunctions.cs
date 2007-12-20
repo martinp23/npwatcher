@@ -486,15 +486,16 @@ namespace NPWatcher
             webReq.ContentType = "application/x-www-form-urlencoded";
             cc = new CookieContainer();
 
+            webReq.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy = WebRequest.GetSystemWebProxy();
+
             if (cookies == null)
             {
                 HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
                 cookies = webResp.Cookies;
             }
             cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy = WebRequest.GetSystemWebProxy();
+            webReq.CookieContainer = cc; 
         }
     }
     

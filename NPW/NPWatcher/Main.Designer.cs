@@ -77,7 +77,6 @@ namespace NPWatcher
             this.copyBtn = new System.Windows.Forms.Button();
             this.npovBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.stubTxt = new System.Windows.Forms.TextBox();
             this.wikifyBtn = new System.Windows.Forms.Button();
             this.nnBtn = new System.Windows.Forms.Button();
             this.advertBtn = new System.Windows.Forms.Button();
@@ -104,6 +103,7 @@ namespace NPWatcher
             this.getlistBtn = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.stubCombo = new System.Windows.Forms.ComboBox();
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -130,25 +130,25 @@ namespace NPWatcher
             this.toolStripSeparator1,
             this.clearAllToolStripMenuItem});
             this.mnuPages.Name = "mnuPages";
-            this.mnuPages.Size = new System.Drawing.Size(190, 54);
+            this.mnuPages.Size = new System.Drawing.Size(188, 54);
             // 
             // removeSelectedToolStripMenuItem
             // 
             this.removeSelectedToolStripMenuItem.Name = "removeSelectedToolStripMenuItem";
             this.removeSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.clearAllToolStripMenuItem.Text = "Clear All";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -489,6 +489,7 @@ namespace NPWatcher
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.stubCombo);
             this.tabPage2.Controls.Add(this.uncatBtn);
             this.tabPage2.Controls.Add(this.notEngBtn);
             this.tabPage2.Controls.Add(this.contextBtn);
@@ -499,7 +500,6 @@ namespace NPWatcher
             this.tabPage2.Controls.Add(this.copyBtn);
             this.tabPage2.Controls.Add(this.npovBtn);
             this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.stubTxt);
             this.tabPage2.Controls.Add(this.wikifyBtn);
             this.tabPage2.Controls.Add(this.nnBtn);
             this.tabPage2.Controls.Add(this.advertBtn);
@@ -613,13 +613,6 @@ namespace NPWatcher
             this.label4.Size = new System.Drawing.Size(113, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Stub type (eg \"music\")";
-            // 
-            // stubTxt
-            // 
-            this.stubTxt.Location = new System.Drawing.Point(246, 136);
-            this.stubTxt.Name = "stubTxt";
-            this.stubTxt.Size = new System.Drawing.Size(231, 20);
-            this.stubTxt.TabIndex = 9;
             // 
             // wikifyBtn
             // 
@@ -892,6 +885,17 @@ namespace NPWatcher
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
+            // stubCombo
+            // 
+            this.stubCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.stubCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.stubCombo.FormattingEnabled = true;
+            this.stubCombo.Location = new System.Drawing.Point(246, 136);
+            this.stubCombo.Name = "stubCombo";
+            this.stubCombo.Size = new System.Drawing.Size(207, 21);
+            this.stubCombo.TabIndex = 21;
+            this.stubCombo.Leave += new System.EventHandler(stubCombo_Leave);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -965,7 +969,6 @@ namespace NPWatcher
         private System.Windows.Forms.Button nnBtn;
         private System.Windows.Forms.Button advertBtn;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox stubTxt;
         private System.Windows.Forms.Button npovBtn;
         private System.Windows.Forms.Button rmvBtn;
         private System.Windows.Forms.Button AfDBtn;
@@ -1001,6 +1004,7 @@ namespace NPWatcher
         private System.Windows.Forms.ToolStripMenuItem removeSelectedToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
+        private System.Windows.Forms.ComboBox stubCombo;
     }
 }
 

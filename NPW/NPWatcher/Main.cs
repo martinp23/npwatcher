@@ -105,6 +105,12 @@ namespace NPWatcher
             }
         }
 
+        void stubCombo_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(stubCombo.Text) && !stubCombo.Items.Contains(stubCombo.Text))
+                stubCombo.Items.Add(stubCombo.Text);
+        }
+
         private void getlistBtn_Click(object sender, EventArgs e)
         {
             if (asAdmin)
@@ -865,7 +871,7 @@ namespace NPWatcher
         private void stubBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (string.IsNullOrEmpty(stubTxt.Text))
+            if (string.IsNullOrEmpty(stubCombo.Text))
             {
                 DialogResult dr = MessageBox.Show(this, "You didn't enter a stub type.  Would you like to use the generic tag?",
                     "Stub types", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -883,7 +889,7 @@ namespace NPWatcher
             }
             else
             {
-                string template = "{{" + stubTxt.Text + "-stub}}";
+                string template = "{{" + stubCombo.Text + "-stub}}";
                 string txt = wf.getWikiText(page2);
                 string newtxt = txt + "\r\n" + template;
                 Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
