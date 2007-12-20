@@ -37,7 +37,7 @@ namespace NPWatcher
             webReq.Method = "POST";
             webReq.ContentType = "application/x-www-form-urlencoded";
             webReq.UserAgent = "NPWatcher/1.0";
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy = WebRequest.GetSystemWebProxy();
             webReq.CookieContainer = new CookieContainer();
             webReq.AllowAutoRedirect = false;
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
@@ -312,7 +312,7 @@ namespace NPWatcher
                 //cc.Add(cookies);
                 webReq.CookieContainer = cc;
                 webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                webReq.Proxy = WebRequest.GetSystemWebProxy();
                 watch = "";
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=0" +
@@ -374,7 +374,7 @@ namespace NPWatcher
                 //cc.Add(cookies);
                 webReq.CookieContainer = cc;
                 webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+                webReq.Proxy = WebRequest.GetSystemWebProxy();
                 if (watchthis)
                 { watch = "checked"; }
                 else
@@ -434,7 +434,7 @@ namespace NPWatcher
             //cc.Add(cookies);
             webReq.CookieContainer = cc;
             webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy = WebRequest.GetSystemWebProxy();
             watch = "true";
 
             string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
@@ -494,7 +494,7 @@ namespace NPWatcher
             cc.Add(cookies);
             webReq.CookieContainer = cc;
             webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webReq.Proxy = WebRequest.GetSystemWebProxy();
         }
     }
     
