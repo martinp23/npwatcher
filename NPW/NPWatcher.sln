@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio Codename Orcas
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPWatcher", "NPWatcher\NPWatcher.csproj", "{9430032A-4C4A-481E-A29E-ED5D4BBC70C2}"
 EndProject
 Global
