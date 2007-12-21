@@ -1276,7 +1276,12 @@ namespace NPWatcher {
 
     private void Greyin() {
       Grey(true);
-      firstarticle.Checked = notabilitywarn.Checked = false;
+      //it would be more elegant if these could also go in greyout(), but i haven't checked if 
+      //that affects functionality.
+      checkAdvert.Checked = checkCleanup.Checked =
+  checkContext.Checked = checkCopyedit.Checked = checkCopypase.Checked = checkHowto.Checked =
+  checkIntrorewrite.Checked = checkNotability.Checked = checkNpov.Checked = checkSections.Checked =
+  checkTone.Checked = checkUnsourced.Checked = checkWikify.Checked = firstarticle.Checked = notabilitywarn.Checked = false;
     }
 
     private void Grey(bool Enabled) {
@@ -1289,7 +1294,10 @@ namespace NPWatcher {
        AfDBtn.Enabled = delGivReasonBtn.Enabled =
       DelCustom.Enabled = AfDCustom.Enabled = RmvProd.Enabled = I1Btn.Enabled = I2Btn.Enabled =
       I3Btn.Enabled = I4Btn.Enabled = I5Btn.Enabled = I6Btn.Enabled = I7Btn.Enabled =
-      I8Btn.Enabled = IotherBtn.Enabled = Enabled;
+      I8Btn.Enabled = IotherBtn.Enabled =
+      checkAdvert.Enabled = checkCleanup.Enabled = checkContext.Enabled = checkCopyedit.Enabled = checkCopypase.Enabled =
+      checkHowto.Enabled = checkIntrorewrite.Enabled = checkNotability.Enabled = checkNpov.Enabled = checkSections.Enabled =
+      checkTone.Enabled = checkUnsourced.Enabled = checkWikify.Enabled = Enabled;
     }
 
     private void webBrowser1_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e) {
@@ -1322,81 +1330,87 @@ namespace NPWatcher {
       pageList.Items.Clear();
     }
     #endregion
-
+    #region Article Issues
     private void doMarkButton_Click(object sender, EventArgs e) {
+      Greyout();
       int counter = 0;
       Issue[] issuelist = new Issue[MAXISSUES];
+      //there is probably a more elegant way to handle this all those ifs.
+      //the array should also be replaced with a list in the future, but for now
+      //it works.
+      if (checkAdvert.Checked) {
+        issuelist[counter] = new Issue("advert");
+        counter++;
+      }
       if (checkCleanup.Checked) {
         issuelist[counter] =  new Issue("cleanup");
         counter++;
-        checkCleanup.Checked = false;
       }
       if (checkContext.Checked) {
         issuelist[counter] = new Issue("context");
         counter++;
-        checkContext.Checked = false;
       }
       if (checkCopyedit.Checked) {
         issuelist[counter] = new Issue("copyedit");
         counter++;
-        checkCopyedit.Checked = false;
       }
       if (checkCopypase.Checked) {
         issuelist[counter] = new Issue("copypaste");
         counter++;
-        checkCopypase.Checked = false;
       }
       if (checkHowto.Checked) {
         issuelist[counter] = new Issue("howto");
         counter++;
-        checkHowto.Checked = false;
       }
       if (checkIntrorewrite.Checked) {
         issuelist[counter] = new Issue("introrewrite");
         counter++;
-        checkIntrorewrite.Checked = false;
       }
       if (checkNotability.Checked) {
         issuelist[counter] = new Issue("notability");
         counter++;
-        checkNotability.Checked = false;
       }
       if (checkNpov.Checked) {
         issuelist[counter] = new Issue("npov");
         counter++;
-        checkNpov.Checked = false;
       }
       if (checkSections.Checked) {
         issuelist[counter] = new Issue("sections");
         counter++;
-        checkSections.Checked = false;
       }
       if (checkTone.Checked) {
         issuelist[counter] = new Issue("tone");
         counter++;
-        checkTone.Checked = false;
       }
       if (checkUnsourced.Checked) {
         issuelist[counter] = new Issue("unsourced");
         counter++;
-        checkUnsourced.Checked = false;
       }
       if (checkWikify.Checked) {
         issuelist[counter] = new Issue("wikify");
         counter++;
-        checkWikify.Checked = false;
       }
-      MarkBoxes(templateText(issuelist));
+      MarkBoxes(templateText(issuelist), issuelist);
+      Greyin();
     }
 
-    private void MarkBoxes(string markstring) {
+    private void MarkBoxes(string markstring, Issue[] issuelist) {
       string txt = wf.getWikiText(page2);
       string newtxt = markstring + "\r\n" + txt;
-      Save(page2, newtxt, "Marking page for issues using [[WP:NPW|NPWatcher]]");
+      string issues = "";
+      if (issuelist[3] == null) {
+        for (int i = 0; i < 3 && issuelist[i] != null; i++) {
+          issues += issuelist[i].getName() + ", ";
+        }
+        Save(page2, newtxt, "Marking page for the following issues: " + issues + "using [[WP:NPW|NPWatcher]]");
+      }
+      else {
+        Save(page2, newtxt, "Marking page for more than 3 issues using [[WP:NPW|NPWatcher]]");
+      }
     }
 
     private string templateText(Issue[] issuelist) {
-      if (issuelist[3] != null) {
+      if (issuelist[2] != null) {
         return generateArticleIssues(issuelist);
       }
       else {
@@ -1427,5 +1441,6 @@ namespace NPWatcher {
       }
       return result;
     }
+    #endregion
   }
 }
