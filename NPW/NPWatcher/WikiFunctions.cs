@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading;
 using System.Data;
 using System.IO;
+using System.Xml;
 
 namespace NPWatcher
 {
@@ -15,6 +16,7 @@ namespace NPWatcher
     {
         private HttpWebRequest webReq;
         private CookieCollection cookies;
+        internal StringCollection adminslist = new StringCollection();
         private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
@@ -31,6 +33,9 @@ namespace NPWatcher
 
         public bool login(string Username, string Userpass)
         {
+            //get list of admins first!
+            getusergroup("sysop");
+
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
                 new string[] { Username, Userpass });
@@ -74,22 +79,23 @@ namespace NPWatcher
 
         }
 
-        public bool CheckIfAdmin()
-        {
-            string userGroups;
-            List<string> Groups = new List<string>();
+        //public bool CheckIfAdmin()
+        //{
 
-            userGroups = GetScriptingVar("wgUserGroups");
+        //    string userGroups;
+        //    List<string> Groups = new List<string>();
 
-            Regex r = new Regex("\"([a-z]*)\"[,\\]]");
+        //    userGroups = GetScriptingVar("wgUserGroups");
 
-            foreach (Match m1 in r.Matches(userGroups))
-            {
-                Groups.Add(m1.Groups[1].Value);
-            }
+        //    Regex r = new Regex("\"([a-z]*)\"[,\\]]");
 
-            return (Groups.Contains("sysop") || Groups.Contains("staff"));
-        }
+        //    foreach (Match m1 in r.Matches(userGroups))
+        //    {
+        //        Groups.Add(m1.Groups[1].Value);
+        //    }
+
+        //    return (Groups.Contains("sysop") || Groups.Contains("staff"));
+        //}
 
         private string GetScriptingVar(string name)
         {
@@ -194,7 +200,7 @@ namespace NPWatcher
         }
 
 
-        public StringCollection getNPs(string limit, bool nonpatrolled, bool nonbot)
+        public StringCollection getNPs(string limit, bool nonpatrolled, bool nonbot, bool nonadmin)
         {
             string src = "";
             StringCollection strCol = new StringCollection();
@@ -213,15 +219,59 @@ namespace NPWatcher
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
-            src = HttpUtility.HtmlDecode(src);
+           // src = HttpUtility.HtmlDecode(src);
 
-            matches = pageTitleTagRE.Matches(src);
-            foreach (Match match in matches)
-            { strCol.Add(match.Groups[1].Value); }
+            //src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
+            //src = src.Substring(0, src.IndexOf("<!-- end content -->"));
+            //src = "<div>" + src + "</div>";
+            StringReader sr = new StringReader(src);
+            XmlDocument xml = new XmlDocument();
+            xml.Load(sr);
 
-            strCol.RemoveAt(0);
+            foreach (XmlNode n in xml.GetElementsByTagName("title"))
+            {
+                if (n.InnerXml != "Wikipedia - New pages [en]")
+                {
+                    
+                    //must be a better way to do this...
+                    if (nonbot && !adminslist.Contains(n.NextSibling.NextSibling.NextSibling.NextSibling.FirstChild.InnerText))
+                        strCol.Add(n.FirstChild.InnerText);
+                    if (!nonbot)
+                        strCol.Add(n.FirstChild.InnerText);
+                }
+            }
+
+            //matches = pageTitleTagRE.Matches(src);
+            //foreach (Match match in matches)
+            //{ strCol.Add(match.Groups[1].Value); }
+
+            //strCol.RemoveAt(0);
 
             return strCol;
+        }
+
+
+        public void getusergroup(string group)
+        {
+            
+            string src = "";
+webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
+            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            Stream srcstrm = webResp1.GetResponseStream();
+            StreamReader work = new StreamReader(srcstrm);
+            src = work.ReadToEnd();
+           // src = HttpUtility.HtmlDecode(src);
+            src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
+            src = src.Substring(0, src.IndexOf("<!-- end content -->"));
+            src = "<div>" + src + "</div>";
+            StringReader sr = new StringReader(src);
+            XmlDocument xml = new XmlDocument();
+            xml.Load(sr);
+
+            foreach (XmlNode n in xml.GetElementsByTagName("li"))
+            {
+                adminslist.Add(n.FirstChild.InnerText);
+            }
         }
 
         public string getWikiText(string page)
@@ -401,6 +451,7 @@ namespace NPWatcher
                 System.Windows.Forms.MessageBox.Show("Something sinister has happened.  The user has not been warned - please contact Martinp23 with code E1, and mention the page (" + page + ").  Sorry!");
             }
         }
+
 
         public void Deletepg(string page, string editsummary)
         {

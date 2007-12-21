@@ -90,18 +90,26 @@ namespace NPWatcher
                                 Close();
                             }
                             else
-                                asAdmin = wf.CheckIfAdmin();
-                            MessageBox.Show("Logged in");
+                            {
+                                foreach (string admin in wf.adminslist)
+                                {
+                                    if (!asAdmin)
+                                        asAdmin = r.Match(admin).Success;
+                                }
+                                //asAdmin = wf.CheckIfAdmin();
+
+                                MessageBox.Show("Logged in");
+                            }
                         }
                     }
-                }
 
-                //LOGIN DONE
-                if (!asAdmin)
-                {
-                    rmvBtn.Visible = false;
-                    tabPage3.Dispose();
-                    tabPage4.Dispose();
+                    //LOGIN DONE
+                    if (!asAdmin)
+                    {
+                        rmvBtn.Visible = false;
+                        tabPage3.Dispose();
+                        tabPage4.Dispose();
+                    }
                 }
             }
         }
@@ -135,8 +143,8 @@ namespace NPWatcher
                         limit = "20";
                         limitCB.SelectedItem = "20";
                     }
-
-                    nps = wf.getNPs(limit, listsource.hidepatrolled, listsource.hidebot);
+                    //for-settings
+                    nps = wf.getNPs(limit, listsource.hidepatrolled, listsource.hidebot, true);
                     pageList.Items.Clear();
                     foreach (string p in nps) { pageList.Items.Add(p); }
                 }
@@ -185,8 +193,9 @@ namespace NPWatcher
                     limit = "20";
                     limitCB.SelectedItem = "20";
                 }
-                // Hide patrolled edits and bot creations in NP list.
-                nps = wf.getNPs(limit, true, true);
+                // Hide patrolled edits and bot/admin creations in NP list.
+                //for-settings
+                nps = wf.getNPs(limit, true, true, true);
                 pageList.Items.Clear();
                 foreach (string p in nps) { pageList.Items.Add(p); }
             }
