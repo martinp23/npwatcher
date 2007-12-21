@@ -22,7 +22,7 @@ namespace NPWatcher
                     xs.Serialize(fStream, settings);
                 }
             }
-            catch (Exception ex) { throw ex; }
+            catch { throw; }
         }
 
         public static Settings LoadPrefs()
@@ -37,7 +37,7 @@ namespace NPWatcher
                         return (Settings)xs.Deserialize(fStream);
                     }
                 }
-                catch (Exception ex) { throw ex; }
+                catch { throw; }
             }
             else
                 return new Settings();
