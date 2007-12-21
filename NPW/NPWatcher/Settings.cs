@@ -12,11 +12,17 @@ namespace NPWatcher
     {
         internal Settings() { }
 
-        public static void SavePrefs(Settings settings)
+        public string username = "";
+        public List<string> stubTypes = new List<string>();
+
+        public bool hidePatrolled;
+        public bool hideBots;
+
+        public static void SavePrefs(Settings settings, string file)
         {
             try
             {
-                using (FileStream fStream = new FileStream("settings.xml", FileMode.Create))
+                using (FileStream fStream = new FileStream(file, FileMode.Create))
                 {
                     XmlSerializer xs = new XmlSerializer(typeof(Settings));
                     xs.Serialize(fStream, settings);
@@ -25,13 +31,13 @@ namespace NPWatcher
             catch { throw; }
         }
 
-        public static Settings LoadPrefs()
+        public static Settings LoadPrefs(string file)
         {
-            if (System.IO.File.Exists("settings.xml"))
+            if (System.IO.File.Exists(file))
             {
                 try
                 {
-                    using (FileStream fStream = new FileStream("settings.xml", FileMode.Open))
+                    using (FileStream fStream = new FileStream(file, FileMode.Open))
                     {
                         XmlSerializer xs = new XmlSerializer(typeof(Settings));
                         return (Settings)xs.Deserialize(fStream);

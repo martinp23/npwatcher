@@ -35,6 +35,8 @@ namespace NPWatcher
         internal static string cwr;
         private static int MAXISSUES = 20;
 
+        Settings settings;
+
         public Main()
         {
             InitializeComponent();
@@ -1709,5 +1711,58 @@ namespace NPWatcher
             return result;
         }
         #endregion
+
+        #region Settings
+
+        private void LoadSettings(string file)
+        {
+            settings = Settings.LoadPrefs(file);
+
+            foreach (string s in settings.stubTypes)
+            {
+                stubCombo.Items.Add(s);
+            }
+        }
+
+        private void SaveSettings(string file)
+        {
+            settings.stubTypes.Clear();
+            foreach (string s in stubCombo.Items)
+            {
+                settings.stubTypes.Add(s);
+            }
+
+            Settings.SavePrefs(settings, file);
+        }
+        #endregion
+
+        private void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Settings file|*.xml";
+            save.InitialDirectory = Application.StartupPath;
+
+            save.ShowDialog();
+
+            if (!string.IsNullOrEmpty(save.FileName))
+                SaveSettings(save.FileName);
+        }
+
+        private void loadSettToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "Settings file|*.xml";
+            open.InitialDirectory = Application.StartupPath;
+
+            open.ShowDialog();
+
+            if (!string.IsNullOrEmpty(open.FileName))
+                LoadSettings(open.FileName);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
