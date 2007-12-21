@@ -194,7 +194,7 @@ namespace NPWatcher
         }
 
 
-        public StringCollection getNPs(string limit)
+        public StringCollection getNPs(string limit, bool nonpatrolled, bool nonbot)
         {
             string src = "";
             StringCollection strCol = new StringCollection();
@@ -205,8 +205,8 @@ namespace NPWatcher
             Regex pageTitleTagRE = new Regex("<title>([^<]*?)</title>");
 
 
-            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&offset=0&feed=atom");
-
+            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + nonpatrolled.ToString() + "&hidebots="+ nonbot.ToString() +"&offset=0&feed=atom");
+            
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
 

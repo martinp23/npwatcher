@@ -34,6 +34,8 @@ namespace NPWatcher
             this.CatTxt = new System.Windows.Forms.TextBox();
             this.loadBtn = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.chkHidePatrolled = new System.Windows.Forms.CheckBox();
+            this.chkHideBot = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // NPRad
@@ -61,7 +63,7 @@ namespace NPWatcher
             // CustomRad
             // 
             this.CustomRad.AutoSize = true;
-            this.CustomRad.Location = new System.Drawing.Point(22, 105);
+            this.CustomRad.Location = new System.Drawing.Point(22, 106);
             this.CustomRad.Name = "CustomRad";
             this.CustomRad.Size = new System.Drawing.Size(108, 17);
             this.CustomRad.TabIndex = 2;
@@ -71,7 +73,7 @@ namespace NPWatcher
             // 
             // CatTxt
             // 
-            this.CatTxt.Location = new System.Drawing.Point(136, 104);
+            this.CatTxt.Location = new System.Drawing.Point(135, 105);
             this.CatTxt.Name = "CatTxt";
             this.CatTxt.Size = new System.Drawing.Size(164, 20);
             this.CatTxt.TabIndex = 3;
@@ -98,12 +100,38 @@ namespace NPWatcher
             this.textBox2.Text = "Choose from below where you would like to get the list of pages from.  Custom cat" +
                 "egory can be used for image deletion and prod sorting.";
             // 
+            // chkHidePatrolled
+            // 
+            this.chkHidePatrolled.AutoSize = true;
+            this.chkHidePatrolled.Checked = true;
+            this.chkHidePatrolled.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHidePatrolled.Location = new System.Drawing.Point(136, 60);
+            this.chkHidePatrolled.Name = "chkHidePatrolled";
+            this.chkHidePatrolled.Size = new System.Drawing.Size(123, 17);
+            this.chkHidePatrolled.TabIndex = 7;
+            this.chkHidePatrolled.Text = "Hide patrolled pages";
+            this.chkHidePatrolled.UseVisualStyleBackColor = true;
+            // 
+            // chkHideBot
+            // 
+            this.chkHideBot.AutoSize = true;
+            this.chkHideBot.Checked = true;
+            this.chkHideBot.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHideBot.Location = new System.Drawing.Point(136, 82);
+            this.chkHideBot.Name = "chkHideBot";
+            this.chkHideBot.Size = new System.Drawing.Size(156, 17);
+            this.chkHideBot.TabIndex = 8;
+            this.chkHideBot.Text = "Hide pages created by bots";
+            this.chkHideBot.UseVisualStyleBackColor = true;
+            // 
             // ListSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 176);
             this.ControlBox = false;
+            this.Controls.Add(this.chkHideBot);
+            this.Controls.Add(this.chkHidePatrolled);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.loadBtn);
             this.Controls.Add(this.CatTxt);
@@ -127,5 +155,7 @@ namespace NPWatcher
         private System.Windows.Forms.TextBox CatTxt;
         private System.Windows.Forms.Button loadBtn;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.CheckBox chkHidePatrolled;
+        private System.Windows.Forms.CheckBox chkHideBot;
     }
 }

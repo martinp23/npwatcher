@@ -11,6 +11,9 @@ namespace NPWatcher
     public partial class ListSource : Form
     {
         internal string category;
+        internal bool hidebot;
+        internal bool hidepatrolled;
+
         public ListSource()
         {
             InitializeComponent();
@@ -31,6 +34,8 @@ namespace NPWatcher
             else if (CustomRad.Checked)
                 category = CatTxt.Text;
 
+            hidebot = chkHideBot.Checked;
+            hidepatrolled = chkHidePatrolled.Checked;
             Close();
         }
     }
