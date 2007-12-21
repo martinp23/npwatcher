@@ -1327,52 +1327,64 @@ namespace NPWatcher {
       int counter = 0;
       Issue[] issuelist = new Issue[MAXISSUES];
       if (checkCleanup.Checked) {
-        issuelist[counter] = getIssue("cleanup");
+        issuelist[counter] =  new Issue("cleanup");
         counter++;
+        checkCleanup.Checked = false;
       }
       if (checkContext.Checked) {
-        issuelist[counter] = getIssue("context");
+        issuelist[counter] = new Issue("context");
         counter++;
+        checkContext.Checked = false;
       }
       if (checkCopyedit.Checked) {
-        issuelist[counter] = getIssue("copyedit");
+        issuelist[counter] = new Issue("copyedit");
         counter++;
+        checkCopyedit.Checked = false;
       }
       if (checkCopypase.Checked) {
-        issuelist[counter] = getIssue("copypaste");
+        issuelist[counter] = new Issue("copypaste");
         counter++;
+        checkCopypase.Checked = false;
       }
       if (checkHowto.Checked) {
-        issuelist[counter] = getIssue("howto");
+        issuelist[counter] = new Issue("howto");
         counter++;
+        checkHowto.Checked = false;
       }
       if (checkIntrorewrite.Checked) {
-        issuelist[counter] = getIssue("introrewrite");
+        issuelist[counter] = new Issue("introrewrite");
         counter++;
+        checkIntrorewrite.Checked = false;
       }
       if (checkNotability.Checked) {
-        issuelist[counter] = getIssue("notability");
+        issuelist[counter] = new Issue("notability");
         counter++;
+        checkNotability.Checked = false;
       }
       if (checkNpov.Checked) {
-        issuelist[counter] = getIssue("npov");
+        issuelist[counter] = new Issue("npov");
         counter++;
+        checkNpov.Checked = false;
       }
       if (checkSections.Checked) {
-        issuelist[counter] = getIssue("sections");
+        issuelist[counter] = new Issue("sections");
         counter++;
+        checkSections.Checked = false;
       }
       if (checkTone.Checked) {
-        issuelist[counter] = getIssue("tone");
+        issuelist[counter] = new Issue("tone");
         counter++;
+        checkTone.Checked = false;
       }
       if (checkUnsourced.Checked) {
-        issuelist[counter] = getIssue("unsourced");
+        issuelist[counter] = new Issue("unsourced");
         counter++;
+        checkUnsourced.Checked = false;
       }
       if (checkWikify.Checked) {
-        issuelist[counter] = getIssue("wikify");
+        issuelist[counter] = new Issue("wikify");
         counter++;
+        checkWikify.Checked = false;
       }
       MarkBoxes(templateText(issuelist));
     }
@@ -1381,19 +1393,6 @@ namespace NPWatcher {
       string txt = wf.getWikiText(page2);
       string newtxt = markstring + "\r\n" + txt;
       Save(page2, newtxt, "Marking page for issues using [[WP:NPW|NPWatcher]]");
-    }
-
-
-    private string issueline(string text) {
-      return "|" + text + " = " + issuedate() + "\r\n";
-    }
-    
-    private string issuedate() {
-      return DateTime.Now.ToString("Y", CultureInfo.CreateSpecificCulture("en-ZA"));
-    }
-
-    private string templatedate() {
-      return "date = " + issuedate();
     }
 
     private string templateText(Issue[] issuelist) {
@@ -1411,7 +1410,7 @@ namespace NPWatcher {
       Issue issue;
       
       while ( (issue = issuelist[i]) != null) {
-        result += issue.get("articleissue");
+        result += issue.getIssueLine();
         i++;
       }
       result += "}}";
@@ -1423,59 +1422,10 @@ namespace NPWatcher {
       int i = 0;
       Issue issue;
       while ( (issue = issuelist[i]) != null) {
-        result += issue.get("template");
+        result += issue.getTemplate();
         i++;
       }
       return result;
-    }
-
-    private Issue getIssue(string name) {
-      switch (name) {
-        case "cleanup":
-          return new Issue("{{subst:cleanup-now}}", issueline("cleanup"));
-          break;
-        case "tone":
-          return new Issue("{{tone|" + templatedate() + "}}", issueline("tone"));
-          break;
-        case "unsourced":
-          return new Issue("{{unsourced|" + templatedate() + "}}", issueline("unsourced"));
-          break;
-        case "advert":
-          return new Issue("{{advert|" + templatedate() + "}}", issueline("advert"));
-          break;
-        case "notability":
-          return new Issue("{{notability|" + templatedate() + "}}", issueline("notability"));
-          break;
-        case "wikify":
-          return new Issue("{{wikify|" + templatedate() + "}}", issueline("wikify"));
-          break;
-        case "npov":
-          return new Issue("{{npov|" + templatedate() + "}}", issueline("npov"));
-          break;
-        case "copypaste":
-          return new Issue("{{copypaste|" + templatedate() + "}}", issueline("copypaste"));
-          break;
-        case "notenglish":
-          return new Issue("notenglish|" + templatedate() + "}}", issueline("notenglish"));
-          break;
-        case "copyedit":
-          return new Issue("copyedit|" + templatedate() + "}}", issueline(name));
-          break;
-        case "howto":
-          return new Issue("copyedit|" + templatedate() + "}}", issueline(name));
-          break;
-        case "sections":
-          return new Issue("sections|" + templatedate() + "}}", issueline(name));
-          break;
-        case "introrewrite":
-          return new Issue("introrewrite|" + templatedate() + "}}", issueline(name));
-          break;
-        case "context":
-          return new Issue("context|" + templatedate() + "}}", issueline(name));
-          break;
-        default:
-          return null;
-      }
     }
   }
 }
