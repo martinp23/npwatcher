@@ -17,8 +17,7 @@ namespace NPWatcher
         public bool hideBots;
         public bool hideAdmins;
         public string pagelimit = "20";
-        public int refreshinterval = 0;
-
+        public int refreshinterval;
 
         public static void SavePrefs(Settings settings, string file)
         {

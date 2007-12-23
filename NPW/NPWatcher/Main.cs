@@ -714,7 +714,7 @@ namespace NPWatcher
         private void prodBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            removetags(page2);
+            removetags();
             Prod prodreason = new Prod();
             prodreason.ShowDialog();
 
@@ -771,7 +771,7 @@ namespace NPWatcher
                 if (afdsuc)
                 {
                     {
-                        removetags(page2);
+                        removetags();
                         string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                         int number = 1;
                         while (!string.IsNullOrEmpty(txt))
@@ -1035,11 +1035,11 @@ namespace NPWatcher
         private void rmvBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            removetags(page2);
+            removetags();
             Greyin();
         }
 
-        private void removetags(string page)
+        private void removetags()
         {
             string txt = wf.getWikiText(page2);
             Regex rx = new Regex("{{db[^}]*}}", RegexOptions.IgnoreCase);
@@ -1152,7 +1152,7 @@ namespace NPWatcher
             {
                 if (afdsuc)
                 {
-                    removetags(page2);
+                    removetags();
                     string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                     int number = 1;
                     while (!string.IsNullOrEmpty(txt))
@@ -1448,7 +1448,7 @@ namespace NPWatcher
         public void OrphanImage(string image, string reason)
         {
             StringCollection imagelinks = new StringCollection();
-            imagelinks = wf.getImgLinks("1000", page2);
+            imagelinks = wf.getImgLinks(page2);
 
             foreach (string p in imagelinks)
             {

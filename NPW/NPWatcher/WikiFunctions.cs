@@ -162,7 +162,7 @@ namespace NPWatcher
             return a;
         }
 
-        public StringCollection getImgLinks(string limit, string image)
+        public StringCollection getImgLinks(string image)
         {
             Regex nextPortionRE = new Regex("&amp;from=(.*?)\" title=\"");
             StringCollection a = new StringCollection();
@@ -207,8 +207,6 @@ namespace NPWatcher
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
-            MatchCollection matches;
-            Regex pageTitleTagRE = new Regex("<title>([^<]*?)</title>");
             webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots="+ Main.settings.hideBots.ToString() +"&offset=0&feed=atom");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
