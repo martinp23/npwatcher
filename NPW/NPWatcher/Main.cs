@@ -1764,5 +1764,16 @@ namespace NPWatcher
         {
             Application.Exit();
         }
+
+        private void btnPatrol_Click(object sender, EventArgs e)
+        {
+            string rcid = wf.getrcid(page2);
+            if (rcid == "not found")
+                MessageBox.Show("Was unable to mark page as patrolled.  Please try on another page.");
+            else
+            {
+
+            }
+        }
     }
 }

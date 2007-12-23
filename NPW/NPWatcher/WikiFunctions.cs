@@ -21,7 +21,7 @@ namespace NPWatcher
         public static string watch = "0";
         //internal static bool asAdmin;
         string src;
-
+        private DateTime dt = new DateTime();
         private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
         private static string apiurl = "http://en.wikipedia.org/w/api.php";
         private static string queryurl = "http://en.wikipedia.org/w/query.php";
@@ -202,6 +202,7 @@ namespace NPWatcher
 
         public StringCollection getNPs(string limit, bool nonpatrolled, bool nonbot, bool nonadmin)
         {
+            dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
            // StringCollection strCol1 = new StringCollection();
@@ -246,10 +247,54 @@ namespace NPWatcher
             //{ strCol.Add(match.Groups[1].Value); }
 
             //strCol.RemoveAt(0);
-
+            
             return strCol;
         }
 
+        public string getrcid(string page)
+        {
+            string timestamp = getCreationTime(page);
+            //string t = dt.ToString("yyyyMMddhhmm");
+            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcnamespace=0&rcprop=title|ids&rclimit=100&rcstart="+timestamp+"&format=xml");
+            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            Stream srcstrm = webResp1.GetResponseStream();
+            StreamReader work = new StreamReader(srcstrm);
+            src = work.ReadToEnd();
+            // src = HttpUtility.HtmlDecode(src);
+            //src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
+            //src = src.Substring(0, src.IndexOf("<!-- end content -->"));
+            //src = "<div>" + src + "</div>";
+            StringReader sr = new StringReader(src);
+            XmlDocument xml = new XmlDocument();
+            xml.Load(sr);
+            string rcid = "not found";
+            foreach (XmlNode n in xml.GetElementsByTagName("rc"))
+            {
+                if (n.Attributes.GetNamedItem("title").InnerText == page)
+                { rcid = n.Attributes.GetNamedItem("rcid").InnerText.ToString(); }
+            }
+           
+                return rcid;
+            
+        }
+
+        private string getCreationTime(string page)
+        {
+            webRequest(apiurl + "?action=query&prop=revisions&titles="+page+"&rvdir=newer&rvlimit=1&rvprop=timestamp&format=xml");
+            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            Stream srcstrm = webResp1.GetResponseStream();
+            StreamReader work = new StreamReader(srcstrm);
+            src = work.ReadToEnd();
+            StringReader sr = new StringReader(src);
+            XmlDocument xml = new XmlDocument();
+            xml.Load(sr);
+            string time = "";
+            foreach (XmlNode n in xml.GetElementsByTagName("rev"))
+            {
+                time = n.Attributes.GetNamedItem("timestamp").InnerText.ToString();
+            }
+            return time;
+        }
 
         public void getusergroup(string group)
         {
@@ -548,6 +593,9 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
             cc.Add(cookies);
             webReq.CookieContainer = cc; 
         }
+
+
+
     }
     
         [global::System.Serializable]
