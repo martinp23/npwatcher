@@ -1772,7 +1772,7 @@ namespace NPWatcher
                 MessageBox.Show("Was unable to mark page as patrolled.  Please try on another page.");
             else
             {
-
+                webBrowser1.Navigate("http://en.wikipedia.org/w/index.php?title="+page2+"&action=markpatrolled&rcid="+rcid);
             }
         }
     }

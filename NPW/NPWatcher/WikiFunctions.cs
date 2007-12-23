@@ -255,7 +255,7 @@ namespace NPWatcher
         {
             string timestamp = getCreationTime(page);
             //string t = dt.ToString("yyyyMMddhhmm");
-            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcnamespace=0&rcprop=title|ids&rclimit=100&rcstart="+timestamp+"&format=xml");
+            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcnamespace=0&rcprop=title|ids&rclimit=5&rcstart="+timestamp+"&format=xml");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -270,7 +270,7 @@ namespace NPWatcher
             string rcid = "not found";
             foreach (XmlNode n in xml.GetElementsByTagName("rc"))
             {
-                if (n.Attributes.GetNamedItem("title").InnerText == page)
+                if (n.Attributes.GetNamedItem("title").InnerText == HttpUtility.UrlDecode(page))
                 { rcid = n.Attributes.GetNamedItem("rcid").InnerText.ToString(); }
             }
            
