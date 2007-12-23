@@ -17,6 +17,13 @@ namespace NPWatcher
 
         public bool hidePatrolled;
         public bool hideBots;
+        public bool hideAdmins;
+        public string category = "";
+        public int pagelimit = 20;
+        public string listsource = "NP";
+        public int refreshinterval = 0;
+
+
 
         public static void SavePrefs(Settings settings, string file)
         {

@@ -1775,5 +1775,17 @@ namespace NPWatcher
                 webBrowser1.Navigate("http://en.wikipedia.org/w/index.php?title="+page2+"&action=markpatrolled&rcid="+rcid);
             }
         }
+
+        private void setListReloadIntervalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            runListSelect();
+        }
+
+        private void runListSelect()
+        {
+            ListSource ls = new ListSource();
+            ls.ShowDialog();
+            settings
+        }
     }
 }
