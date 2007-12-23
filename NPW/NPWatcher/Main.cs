@@ -466,7 +466,7 @@ namespace NPWatcher
                 if (!page2.StartsWith("Image:"))
                 {
                     string talktxt = wf.getWikiText("Talk:" + page2);
-                    if (string.IsNullOrEmpty(talktxt))
+                    if (!string.IsNullOrEmpty(talktxt))
                     {
                         DialogResult dr = MessageBox.Show("Would you like to delete the article talk page too?", "Talk page",
                             MessageBoxButtons.YesNo);
