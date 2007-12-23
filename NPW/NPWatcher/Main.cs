@@ -237,7 +237,7 @@ namespace NPWatcher
         private void dbBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 CustomReason cr = new CustomReason();
                 cr.ShowDialog();
@@ -258,7 +258,7 @@ namespace NPWatcher
         private void dbbioBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 if (!asAdmin)
                 {
@@ -283,7 +283,7 @@ namespace NPWatcher
         private void dbspamBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-spam", "Blatant advertising, [[WP:CSD#G11]]");
             Greyin();
         }
@@ -291,7 +291,7 @@ namespace NPWatcher
         private void db_userreq_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-spam", "Author request, [[WP:CSD#G7]]");
             Greyin();
         }
@@ -299,7 +299,7 @@ namespace NPWatcher
         private void dbforeignBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-foreign", "Article is not in English");
             Greyin();
         }
@@ -307,7 +307,7 @@ namespace NPWatcher
         private void dbRepostBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-repost", "Repost of previously deleted material");
             Greyin();
         }
@@ -315,7 +315,7 @@ namespace NPWatcher
         private void dbNonsBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 Msgnons();
                 Delete("db-nonsense", "Nonsense page");
@@ -326,7 +326,7 @@ namespace NPWatcher
         private void dbTest_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 Msgtest();
                 Delete("db-test", "Vandalism/Test");
@@ -337,7 +337,7 @@ namespace NPWatcher
         private void dbvandBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 Msgvand();
                 Delete("db-vandalism", "Vandalism");
@@ -348,7 +348,7 @@ namespace NPWatcher
         private void dbBlankBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-blank", "Page blanked by only editor");
             Greyin();
         }
@@ -356,7 +356,7 @@ namespace NPWatcher
         private void dbtalkBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-talk", "Talk page of non-existant article");
 
             Greyin();
@@ -365,7 +365,7 @@ namespace NPWatcher
         private void dbattackBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2))
             {
                 Msgattack();
                 Delete("db-attack", "Attack page");
@@ -376,7 +376,7 @@ namespace NPWatcher
         private void dbemptyBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-empty", "Empty page");
 
             Greyin();
@@ -385,7 +385,7 @@ namespace NPWatcher
         private void dbR1Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-redirnone", "Redirect to non-existant page, [[WP:CSD#R1]]");
 
             Greyin();
@@ -394,7 +394,7 @@ namespace NPWatcher
         private void dbR2Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-rediruser", "Redirect to user space [[WP:CSD#R2]]");
 
             Greyin();
@@ -403,7 +403,7 @@ namespace NPWatcher
         private void dbR3Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (pageList.SelectedItem != null)
+            if (!string.IsNullOrEmpty(page2)) 
                 Delete("db-redirtypo", "Implausibe typo, [[WP:CSD#R3]]");
 
             Greyin();
@@ -414,7 +414,7 @@ namespace NPWatcher
             Greyout();
             if (!asAdmin)
             {
-                if (pageList.SelectedItem != null)
+                if (!string.IsNullOrEmpty(page2))
                 {
                     if (cvLinkTxt.Text != null)
                     {
@@ -1791,12 +1791,15 @@ namespace NPWatcher
 
         private void btnPatrol_Click(object sender, EventArgs e)
         {
-            string rcid = wf.getrcid(page2);
-            if (rcid == "not found")
-                MessageBox.Show("Was unable to mark page as patrolled.  Please try on another page.");
-            else
+            if (!string.IsNullOrEmpty(page2))
             {
-                webBrowser1.Navigate("http://en.wikipedia.org/w/index.php?title="+page2+"&action=markpatrolled&rcid="+rcid);
+                string rcid = wf.getrcid(page2);
+                if (rcid == "not found")
+                    MessageBox.Show("Was unable to mark page as patrolled.  Please try on another page.");
+                else
+                {
+                    webBrowser1.Navigate("http://en.wikipedia.org/w/index.php?title=" + page2 + "&action=markpatrolled&rcid=" + rcid);
+                }
             }
         }
 
