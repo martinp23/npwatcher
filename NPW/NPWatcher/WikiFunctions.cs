@@ -255,7 +255,7 @@ namespace NPWatcher
         {
             string timestamp = getCreationTime(page);
             //string t = dt.ToString("yyyyMMddhhmm");
-            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcnamespace=0&rcprop=title|ids&rclimit=5&rcstart="+timestamp+"&format=xml");
+            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcprop=title|ids&rclimit=5&rcstart="+timestamp+"&format=xml");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
