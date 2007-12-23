@@ -19,11 +19,6 @@ namespace NPWatcher
             lblNETVersion.Text = ".NET Version: " + Environment.Version.ToString();
         }
 
-        private void About_Load(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void linkMartinp23_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkMartinp23.LinkVisited = true;
@@ -58,6 +53,11 @@ namespace NPWatcher
         {
             linkBugsFeatures.LinkVisited = true;
             WikiFunctions.LoadLink("https://launchpad.net/npwatcher/");
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
