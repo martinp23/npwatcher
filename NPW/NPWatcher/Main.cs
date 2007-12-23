@@ -126,11 +126,17 @@ namespace NPWatcher
 
         private void getlistBtn_Click(object sender, EventArgs e)
         {
+            populatelist(true);
+            settimer();
+        }
+
+        private void populatelist(bool frombtn)
+        {
             if (asAdmin)
             {
-                
-                string category = "";
 
+                string category = "";
+                if(frombtn)
                 listsource.ShowDialog();
                 category = listsource.category;
                 settings.hidePatrolled = listsource.hidepatrolled;
@@ -148,7 +154,7 @@ namespace NPWatcher
                         limit = "20";
                         limitCB.SelectedItem = "20";
                     }
-                    
+
                     nps = wf.getNPs(limit);
                     pageList.Items.Clear();
                     foreach (string p in nps) { pageList.Items.Add(p); }
@@ -207,7 +213,7 @@ namespace NPWatcher
                     limit = "20";
                     limitCB.SelectedItem = "20";
                 }
-                
+
                 nps = wf.getNPs(limit);
                 pageList.Items.Clear();
                 foreach (string p in nps) { pageList.Items.Add(p); }
@@ -1794,15 +1800,7 @@ namespace NPWatcher
             }
         }
 
-        private void setListReloadIntervalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            runListSelect();
-        }
-
-        private void runListSelect()
-        {
-            
-        }
+      
 
         private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
@@ -1819,23 +1817,42 @@ namespace NPWatcher
             settings.hidePatrolled = hidePatrolledEditsToolStripMenuItem.Checked;
         }
 
-        private void toolStripRefreshTxt_Leave(object sender, EventArgs e)
+      
+        private void settimer()
         {
-
-            try
-            {
-                refreshInterval = int.Parse(toolStripRefreshTxt.Text);
-                settings.refreshinterval = refreshInterval;
-            }
-            catch (FormatException)
-            {
-                refreshInterval = 0;
-                MessageBox.Show("Please only enter an integer as the refresh interval.", "Refresh interval", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
             if (refreshInterval != 0)
             {
+                timerRefresh.Interval = 1000 * refreshInterval;
+                timerRefresh.Start();
+            }
+            else
+                timerRefresh.Stop();
 
+        }
+
+        private void timerRefresh_Tick(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            populatelist(false);
+            this.Cursor = Cursors.Default;
+        }
+
+        private void toolStripRefreshTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                try
+                {
+                    refreshInterval = int.Parse(toolStripRefreshTxt.Text);
+                    settings.refreshinterval = refreshInterval;
+                }
+                catch (FormatException)
+                {
+                    refreshInterval = 0;
+                    MessageBox.Show("Please only enter an integer as the refresh interval.", "Refresh interval", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                settimer();
             }
         }
 

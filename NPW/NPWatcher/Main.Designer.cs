@@ -118,9 +118,10 @@ namespace NPWatcher
             this.hideAdminEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hidePatrolledEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setListAutorefreshIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRefreshTxt = new System.Windows.Forms.ToolStripTextBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripRefreshTxt = new System.Windows.Forms.ToolStripTextBox();
+            this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1049,6 +1050,15 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
             this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
+            // toolStripRefreshTxt
+            // 
+            this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
+            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
+            this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
+            this.toolStripRefreshTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripRefreshTxt_KeyDown);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1063,14 +1073,9 @@ namespace NPWatcher
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // toolStripRefreshTxt
+            // timerRefresh
             // 
-            this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-            this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
-            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
-            this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
-            this.toolStripRefreshTxt.Leave += new System.EventHandler(this.toolStripRefreshTxt_Leave);
+            this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
             // Main
             // 
@@ -1204,6 +1209,7 @@ namespace NPWatcher
         private System.Windows.Forms.ToolStripMenuItem hidePatrolledEditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setListAutorefreshIntervalToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripRefreshTxt;
+        private System.Windows.Forms.Timer timerRefresh;
     }
 }
 
