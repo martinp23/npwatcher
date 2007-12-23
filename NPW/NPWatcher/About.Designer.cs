@@ -59,7 +59,7 @@ namespace NPWatcher
             this.lblNETVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblNETVersion.Location = new System.Drawing.Point(9, 65);
             this.lblNETVersion.Name = "lblNETVersion";
-            this.lblNETVersion.Size = new System.Drawing.Size(149, 13);
+            this.lblNETVersion.Size = new System.Drawing.Size(186, 13);
             this.lblNETVersion.TabIndex = 36;
             this.lblNETVersion.Text = ".NET version";
             // 
@@ -68,7 +68,7 @@ namespace NPWatcher
             this.lblOSVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblOSVersion.Location = new System.Drawing.Point(12, 46);
             this.lblOSVersion.Name = "lblOSVersion";
-            this.lblOSVersion.Size = new System.Drawing.Size(149, 13);
+            this.lblOSVersion.Size = new System.Drawing.Size(189, 13);
             this.lblOSVersion.TabIndex = 34;
             this.lblOSVersion.Text = "OS version";
             // 
@@ -77,7 +77,7 @@ namespace NPWatcher
             this.lblNPWVersion.BackColor = System.Drawing.Color.Transparent;
             this.lblNPWVersion.Location = new System.Drawing.Point(12, 27);
             this.lblNPWVersion.Name = "lblNPWVersion";
-            this.lblNPWVersion.Size = new System.Drawing.Size(163, 13);
+            this.lblNPWVersion.Size = new System.Drawing.Size(189, 13);
             this.lblNPWVersion.TabIndex = 33;
             this.lblNPWVersion.Text = "NPW version";
             // 
