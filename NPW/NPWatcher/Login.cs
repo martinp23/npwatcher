@@ -19,7 +19,6 @@ namespace NPWatcher
         {
             Main.username = loginTxt.Text;
             Main.password = pwdTxt.Text;
-            Main.settings.username = loginTxt.Text;
             this.Close();
         }
 
@@ -29,9 +28,6 @@ namespace NPWatcher
             this.Close();
         }
 
-        private void LogOn_Load(object sender, EventArgs e)
-        {
-            loginTxt.Text = Main.settings.username;
-        }
+      
     }
 }

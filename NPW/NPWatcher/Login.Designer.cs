@@ -114,7 +114,6 @@ namespace NPWatcher
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.LogOn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

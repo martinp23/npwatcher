@@ -11,8 +11,8 @@ namespace NPWatcher
     class Settings
     {
         internal Settings() { }
-
-        public string username = "";
+        //username not easy to do, because settings aren't loaded when login process runs
+        //public string username = "";
         public List<string> stubTypes = new List<string>();
         public bool hidePatrolled;
         public bool hideBots;

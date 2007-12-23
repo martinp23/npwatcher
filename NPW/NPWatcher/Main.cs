@@ -37,6 +37,7 @@ namespace NPWatcher
         private static int refreshInterval;
 
         internal static Settings settings;
+        ListSource listsource = new ListSource();
 
         public Main()
         {
@@ -127,7 +128,7 @@ namespace NPWatcher
         {
             if (asAdmin)
             {
-                ListSource listsource = new ListSource();
+                
                 string category = "";
 
                 listsource.ShowDialog();
