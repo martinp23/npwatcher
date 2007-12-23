@@ -1731,9 +1731,22 @@ namespace NPWatcher
 
         #region Settings
 
+        private void ResetSettings()
+        {
+            settings = new Settings();
+            LoadSettings("", false);
+        }
+
         private void LoadSettings(string file)
         {
-            settings = Settings.LoadPrefs(file);
+            LoadSettings(file, true);
+        }
+
+        private void LoadSettings(string file, bool loadFromFile)
+        {
+            if (loadFromFile)
+                settings = Settings.LoadPrefs(file);
+
             stubCombo.Items.Clear();
             foreach (string s in settings.stubTypes)
             {
@@ -1745,7 +1758,6 @@ namespace NPWatcher
             toolStripRefreshTxt.Text = settings.refreshinterval.ToString();
             limitCB.Text = settings.pagelimit;
         }
-
 
         private void SaveSettings(string file)
         {
@@ -1784,6 +1796,11 @@ namespace NPWatcher
                 LoadSettings(open.FileName);
         }
 
+        private void resetSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResetSettings();
+        }
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -1803,9 +1820,7 @@ namespace NPWatcher
             }
         }
 
-      
-
-        private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+         private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             settings.hideBots = hideBotEditsToolStripMenuItem.Checked;
         }
@@ -1858,7 +1873,5 @@ namespace NPWatcher
                 settimer();
             }
         }
-
-
     }
 }

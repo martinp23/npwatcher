@@ -120,6 +120,7 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRefreshTxt = new System.Windows.Forms.ToolStripTextBox();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
+            this.resetSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -148,25 +149,25 @@ namespace NPWatcher
             this.toolStripSeparator1,
             this.clearAllToolStripMenuItem});
             this.mnuPages.Name = "mnuPages";
-            this.mnuPages.Size = new System.Drawing.Size(190, 54);
+            this.mnuPages.Size = new System.Drawing.Size(188, 54);
             // 
             // removeSelectedToolStripMenuItem
             // 
             this.removeSelectedToolStripMenuItem.Name = "removeSelectedToolStripMenuItem";
             this.removeSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.clearAllToolStripMenuItem.Text = "Clear All";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -963,10 +964,11 @@ namespace NPWatcher
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveSettingsToolStripMenuItem,
             this.loadSettToolStripMenuItem,
+            this.resetSettingsToolStripMenuItem,
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveSettingsToolStripMenuItem
@@ -1006,7 +1008,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem,
             this.setListAutorefreshIntervalToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // hideBotEditsToolStripMenuItem
@@ -1015,7 +1017,7 @@ namespace NPWatcher
             this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
             this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
-            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
             this.hideBotEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBotEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1025,7 +1027,7 @@ namespace NPWatcher
             this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
             this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
-            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
             this.hideAdminEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideAdminEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1035,7 +1037,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
             this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
-            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
             this.hidePatrolledEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hidePatrolledEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1044,7 +1046,7 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRefreshTxt});
             this.setListAutorefreshIntervalToolStripMenuItem.Name = "setListAutorefreshIntervalToolStripMenuItem";
-            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
             // toolStripRefreshTxt
@@ -1052,13 +1054,20 @@ namespace NPWatcher
             this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
-            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
+            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 23);
             this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
             this.toolStripRefreshTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripRefreshTxt_KeyDown);
             // 
             // timerRefresh
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
+            // 
+            // resetSettingsToolStripMenuItem
+            // 
+            this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
+            this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -1191,6 +1200,7 @@ namespace NPWatcher
         private System.Windows.Forms.ToolStripMenuItem setListAutorefreshIntervalToolStripMenuItem;
         private System.Windows.Forms.ToolStripTextBox toolStripRefreshTxt;
         private System.Windows.Forms.Timer timerRefresh;
+        private System.Windows.Forms.ToolStripMenuItem resetSettingsToolStripMenuItem;
     }
 }
 
