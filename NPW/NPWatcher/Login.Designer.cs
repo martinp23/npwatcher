@@ -91,13 +91,13 @@ namespace NPWatcher
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
-            // Login
+            // LogOn
             // 
             this.AcceptButton = this.loginBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(349, 112);
+            this.ClientSize = new System.Drawing.Size(345, 108);
             this.ControlBox = false;
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginTxt);
@@ -108,12 +108,13 @@ namespace NPWatcher
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Login";
+            this.Name = "LogOn";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Login";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.LogOn_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

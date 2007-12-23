@@ -18,6 +18,7 @@ namespace NPWatcher
         {
             InitializeComponent();
             CatTxt.Click += new EventHandler(CatTxt_Click);
+            
         }
 
         void CatTxt_Click(object sender, EventArgs e)
@@ -37,6 +38,12 @@ namespace NPWatcher
             hidebot = chkHideBot.Checked;
             hidepatrolled = chkHidePatrolled.Checked;
             Close();
+        }
+
+        private void ListSource_Load(object sender, EventArgs e)
+        {
+            chkHideBot.Checked = Main.settings.hideBots;
+            chkHidePatrolled.Checked = Main.settings.hidePatrolled;
         }
     }
 }

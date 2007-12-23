@@ -73,6 +73,8 @@ namespace NPWatcher
             // 
             // CatTxt
             // 
+            this.CatTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CatTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.CatTxt.Location = new System.Drawing.Point(135, 105);
             this.CatTxt.Name = "CatTxt";
             this.CatTxt.Size = new System.Drawing.Size(164, 20);
@@ -142,6 +144,7 @@ namespace NPWatcher
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "ListSource";
+            this.Load += new System.EventHandler(this.ListSource_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

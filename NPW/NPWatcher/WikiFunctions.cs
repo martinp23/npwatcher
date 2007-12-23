@@ -200,31 +200,18 @@ namespace NPWatcher
         }
 
 
-        public StringCollection getNPs(string limit, bool nonpatrolled, bool nonbot, bool nonadmin)
+        public StringCollection getNPs(string limit)
         {
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
-           // StringCollection strCol1 = new StringCollection();
-          //  StringCollection watchlist = new StringCollection();
             MatchCollection matches;
-           // Regex nextPortionRE = new Regex("<watchlist wlstart=\"(.+?)\" />");
             Regex pageTitleTagRE = new Regex("<title>([^<]*?)</title>");
-
-
-            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + nonpatrolled.ToString() + "&hidebots="+ nonbot.ToString() +"&offset=0&feed=atom");
-            
+            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots="+ Main.settings.hideBots.ToString() +"&offset=0&feed=atom");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
-           // src = HttpUtility.HtmlDecode(src);
-
-            //src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
-            //src = src.Substring(0, src.IndexOf("<!-- end content -->"));
-            //src = "<div>" + src + "</div>";
             StringReader sr = new StringReader(src);
             XmlDocument xml = new XmlDocument();
             xml.Load(sr);
@@ -233,21 +220,14 @@ namespace NPWatcher
             {
                 if (n.InnerXml != "Wikipedia - New pages [en]")
                 {
-                    
-                    //must be a better way to do this...
-                    if (nonbot && !adminslist.Contains(n.NextSibling.NextSibling.NextSibling.NextSibling.FirstChild.InnerText))
+                    if (Main.settings.hideAdmins && !adminslist.Contains(n.NextSibling.NextSibling.NextSibling.NextSibling.FirstChild.InnerText))
                         strCol.Add(n.FirstChild.InnerText);
-                    if (!nonbot)
+                    else if (!Main.settings.hideAdmins)
                         strCol.Add(n.FirstChild.InnerText);
+
                 }
             }
 
-            //matches = pageTitleTagRE.Matches(src);
-            //foreach (Match match in matches)
-            //{ strCol.Add(match.Groups[1].Value); }
-
-            //strCol.RemoveAt(0);
-            
             return strCol;
         }
 

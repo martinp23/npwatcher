@@ -34,8 +34,9 @@ namespace NPWatcher
         internal static bool editsuccess;
         internal static string cwr;
         private static int MAXISSUES = 20;
+        private static int refreshInterval;
 
-        Settings settings;
+        internal static Settings settings;
 
         public Main()
         {
@@ -131,7 +132,8 @@ namespace NPWatcher
 
                 listsource.ShowDialog();
                 category = listsource.category;
-
+                settings.hidePatrolled = listsource.hidepatrolled;
+                settings.hideBots = listsource.hidebot;
                 StringCollection nps = new StringCollection();
                 if (category == "NPRad")
                 {
@@ -145,8 +147,8 @@ namespace NPWatcher
                         limit = "20";
                         limitCB.SelectedItem = "20";
                     }
-                    //for-settings
-                    nps = wf.getNPs(limit, listsource.hidepatrolled, listsource.hidebot, true);
+                    
+                    nps = wf.getNPs(limit);
                     pageList.Items.Clear();
                     foreach (string p in nps) { pageList.Items.Add(p); }
                 }
@@ -195,9 +197,8 @@ namespace NPWatcher
                     limit = "20";
                     limitCB.SelectedItem = "20";
                 }
-                // Hide patrolled edits and bot/admin creations in NP list.
-                //for-settings
-                nps = wf.getNPs(limit, true, true, true);
+                
+                nps = wf.getNPs(limit);
                 pageList.Items.Clear();
                 foreach (string p in nps) { pageList.Items.Add(p); }
             }
@@ -1722,7 +1723,12 @@ namespace NPWatcher
             {
                 stubCombo.Items.Add(s);
             }
+            hidePatrolledEditsToolStripMenuItem.Checked = settings.hidePatrolled;
+            hideAdminEditsToolStripMenuItem.Checked = settings.hideAdmins;
+            hideBotEditsToolStripMenuItem.Checked = settings.hideBots;
+            toolStripRefreshTxt.Text = settings.refreshinterval.ToString();
         }
+
 
         private void SaveSettings(string file)
         {
@@ -1783,9 +1789,41 @@ namespace NPWatcher
 
         private void runListSelect()
         {
-            ListSource ls = new ListSource();
-            ls.ShowDialog();
-            settings
+            
         }
+
+        private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.hideBots = hideBotEditsToolStripMenuItem.Checked;
+        }
+
+        private void hideAdminEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.hideAdmins = hideAdminEditsToolStripMenuItem.Checked;
+        }
+
+        private void hidePatrolledEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.hidePatrolled = hidePatrolledEditsToolStripMenuItem.Checked;
+        }
+
+        private void toolStripRefreshTxt_Leave(object sender, EventArgs e)
+        {
+            
+            try
+            { 
+                refreshInterval = int.Parse(toolStripRefreshTxt.Text);
+                settings.refreshinterval = refreshInterval;
+                if (refreshInterval != 0)
+                {
+                    
+                }
+            }
+            catch (FormatException)
+            { MessageBox.Show("Please only enter an integer as the refresh interval.", "Refresh interval", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
+
+        }
+
     }
 }

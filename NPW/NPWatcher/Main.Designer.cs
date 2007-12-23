@@ -113,13 +113,14 @@ namespace NPWatcher
             this.loadSettToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideBotEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hideAdminEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hidePatrolledEditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setListReloadIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setListAutorefreshIntervalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRefreshTxt = new System.Windows.Forms.ToolStripTextBox();
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -973,28 +974,80 @@ namespace NPWatcher
             // saveSettingsToolStripMenuItem
             // 
             this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveSettingsToolStripMenuItem.Text = "Save Settings";
             this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
             // 
             // loadSettToolStripMenuItem
             // 
             this.loadSettToolStripMenuItem.Name = "loadSettToolStripMenuItem";
-            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.loadSettToolStripMenuItem.Text = "Load Settings";
             this.loadSettToolStripMenuItem.Click += new System.EventHandler(this.loadSettToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(148, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Checked = true;
+            this.settingsToolStripMenuItem.CheckOnClick = true;
+            this.settingsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideBotEditsToolStripMenuItem,
+            this.hideAdminEditsToolStripMenuItem,
+            this.hidePatrolledEditsToolStripMenuItem,
+            this.setListAutorefreshIntervalToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // hideBotEditsToolStripMenuItem
+            // 
+            this.hideBotEditsToolStripMenuItem.Checked = true;
+            this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
+            this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
+            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
+            this.hideBotEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBotEditsToolStripMenuItem_CheckedChanged);
+            // 
+            // hideAdminEditsToolStripMenuItem
+            // 
+            this.hideAdminEditsToolStripMenuItem.Checked = true;
+            this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
+            this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
+            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
+            this.hideAdminEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideAdminEditsToolStripMenuItem_CheckedChanged);
+            // 
+            // hidePatrolledEditsToolStripMenuItem
+            // 
+            this.hidePatrolledEditsToolStripMenuItem.Checked = true;
+            this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
+            this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
+            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
+            this.hidePatrolledEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hidePatrolledEditsToolStripMenuItem_CheckedChanged);
+            // 
+            // setListAutorefreshIntervalToolStripMenuItem
+            // 
+            this.setListAutorefreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripRefreshTxt});
+            this.setListAutorefreshIntervalToolStripMenuItem.Name = "setListAutorefreshIntervalToolStripMenuItem";
+            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
             // helpToolStripMenuItem
             // 
@@ -1007,56 +1060,17 @@ namespace NPWatcher
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // settingsToolStripMenuItem
+            // toolStripRefreshTxt
             // 
-            this.settingsToolStripMenuItem.Checked = true;
-            this.settingsToolStripMenuItem.CheckOnClick = true;
-            this.settingsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hideBotEditsToolStripMenuItem,
-            this.hideAdminEditsToolStripMenuItem,
-            this.hidePatrolledEditsToolStripMenuItem,
-            this.setListReloadIntervalToolStripMenuItem});
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // hideBotEditsToolStripMenuItem
-            // 
-            this.hideBotEditsToolStripMenuItem.Checked = true;
-            this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
-            this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
-            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
-            // 
-            // hideAdminEditsToolStripMenuItem
-            // 
-            this.hideAdminEditsToolStripMenuItem.Checked = true;
-            this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
-            this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
-            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
-            // 
-            // hidePatrolledEditsToolStripMenuItem
-            // 
-            this.hidePatrolledEditsToolStripMenuItem.Checked = true;
-            this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
-            this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
-            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
-            // 
-            // setListReloadIntervalToolStripMenuItem
-            // 
-            this.setListReloadIntervalToolStripMenuItem.Name = "setListReloadIntervalToolStripMenuItem";
-            this.setListReloadIntervalToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.setListReloadIntervalToolStripMenuItem.Text = "Set list settings ...";
-            this.setListReloadIntervalToolStripMenuItem.Click += new System.EventHandler(this.setListReloadIntervalToolStripMenuItem_Click);
+            this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
+            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
+            this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
+            this.toolStripRefreshTxt.Leave += new System.EventHandler(this.toolStripRefreshTxt_Leave);
             // 
             // Main
             // 
@@ -1188,7 +1202,8 @@ namespace NPWatcher
         private System.Windows.Forms.ToolStripMenuItem hideBotEditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hideAdminEditsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hidePatrolledEditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setListReloadIntervalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setListAutorefreshIntervalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripTextBox toolStripRefreshTxt;
     }
 }
 
