@@ -8,17 +8,16 @@ using System.Xml.Serialization;
 namespace NPWatcher
 {
     [Serializable, XmlRoot("NPWSettings")]
-    class Settings
+    public class Settings
     {
         internal Settings() { }
-        //username not easy to do, because settings aren't loaded when login process runs
-        //public string username = "";
+        public string username = "";
         public List<string> stubTypes = new List<string>();
         public bool hidePatrolled;
         public bool hideBots;
         public bool hideAdmins;
-        public int pagelimit = 20;
-        public int refreshinterval = 60;
+        public string pagelimit = "20";
+        public int refreshinterval = 0;
 
 
         public static void SavePrefs(Settings settings, string file)

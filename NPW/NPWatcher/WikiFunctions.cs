@@ -135,6 +135,7 @@ namespace NPWatcher
         ///http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=20&offset=0&feed=atom
         public StringCollection getCat(string limit, string category)
         {
+            Main.settings.pagelimit = limit;
             string src = "";
             webRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
 
@@ -202,6 +203,7 @@ namespace NPWatcher
 
         public StringCollection getNPs(string limit)
         {
+            Main.settings.pagelimit = limit;
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();

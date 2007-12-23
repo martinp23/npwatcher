@@ -36,7 +36,7 @@ namespace NPWatcher
         private static int MAXISSUES = 20;
         private static int refreshInterval;
 
-        internal static Settings settings;
+        internal static Settings settings = new Settings();
         ListSource listsource = new ListSource();
 
         public Main()
@@ -47,7 +47,7 @@ namespace NPWatcher
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-
+            LoadSettings("DefaultSettings.xml");
             string listofv = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
             string versioncurstr = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
@@ -155,7 +155,16 @@ namespace NPWatcher
                 }
                 else if (category == "CSDRad")
                 {
-                    string limit = "500";
+                    string limit = "100";
+                    try
+                    {
+                        limit = limitCB.SelectedItem.ToString();
+                    }
+                    catch (NullReferenceException)
+                    {
+                        limit = "100";
+                        limitCB.SelectedItem = "100";
+                    }
                     nps = wf.getCat(limit, "Candidates for speedy deletion");
                     pageList.Items.Clear();
                     foreach (string p in nps) { pageList.Items.Add(p); }
@@ -1728,11 +1737,13 @@ namespace NPWatcher
             hideAdminEditsToolStripMenuItem.Checked = settings.hideAdmins;
             hideBotEditsToolStripMenuItem.Checked = settings.hideBots;
             toolStripRefreshTxt.Text = settings.refreshinterval.ToString();
+            limitCB.Text = settings.pagelimit;
         }
 
 
         private void SaveSettings(string file)
         {
+            if(settings.stubTypes != null)
             settings.stubTypes.Clear();
             foreach (string s in stubCombo.Items)
             {
@@ -1810,21 +1821,24 @@ namespace NPWatcher
 
         private void toolStripRefreshTxt_Leave(object sender, EventArgs e)
         {
-            
+
             try
-            { 
+            {
                 refreshInterval = int.Parse(toolStripRefreshTxt.Text);
                 settings.refreshinterval = refreshInterval;
-                if (refreshInterval != 0)
-                {
-                    
-                }
             }
             catch (FormatException)
-            { MessageBox.Show("Please only enter an integer as the refresh interval.", "Refresh interval", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            {
+                refreshInterval = 0;
+                MessageBox.Show("Please only enter an integer as the refresh interval.", "Refresh interval", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
+            if (refreshInterval != 0)
+            {
 
+            }
         }
+
 
     }
 }

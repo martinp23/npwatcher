@@ -42,8 +42,8 @@ namespace NPWatcher
 
         private void ListSource_Load(object sender, EventArgs e)
         {
-            chkHideBot.Checked = Main.settings.hideBots;
-            chkHidePatrolled.Checked = Main.settings.hidePatrolled;
+           // chkHideBot.Checked = Main.settings.hideBots;
+           // chkHidePatrolled.Checked = Main.settings.hidePatrolled;
         }
     }
 }
