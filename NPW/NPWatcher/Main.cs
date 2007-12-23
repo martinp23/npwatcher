@@ -1717,7 +1717,7 @@ namespace NPWatcher
         private void LoadSettings(string file)
         {
             settings = Settings.LoadPrefs(file);
-
+            stubCombo.Items.Clear();
             foreach (string s in settings.stubTypes)
             {
                 stubCombo.Items.Add(s);

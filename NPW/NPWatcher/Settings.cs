@@ -24,7 +24,6 @@ namespace NPWatcher
         public int refreshinterval = 0;
 
 
-
         public static void SavePrefs(Settings settings, string file)
         {
             try
