@@ -36,6 +36,8 @@ namespace NPWatcher
         private static int MAXISSUES = 20;
         private static int refreshInterval;
 
+        string currentSettingsFile;
+
         internal static Settings settings = new Settings();
         ListSource listsource = new ListSource();
 
@@ -1746,31 +1748,52 @@ namespace NPWatcher
 
         private void LoadSettings(string file, bool loadFromFile)
         {
-            if (loadFromFile)
-                settings = Settings.LoadPrefs(file);
-
-            stubCombo.Items.Clear();
-            foreach (string s in settings.stubTypes)
+            try
             {
-                stubCombo.Items.Add(s);
+                if (loadFromFile)
+                {
+                    settings = Settings.LoadPrefs(file);
+                    currentSettingsFile = file;
+                }
             }
-            hidePatrolledEditsToolStripMenuItem.Checked = settings.hidePatrolled;
-            hideAdminEditsToolStripMenuItem.Checked = settings.hideAdmins;
-            hideBotEditsToolStripMenuItem.Checked = settings.hideBots;
-            toolStripRefreshTxt.Text = settings.refreshinterval.ToString();
-            limitCB.Text = settings.pagelimit;
+            catch
+            {
+                MessageBox.Show("There is a problem with your settings file. Loading default settings");
+                currentSettingsFile = "";
+                settings = new Settings();
+            }
+            finally
+            {
+                stubCombo.Items.Clear();
+                foreach (string s in settings.stubTypes)
+                {
+                    stubCombo.Items.Add(s);
+                }
+                hidePatrolledEditsToolStripMenuItem.Checked = settings.hidePatrolled;
+                hideAdminEditsToolStripMenuItem.Checked = settings.hideAdmins;
+                hideBotEditsToolStripMenuItem.Checked = settings.hideBots;
+                toolStripRefreshTxt.Text = settings.refreshinterval.ToString();
+                limitCB.Text = settings.pagelimit;
+            }
         }
 
         private void SaveSettings(string file)
         {
-            if(settings.stubTypes != null)
-            settings.stubTypes.Clear();
-            foreach (string s in stubCombo.Items)
+            try
             {
-                settings.stubTypes.Add(s);
-            }
+                if (settings.stubTypes != null)
+                    settings.stubTypes.Clear();
+                foreach (string s in stubCombo.Items)
+                {
+                    settings.stubTypes.Add(s);
+                }
 
-            Settings.SavePrefs(settings, file);
+                Settings.SavePrefs(settings, file);
+            }
+            catch
+            {
+                MessageBox.Show("There is a problem with your settings file. Settings not saved");
+            }
         }
         #endregion
 
@@ -1779,6 +1802,7 @@ namespace NPWatcher
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Settings file|*.xml";
             save.InitialDirectory = Application.StartupPath;
+            save.FileName = currentSettingsFile;
 
             save.ShowDialog();
 
