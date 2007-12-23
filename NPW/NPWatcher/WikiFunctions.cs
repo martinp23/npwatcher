@@ -130,7 +130,7 @@ namespace NPWatcher
             try { return source.Substring(source.IndexOf(start), source.IndexOf(end) - source.IndexOf(start)); }
             catch { return ""; }
         }
-        
+
         ///Get newpages from 
         ///http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=20&offset=0&feed=atom
         public StringCollection getCat(string limit, string category)
@@ -140,7 +140,7 @@ namespace NPWatcher
             webRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-            
+
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
@@ -174,7 +174,7 @@ namespace NPWatcher
                 webRequest(queryurl + "?what=imagelinks&titles=" + image + "&format=xml");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-                
+
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -207,7 +207,7 @@ namespace NPWatcher
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
-            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots="+ Main.settings.hideBots.ToString() +"&offset=0&feed=atom");
+            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&offset=0&feed=atom");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -235,7 +235,7 @@ namespace NPWatcher
         {
             string timestamp = getCreationTime(page);
             //string t = dt.ToString("yyyyMMddhhmm");
-            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcprop=title|ids&rclimit=5&rcstart="+timestamp+"&format=xml");
+            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcprop=title|ids&rclimit=5&rcstart=" + timestamp + "&format=xml");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -253,14 +253,14 @@ namespace NPWatcher
                 if (n.Attributes.GetNamedItem("title").InnerText == HttpUtility.UrlDecode(page))
                 { rcid = n.Attributes.GetNamedItem("rcid").InnerText.ToString(); }
             }
-           
-                return rcid;
-            
+
+            return rcid;
+
         }
 
         private string getCreationTime(string page)
         {
-            webRequest(apiurl + "?action=query&prop=revisions&titles="+page+"&rvdir=newer&rvlimit=1&rvprop=timestamp&format=xml");
+            webRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvdir=newer&rvlimit=1&rvprop=timestamp&format=xml");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -278,14 +278,14 @@ namespace NPWatcher
 
         public void getusergroup(string group)
         {
-            
+
             string src = "";
-webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
+            webRequest(wikiurl + "Special:Listusers&group=" + group + "&limit=5000");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
-           // src = HttpUtility.HtmlDecode(src);
+            // src = HttpUtility.HtmlDecode(src);
             src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
             src = src.Substring(0, src.IndexOf("<!-- end content -->"));
             src = "<div>" + src + "</div>";
@@ -307,7 +307,7 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
             try
             {
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-                
+
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -355,7 +355,7 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
                 webRequest(wikiurl + page + "&action=edit");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-                
+
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -438,7 +438,7 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
                 string editTime = m1.Value;
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
-                
+
 
                 webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
@@ -484,7 +484,7 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
             webRequest(wikiurl + page + "&action=edit");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-            
+
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             src = HttpUtility.HtmlDecode(work.ReadToEnd());
@@ -500,7 +500,7 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
             string editTime = m1.Value;
             editTime = editTime.Substring(7);
             editTime = editTime.Substring(0, editTime.Length - 19);
-            
+
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=delete");
             webReq.UserAgent = "NPWatcher/1.0";
             webReq.ContentType = "application/x-www-form-urlencoded";
@@ -571,39 +571,45 @@ webRequest(wikiurl + "Special:Listusers&group="+group+"&limit=5000");
                 cookies = webResp.Cookies;
             }
             cc.Add(cookies);
-            webReq.CookieContainer = cc; 
+            webReq.CookieContainer = cc;
         }
 
-
-
-    }
-    
-        [global::System.Serializable]
-        public class WikiBotException : Exception
+        public static void LoadLink(string link)
         {
-            // For guidelines regarding the creation of new exception types, see
-            //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
-            // and
-            //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
-            //
-
-            public WikiBotException() { }
-            public WikiBotException(string message)
-                : base(message)
+            try
             {
-                if (message == "login failed")
-                {
-                    System.Windows.Forms.MessageBox.Show("Login Failed, please check your username and password, and that you are " +
-                        "connected to the internet", "Login Failure", System.Windows.Forms.MessageBoxButtons.OK,
-                        System.Windows.Forms.MessageBoxIcon.Error);
-                }
+                System.Diagnostics.Process.Start(link);
             }
-            public WikiBotException(string message, Exception inner) : base(message, inner) { }
-            protected WikiBotException(
-              System.Runtime.Serialization.SerializationInfo info,
-              System.Runtime.Serialization.StreamingContext context)
-                : base(info, context) { }
+            catch { }
         }
-    }      
+    }
+
+    [global::System.Serializable]
+    public class WikiBotException : Exception
+    {
+        // For guidelines regarding the creation of new exception types, see
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
+        // and
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
+        //
+
+        public WikiBotException() { }
+        public WikiBotException(string message)
+            : base(message)
+        {
+            if (message == "login failed")
+            {
+                System.Windows.Forms.MessageBox.Show("Login Failed, please check your username and password, and that you are " +
+                    "connected to the internet", "Login Failure", System.Windows.Forms.MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBoxIcon.Error);
+            }
+        }
+        public WikiBotException(string message, Exception inner) : base(message, inner) { }
+        protected WikiBotException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context)
+            : base(info, context) { }
+    }
+}  
 
 

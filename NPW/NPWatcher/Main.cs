@@ -73,6 +73,7 @@ namespace NPWatcher
                 {
                     if (!dialogcancel)
                     {
+                        this.Cursor = Cursors.WaitCursor;
                         success = wf.login(username, password);
                         if (!success)
                         {
@@ -88,6 +89,7 @@ namespace NPWatcher
                             Regex r = new Regex(username, RegexOptions.IgnoreCase);
                             Match m = r.Match(wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users"));
 
+                            this.Cursor = Cursors.Default;
                             if (!m.Success)
                             {
                                 MessageBox.Show("You are not approved to use NPWatcher.  Please request approval from Martinp23", "Not Approved", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1872,6 +1874,11 @@ namespace NPWatcher
 
                 settimer();
             }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new About().ShowDialog();
         }
     }
 }
