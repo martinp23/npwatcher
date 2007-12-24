@@ -1669,6 +1669,16 @@ namespace NPWatcher
                 issuelist[counter] = new Issue("wikify");
                 counter++;
             }
+            if (checkDeadend.Checked)
+            {
+                issuelist[counter] = new Issue("deadend");
+                counter++;
+            }
+            if (checkOrphan.Checked)
+            {
+                issuelist[counter] = new Issue("orphan");
+                counter++;
+            }
             MarkBoxes(templateText(issuelist), issuelist);
             Greyin();
         }
