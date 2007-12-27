@@ -1,8 +1,8 @@
-<!--
+/*
 From: http://svn.martinp23.com/npw/
 
 Copyright 2007 Martin Peeks
-Copyright 2007 Reedy_boy
+Copyright 2007 Reedy_Boy
 Copyright 2007 Martijn Hoekstra  
 
 This file is part of NPWatcher.
@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 
--->
+*/
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -264,8 +264,8 @@ namespace NPWatcher
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
             // src = HttpUtility.HtmlDecode(src);
-            //src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
-            //src = src.Substring(0, src.IndexOf("<!-- end content -->"));
+            //src = src.Substring(src.IndexOf("/* start content */") + 22);
+            //src = src.Substring(0, src.IndexOf("/* end content */"));
             //src = "<div>" + src + "</div>";
             StringReader sr = new StringReader(src);
             XmlDocument xml = new XmlDocument();
@@ -309,8 +309,8 @@ namespace NPWatcher
             StreamReader work = new StreamReader(srcstrm);
             src = work.ReadToEnd();
             // src = HttpUtility.HtmlDecode(src);
-            src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
-            src = src.Substring(0, src.IndexOf("<!-- end content -->"));
+            src = src.Substring(src.IndexOf("/* start content */") + 22);
+            src = src.Substring(0, src.IndexOf("/* end content */"));
             src = "<div>" + src + "</div>";
             StringReader sr = new StringReader(src);
             XmlDocument xml = new XmlDocument();

@@ -1,8 +1,8 @@
-<!--
+/*
 From: http://svn.martinp23.com/npw/
 
 Copyright 2007 Martin Peeks
-Copyright 2007 Reedy_boy
+Copyright 2007 Reedy_Boy
 Copyright 2007 Martijn Hoekstra  
 
 This file is part of NPWatcher.
@@ -20,7 +20,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 
--->
+*/
 namespace NPWatcher
 {
     partial class CustomWarning
