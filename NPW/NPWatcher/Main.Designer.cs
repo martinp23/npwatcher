@@ -93,25 +93,34 @@ namespace NPWatcher
             this.dbBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pageIssues = new System.Windows.Forms.GroupBox();
-            this.checkContext = new System.Windows.Forms.CheckBox();
-            this.doMarkButton = new System.Windows.Forms.Button();
-            this.checkNpov = new System.Windows.Forms.CheckBox();
-            this.checkWikify = new System.Windows.Forms.CheckBox();
-            this.checkIntrorewrite = new System.Windows.Forms.CheckBox();
+            this.checkPatrolled = new System.Windows.Forms.CheckBox();
+            this.stubCombo = new System.Windows.Forms.ComboBox();
+            this.referencesBox = new System.Windows.Forms.GroupBox();
+            this.checkInline = new System.Windows.Forms.CheckBox();
+            this.checkRefImprove = new System.Windows.Forms.CheckBox();
             this.checkNotability = new System.Windows.Forms.CheckBox();
+            this.checkUnsourced = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.generalBox = new System.Windows.Forms.GroupBox();
+            this.checkuncat = new System.Windows.Forms.CheckBox();
+            this.checknotEnglish = new System.Windows.Forms.CheckBox();
+            this.checkStub = new System.Windows.Forms.CheckBox();
+            this.checkDeadend = new System.Windows.Forms.CheckBox();
+            this.checkOrphan = new System.Windows.Forms.CheckBox();
+            this.checkContext = new System.Windows.Forms.CheckBox();
+            this.checkCopypase = new System.Windows.Forms.CheckBox();
+            this.checkNpov = new System.Windows.Forms.CheckBox();
+            this.cleanupBox = new System.Windows.Forms.GroupBox();
+            this.checkCleanup = new System.Windows.Forms.CheckBox();
             this.checkHowto = new System.Windows.Forms.CheckBox();
-            this.checkSections = new System.Windows.Forms.CheckBox();
+            this.checkInUniverse = new System.Windows.Forms.CheckBox();
+            this.checkWikify = new System.Windows.Forms.CheckBox();
+            this.checkTone = new System.Windows.Forms.CheckBox();
+            this.checkIntrorewrite = new System.Windows.Forms.CheckBox();
             this.checkAdvert = new System.Windows.Forms.CheckBox();
             this.checkCopyedit = new System.Windows.Forms.CheckBox();
-            this.checkCopypase = new System.Windows.Forms.CheckBox();
-            this.checkUnsourced = new System.Windows.Forms.CheckBox();
-            this.checkTone = new System.Windows.Forms.CheckBox();
-            this.checkCleanup = new System.Windows.Forms.CheckBox();
-            this.stubCombo = new System.Windows.Forms.ComboBox();
-            this.uncatBtn = new System.Windows.Forms.Button();
-            this.notEngBtn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.stubBtn = new System.Windows.Forms.Button();
+            this.checkSections = new System.Windows.Forms.CheckBox();
+            this.doMarkButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.AfDCustom = new System.Windows.Forms.Button();
             this.RmvProd = new System.Windows.Forms.Button();
@@ -148,13 +157,14 @@ namespace NPWatcher
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
-            this.checkDeadend = new System.Windows.Forms.CheckBox();
-            this.checkOrphan = new System.Windows.Forms.CheckBox();
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pageIssues.SuspendLayout();
+            this.referencesBox.SuspendLayout();
+            this.generalBox.SuspendLayout();
+            this.cleanupBox.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -178,25 +188,25 @@ namespace NPWatcher
             this.toolStripSeparator1,
             this.clearAllToolStripMenuItem});
             this.mnuPages.Name = "mnuPages";
-            this.mnuPages.Size = new System.Drawing.Size(190, 54);
+            this.mnuPages.Size = new System.Drawing.Size(179, 54);
             // 
             // removeSelectedToolStripMenuItem
             // 
             this.removeSelectedToolStripMenuItem.Name = "removeSelectedToolStripMenuItem";
             this.removeSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.clearAllToolStripMenuItem.Text = "Clear All";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -549,11 +559,6 @@ namespace NPWatcher
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.pageIssues);
-            this.tabPage2.Controls.Add(this.stubCombo);
-            this.tabPage2.Controls.Add(this.uncatBtn);
-            this.tabPage2.Controls.Add(this.notEngBtn);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.stubBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -564,143 +569,90 @@ namespace NPWatcher
             // 
             // pageIssues
             // 
-            this.pageIssues.Controls.Add(this.checkOrphan);
-            this.pageIssues.Controls.Add(this.checkDeadend);
-            this.pageIssues.Controls.Add(this.checkContext);
+            this.pageIssues.Controls.Add(this.checkPatrolled);
+            this.pageIssues.Controls.Add(this.stubCombo);
+            this.pageIssues.Controls.Add(this.referencesBox);
+            this.pageIssues.Controls.Add(this.label4);
+            this.pageIssues.Controls.Add(this.generalBox);
+            this.pageIssues.Controls.Add(this.cleanupBox);
             this.pageIssues.Controls.Add(this.doMarkButton);
-            this.pageIssues.Controls.Add(this.checkNpov);
-            this.pageIssues.Controls.Add(this.checkWikify);
-            this.pageIssues.Controls.Add(this.checkIntrorewrite);
-            this.pageIssues.Controls.Add(this.checkNotability);
-            this.pageIssues.Controls.Add(this.checkHowto);
-            this.pageIssues.Controls.Add(this.checkSections);
-            this.pageIssues.Controls.Add(this.checkAdvert);
-            this.pageIssues.Controls.Add(this.checkCopyedit);
-            this.pageIssues.Controls.Add(this.checkCopypase);
-            this.pageIssues.Controls.Add(this.checkUnsourced);
-            this.pageIssues.Controls.Add(this.checkTone);
-            this.pageIssues.Controls.Add(this.checkCleanup);
             this.pageIssues.Location = new System.Drawing.Point(6, 6);
             this.pageIssues.Name = "pageIssues";
-            this.pageIssues.Size = new System.Drawing.Size(254, 191);
+            this.pageIssues.Size = new System.Drawing.Size(819, 191);
             this.pageIssues.TabIndex = 22;
             this.pageIssues.TabStop = false;
             this.pageIssues.Text = "Mark pageissues";
             // 
-            // checkContext
+            // checkPatrolled
             // 
-            this.checkContext.AutoSize = true;
-            this.checkContext.Location = new System.Drawing.Point(6, 112);
-            this.checkContext.Name = "checkContext";
-            this.checkContext.Size = new System.Drawing.Size(61, 17);
-            this.checkContext.TabIndex = 26;
-            this.checkContext.Text = "context";
-            this.checkContext.UseVisualStyleBackColor = true;
+            this.checkPatrolled.AutoSize = true;
+            this.checkPatrolled.Checked = true;
+            this.checkPatrolled.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkPatrolled.Location = new System.Drawing.Point(466, 166);
+            this.checkPatrolled.Name = "checkPatrolled";
+            this.checkPatrolled.Size = new System.Drawing.Size(134, 17);
+            this.checkPatrolled.TabIndex = 32;
+            this.checkPatrolled.Text = "Mark page as patrolled";
+            this.checkPatrolled.UseVisualStyleBackColor = true;
             // 
-            // doMarkButton
+            // stubCombo
             // 
-            this.doMarkButton.Location = new System.Drawing.Point(170, 162);
-            this.doMarkButton.Name = "doMarkButton";
-            this.doMarkButton.Size = new System.Drawing.Size(75, 23);
-            this.doMarkButton.TabIndex = 23;
-            this.doMarkButton.Text = "Mark article";
-            this.doMarkButton.UseVisualStyleBackColor = true;
-            this.doMarkButton.Click += new System.EventHandler(this.doMarkButton_Click);
+            this.stubCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.stubCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.stubCombo.FormattingEnabled = true;
+            this.stubCombo.Location = new System.Drawing.Point(6, 162);
+            this.stubCombo.Name = "stubCombo";
+            this.stubCombo.Size = new System.Drawing.Size(176, 21);
+            this.stubCombo.TabIndex = 21;
+            this.stubCombo.Leave += new System.EventHandler(this.stubCombo_Leave);
             // 
-            // checkNpov
+            // referencesBox
             // 
-            this.checkNpov.AutoSize = true;
-            this.checkNpov.Location = new System.Drawing.Point(170, 88);
-            this.checkNpov.Name = "checkNpov";
-            this.checkNpov.Size = new System.Drawing.Size(50, 17);
-            this.checkNpov.TabIndex = 25;
-            this.checkNpov.Text = "npov";
-            this.checkNpov.UseVisualStyleBackColor = true;
+            this.referencesBox.Controls.Add(this.checkInline);
+            this.referencesBox.Controls.Add(this.checkRefImprove);
+            this.referencesBox.Controls.Add(this.checkNotability);
+            this.referencesBox.Controls.Add(this.checkUnsourced);
+            this.referencesBox.Location = new System.Drawing.Point(365, 19);
+            this.referencesBox.Name = "referencesBox";
+            this.referencesBox.Size = new System.Drawing.Size(95, 164);
+            this.referencesBox.TabIndex = 31;
+            this.referencesBox.TabStop = false;
+            this.referencesBox.Text = "references";
             // 
-            // checkWikify
+            // checkInline
             // 
-            this.checkWikify.AutoSize = true;
-            this.checkWikify.Location = new System.Drawing.Point(86, 88);
-            this.checkWikify.Name = "checkWikify";
-            this.checkWikify.Size = new System.Drawing.Size(52, 17);
-            this.checkWikify.TabIndex = 24;
-            this.checkWikify.Text = "wikify";
-            this.checkWikify.UseVisualStyleBackColor = true;
+            this.checkInline.AutoSize = true;
+            this.checkInline.Location = new System.Drawing.Point(7, 88);
+            this.checkInline.Name = "checkInline";
+            this.checkInline.Size = new System.Drawing.Size(50, 17);
+            this.checkInline.TabIndex = 11;
+            this.checkInline.Text = "inline";
+            this.checkInline.UseVisualStyleBackColor = true;
             // 
-            // checkIntrorewrite
+            // checkRefImprove
             // 
-            this.checkIntrorewrite.AutoSize = true;
-            this.checkIntrorewrite.Location = new System.Drawing.Point(6, 88);
-            this.checkIntrorewrite.Name = "checkIntrorewrite";
-            this.checkIntrorewrite.Size = new System.Drawing.Size(77, 17);
-            this.checkIntrorewrite.TabIndex = 9;
-            this.checkIntrorewrite.Text = "introrewrite";
-            this.checkIntrorewrite.UseVisualStyleBackColor = true;
+            this.checkRefImprove.AutoSize = true;
+            this.checkRefImprove.Location = new System.Drawing.Point(7, 65);
+            this.checkRefImprove.Name = "checkRefImprove";
+            this.checkRefImprove.Size = new System.Drawing.Size(76, 17);
+            this.checkRefImprove.TabIndex = 10;
+            this.checkRefImprove.Text = "refImprove";
+            this.checkRefImprove.UseVisualStyleBackColor = true;
             // 
             // checkNotability
             // 
             this.checkNotability.AutoSize = true;
-            this.checkNotability.Location = new System.Drawing.Point(170, 65);
+            this.checkNotability.Location = new System.Drawing.Point(6, 42);
             this.checkNotability.Name = "checkNotability";
             this.checkNotability.Size = new System.Drawing.Size(67, 17);
             this.checkNotability.TabIndex = 8;
             this.checkNotability.Text = "notability";
             this.checkNotability.UseVisualStyleBackColor = true;
             // 
-            // checkHowto
-            // 
-            this.checkHowto.AutoSize = true;
-            this.checkHowto.Location = new System.Drawing.Point(170, 42);
-            this.checkHowto.Name = "checkHowto";
-            this.checkHowto.Size = new System.Drawing.Size(55, 17);
-            this.checkHowto.TabIndex = 7;
-            this.checkHowto.Text = "howto";
-            this.checkHowto.UseVisualStyleBackColor = true;
-            // 
-            // checkSections
-            // 
-            this.checkSections.AutoSize = true;
-            this.checkSections.Location = new System.Drawing.Point(170, 19);
-            this.checkSections.Name = "checkSections";
-            this.checkSections.Size = new System.Drawing.Size(65, 17);
-            this.checkSections.TabIndex = 6;
-            this.checkSections.Text = "sections";
-            this.checkSections.UseVisualStyleBackColor = true;
-            // 
-            // checkAdvert
-            // 
-            this.checkAdvert.AutoSize = true;
-            this.checkAdvert.Location = new System.Drawing.Point(86, 65);
-            this.checkAdvert.Name = "checkAdvert";
-            this.checkAdvert.Size = new System.Drawing.Size(56, 17);
-            this.checkAdvert.TabIndex = 5;
-            this.checkAdvert.Text = "advert";
-            this.checkAdvert.UseVisualStyleBackColor = true;
-            // 
-            // checkCopyedit
-            // 
-            this.checkCopyedit.AutoSize = true;
-            this.checkCopyedit.Location = new System.Drawing.Point(6, 65);
-            this.checkCopyedit.Name = "checkCopyedit";
-            this.checkCopyedit.Size = new System.Drawing.Size(66, 17);
-            this.checkCopyedit.TabIndex = 4;
-            this.checkCopyedit.Text = "copyedit";
-            this.checkCopyedit.UseVisualStyleBackColor = true;
-            // 
-            // checkCopypase
-            // 
-            this.checkCopypase.AutoSize = true;
-            this.checkCopypase.Location = new System.Drawing.Point(86, 42);
-            this.checkCopypase.Name = "checkCopypase";
-            this.checkCopypase.Size = new System.Drawing.Size(75, 17);
-            this.checkCopypase.TabIndex = 3;
-            this.checkCopypase.Text = "copypaste";
-            this.checkCopypase.UseVisualStyleBackColor = true;
-            // 
             // checkUnsourced
             // 
             this.checkUnsourced.AutoSize = true;
-            this.checkUnsourced.Location = new System.Drawing.Point(86, 19);
+            this.checkUnsourced.Location = new System.Drawing.Point(6, 19);
             this.checkUnsourced.Name = "checkUnsourced";
             this.checkUnsourced.Size = new System.Drawing.Size(76, 17);
             this.checkUnsourced.TabIndex = 2;
@@ -708,15 +660,129 @@ namespace NPWatcher
             this.checkUnsourced.UseMnemonic = false;
             this.checkUnsourced.UseVisualStyleBackColor = true;
             // 
-            // checkTone
+            // label4
             // 
-            this.checkTone.AutoSize = true;
-            this.checkTone.Location = new System.Drawing.Point(6, 42);
-            this.checkTone.Name = "checkTone";
-            this.checkTone.Size = new System.Drawing.Size(47, 17);
-            this.checkTone.TabIndex = 1;
-            this.checkTone.Text = "tone";
-            this.checkTone.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 143);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Stub type (eg \"music\")";
+            // 
+            // generalBox
+            // 
+            this.generalBox.Controls.Add(this.checkuncat);
+            this.generalBox.Controls.Add(this.checknotEnglish);
+            this.generalBox.Controls.Add(this.checkStub);
+            this.generalBox.Controls.Add(this.checkDeadend);
+            this.generalBox.Controls.Add(this.checkOrphan);
+            this.generalBox.Controls.Add(this.checkContext);
+            this.generalBox.Controls.Add(this.checkCopypase);
+            this.generalBox.Controls.Add(this.checkNpov);
+            this.generalBox.Location = new System.Drawing.Point(6, 19);
+            this.generalBox.Name = "generalBox";
+            this.generalBox.Size = new System.Drawing.Size(176, 121);
+            this.generalBox.TabIndex = 30;
+            this.generalBox.TabStop = false;
+            this.generalBox.Text = "general issues";
+            // 
+            // checkuncat
+            // 
+            this.checkuncat.AutoSize = true;
+            this.checkuncat.Location = new System.Drawing.Point(88, 65);
+            this.checkuncat.Name = "checkuncat";
+            this.checkuncat.Size = new System.Drawing.Size(93, 17);
+            this.checkuncat.TabIndex = 31;
+            this.checkuncat.Text = "uncategorised";
+            this.checkuncat.UseVisualStyleBackColor = true;
+            // 
+            // checknotEnglish
+            // 
+            this.checknotEnglish.AutoSize = true;
+            this.checknotEnglish.Location = new System.Drawing.Point(88, 44);
+            this.checknotEnglish.Name = "checknotEnglish";
+            this.checknotEnglish.Size = new System.Drawing.Size(78, 17);
+            this.checknotEnglish.TabIndex = 30;
+            this.checknotEnglish.Text = "not English";
+            this.checknotEnglish.UseVisualStyleBackColor = true;
+            // 
+            // checkStub
+            // 
+            this.checkStub.AutoSize = true;
+            this.checkStub.Location = new System.Drawing.Point(88, 20);
+            this.checkStub.Name = "checkStub";
+            this.checkStub.Size = new System.Drawing.Size(48, 17);
+            this.checkStub.TabIndex = 29;
+            this.checkStub.Text = "Stub";
+            this.checkStub.UseVisualStyleBackColor = true;
+            // 
+            // checkDeadend
+            // 
+            this.checkDeadend.AutoSize = true;
+            this.checkDeadend.Location = new System.Drawing.Point(88, 88);
+            this.checkDeadend.Name = "checkDeadend";
+            this.checkDeadend.Size = new System.Drawing.Size(68, 17);
+            this.checkDeadend.TabIndex = 27;
+            this.checkDeadend.Text = "deadend";
+            this.checkDeadend.UseVisualStyleBackColor = true;
+            // 
+            // checkOrphan
+            // 
+            this.checkOrphan.AutoSize = true;
+            this.checkOrphan.Location = new System.Drawing.Point(6, 42);
+            this.checkOrphan.Name = "checkOrphan";
+            this.checkOrphan.Size = new System.Drawing.Size(59, 17);
+            this.checkOrphan.TabIndex = 28;
+            this.checkOrphan.Text = "orphan";
+            this.checkOrphan.UseVisualStyleBackColor = true;
+            // 
+            // checkContext
+            // 
+            this.checkContext.AutoSize = true;
+            this.checkContext.Location = new System.Drawing.Point(6, 88);
+            this.checkContext.Name = "checkContext";
+            this.checkContext.Size = new System.Drawing.Size(61, 17);
+            this.checkContext.TabIndex = 26;
+            this.checkContext.Text = "context";
+            this.checkContext.UseVisualStyleBackColor = true;
+            // 
+            // checkCopypase
+            // 
+            this.checkCopypase.AutoSize = true;
+            this.checkCopypase.Location = new System.Drawing.Point(6, 19);
+            this.checkCopypase.Name = "checkCopypase";
+            this.checkCopypase.Size = new System.Drawing.Size(75, 17);
+            this.checkCopypase.TabIndex = 3;
+            this.checkCopypase.Text = "copypaste";
+            this.checkCopypase.UseVisualStyleBackColor = true;
+            // 
+            // checkNpov
+            // 
+            this.checkNpov.AutoSize = true;
+            this.checkNpov.Location = new System.Drawing.Point(6, 65);
+            this.checkNpov.Name = "checkNpov";
+            this.checkNpov.Size = new System.Drawing.Size(50, 17);
+            this.checkNpov.TabIndex = 25;
+            this.checkNpov.Text = "npov";
+            this.checkNpov.UseVisualStyleBackColor = true;
+            // 
+            // cleanupBox
+            // 
+            this.cleanupBox.Controls.Add(this.checkCleanup);
+            this.cleanupBox.Controls.Add(this.checkHowto);
+            this.cleanupBox.Controls.Add(this.checkInUniverse);
+            this.cleanupBox.Controls.Add(this.checkWikify);
+            this.cleanupBox.Controls.Add(this.checkTone);
+            this.cleanupBox.Controls.Add(this.checkIntrorewrite);
+            this.cleanupBox.Controls.Add(this.checkAdvert);
+            this.cleanupBox.Controls.Add(this.checkCopyedit);
+            this.cleanupBox.Controls.Add(this.checkSections);
+            this.cleanupBox.Location = new System.Drawing.Point(188, 19);
+            this.cleanupBox.Name = "cleanupBox";
+            this.cleanupBox.Size = new System.Drawing.Size(170, 164);
+            this.cleanupBox.TabIndex = 29;
+            this.cleanupBox.TabStop = false;
+            this.cleanupBox.Text = "cleanup";
             // 
             // checkCleanup
             // 
@@ -728,55 +794,95 @@ namespace NPWatcher
             this.checkCleanup.Text = "cleanup";
             this.checkCleanup.UseVisualStyleBackColor = true;
             // 
-            // stubCombo
+            // checkHowto
             // 
-            this.stubCombo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.stubCombo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.stubCombo.FormattingEnabled = true;
-            this.stubCombo.Location = new System.Drawing.Point(428, 87);
-            this.stubCombo.Name = "stubCombo";
-            this.stubCombo.Size = new System.Drawing.Size(207, 21);
-            this.stubCombo.TabIndex = 21;
-            this.stubCombo.Leave += new System.EventHandler(this.stubCombo_Leave);
+            this.checkHowto.AutoSize = true;
+            this.checkHowto.Location = new System.Drawing.Point(6, 42);
+            this.checkHowto.Name = "checkHowto";
+            this.checkHowto.Size = new System.Drawing.Size(55, 17);
+            this.checkHowto.TabIndex = 7;
+            this.checkHowto.Text = "howto";
+            this.checkHowto.UseVisualStyleBackColor = true;
             // 
-            // uncatBtn
+            // checkInUniverse
             // 
-            this.uncatBtn.Location = new System.Drawing.Point(428, 16);
-            this.uncatBtn.Name = "uncatBtn";
-            this.uncatBtn.Size = new System.Drawing.Size(84, 49);
-            this.uncatBtn.TabIndex = 20;
-            this.uncatBtn.Text = "Mark with {{uncategorized}}";
-            this.uncatBtn.UseVisualStyleBackColor = true;
-            this.uncatBtn.Click += new System.EventHandler(this.uncatBtn_Click);
+            this.checkInUniverse.AutoSize = true;
+            this.checkInUniverse.Location = new System.Drawing.Point(74, 88);
+            this.checkInUniverse.Name = "checkInUniverse";
+            this.checkInUniverse.Size = new System.Drawing.Size(79, 17);
+            this.checkInUniverse.TabIndex = 9;
+            this.checkInUniverse.Text = "in Universe";
+            this.checkInUniverse.UseVisualStyleBackColor = true;
             // 
-            // notEngBtn
+            // checkWikify
             // 
-            this.notEngBtn.Location = new System.Drawing.Point(338, 16);
-            this.notEngBtn.Name = "notEngBtn";
-            this.notEngBtn.Size = new System.Drawing.Size(84, 49);
-            this.notEngBtn.TabIndex = 19;
-            this.notEngBtn.Text = "Mark with {{notenglish}}";
-            this.notEngBtn.UseVisualStyleBackColor = true;
-            this.notEngBtn.Click += new System.EventHandler(this.notEngBtn_Click);
+            this.checkWikify.AutoSize = true;
+            this.checkWikify.Location = new System.Drawing.Point(6, 65);
+            this.checkWikify.Name = "checkWikify";
+            this.checkWikify.Size = new System.Drawing.Size(52, 17);
+            this.checkWikify.TabIndex = 24;
+            this.checkWikify.Text = "wikify";
+            this.checkWikify.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // checkTone
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(428, 71);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Stub type (eg \"music\")";
+            this.checkTone.AutoSize = true;
+            this.checkTone.Location = new System.Drawing.Point(76, 42);
+            this.checkTone.Name = "checkTone";
+            this.checkTone.Size = new System.Drawing.Size(47, 17);
+            this.checkTone.TabIndex = 1;
+            this.checkTone.Text = "tone";
+            this.checkTone.UseVisualStyleBackColor = true;
             // 
-            // stubBtn
+            // checkIntrorewrite
             // 
-            this.stubBtn.Location = new System.Drawing.Point(338, 71);
-            this.stubBtn.Name = "stubBtn";
-            this.stubBtn.Size = new System.Drawing.Size(84, 49);
-            this.stubBtn.TabIndex = 3;
-            this.stubBtn.Text = "Mark with {{stub}}";
-            this.stubBtn.UseVisualStyleBackColor = true;
-            this.stubBtn.Click += new System.EventHandler(this.stubBtn_Click);
+            this.checkIntrorewrite.AutoSize = true;
+            this.checkIntrorewrite.Location = new System.Drawing.Point(76, 65);
+            this.checkIntrorewrite.Name = "checkIntrorewrite";
+            this.checkIntrorewrite.Size = new System.Drawing.Size(77, 17);
+            this.checkIntrorewrite.TabIndex = 9;
+            this.checkIntrorewrite.Text = "introrewrite";
+            this.checkIntrorewrite.UseVisualStyleBackColor = true;
+            // 
+            // checkAdvert
+            // 
+            this.checkAdvert.AutoSize = true;
+            this.checkAdvert.Location = new System.Drawing.Point(6, 111);
+            this.checkAdvert.Name = "checkAdvert";
+            this.checkAdvert.Size = new System.Drawing.Size(56, 17);
+            this.checkAdvert.TabIndex = 5;
+            this.checkAdvert.Text = "advert";
+            this.checkAdvert.UseVisualStyleBackColor = true;
+            // 
+            // checkCopyedit
+            // 
+            this.checkCopyedit.AutoSize = true;
+            this.checkCopyedit.Location = new System.Drawing.Point(6, 88);
+            this.checkCopyedit.Name = "checkCopyedit";
+            this.checkCopyedit.Size = new System.Drawing.Size(66, 17);
+            this.checkCopyedit.TabIndex = 4;
+            this.checkCopyedit.Text = "copyedit";
+            this.checkCopyedit.UseVisualStyleBackColor = true;
+            // 
+            // checkSections
+            // 
+            this.checkSections.AutoSize = true;
+            this.checkSections.Location = new System.Drawing.Point(76, 19);
+            this.checkSections.Name = "checkSections";
+            this.checkSections.Size = new System.Drawing.Size(65, 17);
+            this.checkSections.TabIndex = 6;
+            this.checkSections.Text = "sections";
+            this.checkSections.UseVisualStyleBackColor = true;
+            // 
+            // doMarkButton
+            // 
+            this.doMarkButton.Location = new System.Drawing.Point(606, 162);
+            this.doMarkButton.Name = "doMarkButton";
+            this.doMarkButton.Size = new System.Drawing.Size(75, 23);
+            this.doMarkButton.TabIndex = 23;
+            this.doMarkButton.Text = "Mark article";
+            this.doMarkButton.UseVisualStyleBackColor = true;
+            this.doMarkButton.Click += new System.EventHandler(this.doMarkButton_Click);
             // 
             // tabPage3
             // 
@@ -1007,38 +1113,38 @@ namespace NPWatcher
             // saveSettingsToolStripMenuItem
             // 
             this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.saveSettingsToolStripMenuItem.Text = "Save Settings";
             this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
             // 
             // loadSettToolStripMenuItem
             // 
             this.loadSettToolStripMenuItem.Name = "loadSettToolStripMenuItem";
-            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.loadSettToolStripMenuItem.Text = "Load Settings";
             this.loadSettToolStripMenuItem.Click += new System.EventHandler(this.loadSettToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
             // 
             // resetSettingsToolStripMenuItem
             // 
             this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
-            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
             this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(141, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1062,7 +1168,7 @@ namespace NPWatcher
             this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
             this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
-            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
             this.hideBotEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBotEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1072,7 +1178,7 @@ namespace NPWatcher
             this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
             this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
-            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
             this.hideAdminEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideAdminEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1082,7 +1188,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
             this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
-            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
             this.hidePatrolledEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hidePatrolledEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1091,7 +1197,7 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRefreshTxt});
             this.setListAutorefreshIntervalToolStripMenuItem.Name = "setListAutorefreshIntervalToolStripMenuItem";
-            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
             // toolStripRefreshTxt
@@ -1114,33 +1220,13 @@ namespace NPWatcher
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // timerRefresh
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
-            // 
-            // checkDeadend
-            // 
-            this.checkDeadend.AutoSize = true;
-            this.checkDeadend.Location = new System.Drawing.Point(86, 111);
-            this.checkDeadend.Name = "checkDeadend";
-            this.checkDeadend.Size = new System.Drawing.Size(68, 17);
-            this.checkDeadend.TabIndex = 27;
-            this.checkDeadend.Text = "deadend";
-            this.checkDeadend.UseVisualStyleBackColor = true;
-            // 
-            // checkOrphan
-            // 
-            this.checkOrphan.AutoSize = true;
-            this.checkOrphan.Location = new System.Drawing.Point(170, 111);
-            this.checkOrphan.Name = "checkOrphan";
-            this.checkOrphan.Size = new System.Drawing.Size(59, 17);
-            this.checkOrphan.TabIndex = 28;
-            this.checkOrphan.Text = "orphan";
-            this.checkOrphan.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -1166,9 +1252,14 @@ namespace NPWatcher
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.pageIssues.ResumeLayout(false);
             this.pageIssues.PerformLayout();
+            this.referencesBox.ResumeLayout(false);
+            this.referencesBox.PerformLayout();
+            this.generalBox.ResumeLayout(false);
+            this.generalBox.PerformLayout();
+            this.cleanupBox.ResumeLayout(false);
+            this.cleanupBox.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -1213,7 +1304,6 @@ namespace NPWatcher
         private System.Windows.Forms.Button dbBtn;
         private System.Windows.Forms.Button getlistBtn;
         private System.Windows.Forms.Button prodBtn;
-      private System.Windows.Forms.Button stubBtn;
       private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button rmvBtn;
       private System.Windows.Forms.Button AfDBtn;
@@ -1235,8 +1325,6 @@ namespace NPWatcher
         private System.Windows.Forms.CheckBox orphanCB;
       private System.Windows.Forms.Button db_userreq;
         private System.Windows.Forms.CheckBox customWarnCB;
-        private System.Windows.Forms.Button notEngBtn;
-        private System.Windows.Forms.Button uncatBtn;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ContextMenuStrip mnuPages;
@@ -1279,6 +1367,16 @@ namespace NPWatcher
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkOrphan;
         private System.Windows.Forms.CheckBox checkDeadend;
+        private System.Windows.Forms.GroupBox cleanupBox;
+        private System.Windows.Forms.GroupBox generalBox;
+        private System.Windows.Forms.GroupBox referencesBox;
+        private System.Windows.Forms.CheckBox checkRefImprove;
+        private System.Windows.Forms.CheckBox checkInUniverse;
+        private System.Windows.Forms.CheckBox checkInline;
+        private System.Windows.Forms.CheckBox checkuncat;
+        private System.Windows.Forms.CheckBox checknotEnglish;
+        private System.Windows.Forms.CheckBox checkStub;
+        private System.Windows.Forms.CheckBox checkPatrolled;
     }
 }
 
