@@ -863,31 +863,7 @@ namespace NPWatcher
 
         #region Maintainance tags
 
-        private void cleanupBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{subst:Cleanup-now}}";
-            Mark(template);
-
-            Greyin();
-        }
-
-        private void toneBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{tone}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void sourcesBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{unsourced}}";
-            Mark(template);
-            Greyin();
-        }
-
+       
         //Doesn't use Mark(..)
         private void stubBtn_Click(object sender, EventArgs e)
         {
@@ -915,87 +891,6 @@ namespace NPWatcher
                 string newtxt = txt + "\r\n" + template;
                 Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
             }
-            Greyin();
-        }
-
-        private void advertBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{advert}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void nnBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{notability}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void wikifyBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{Wikify|date={{subst:CURRENTMONTHNAME}} {{subst:CURRENTYEAR}}}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void npovBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{npov}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void copyBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{copypaste}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void ceBtn_Click(object sender, EventArgs e)
-        {
-            //ce = copyedit!
-            Greyout();
-            string template = "{{copyedit}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void howtoBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{howto}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void sectionsBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{sections}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void introBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{introrewrite}}";
-            Mark(template);
-            Greyin();
-        }
-
-        private void contextBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            string template = "{{context}}";
-            Mark(template);
             Greyin();
         }
 
