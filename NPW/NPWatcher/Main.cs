@@ -1620,7 +1620,7 @@ namespace NPWatcher
             
             string txt = wf.getWikiText(page2);
             string newtxt = templates + issues + "\r\n" + txt;
-            if (articleIssues.Count + templateIssues.Count >= 3)
+            if (articleIssues.Count + templateIssues.Count > 3)
             {
                 Save(page2, newtxt, "Marking page for more than 3 issues using [[WP:NPW|NPWatcher]]");
             }
@@ -1630,7 +1630,7 @@ namespace NPWatcher
                     issuestring += issue.getName();
                 }
                 foreach (Issue issue in templateIssues){
-                    issuestring += issue.getName();
+                    issuestring += issue.getName()+" ";
                 }
                 Save(page2, newtxt, "Marking page for the following issues: " + issuestring + "using [[WP:NPW|NPWatcher]]");
             }
