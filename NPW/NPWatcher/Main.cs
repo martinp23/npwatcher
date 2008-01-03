@@ -1809,8 +1809,5 @@ namespace NPWatcher
         {
             new About().ShowDialog();
         }
-
-
-
     }
 }

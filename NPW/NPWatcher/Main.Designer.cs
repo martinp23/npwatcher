@@ -188,25 +188,25 @@ namespace NPWatcher
             this.toolStripSeparator1,
             this.clearAllToolStripMenuItem});
             this.mnuPages.Name = "mnuPages";
-            this.mnuPages.Size = new System.Drawing.Size(179, 54);
+            this.mnuPages.Size = new System.Drawing.Size(188, 54);
             // 
             // removeSelectedToolStripMenuItem
             // 
             this.removeSelectedToolStripMenuItem.Name = "removeSelectedToolStripMenuItem";
             this.removeSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.clearAllToolStripMenuItem.Text = "Clear All";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -233,7 +233,12 @@ namespace NPWatcher
             "25",
             "30",
             "35",
-            "40"});
+            "40",
+            "50",
+            "75",
+            "100",
+            "250",
+            "500"});
             this.limitCB.Location = new System.Drawing.Point(49, 27);
             this.limitCB.Name = "limitCB";
             this.limitCB.Size = new System.Drawing.Size(39, 21);
@@ -1107,44 +1112,44 @@ namespace NPWatcher
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveSettingsToolStripMenuItem
             // 
             this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.saveSettingsToolStripMenuItem.Text = "Save Settings";
             this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
             // 
             // loadSettToolStripMenuItem
             // 
             this.loadSettToolStripMenuItem.Name = "loadSettToolStripMenuItem";
-            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadSettToolStripMenuItem.Text = "Load Settings";
             this.loadSettToolStripMenuItem.Click += new System.EventHandler(this.loadSettToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(144, 6);
             // 
             // resetSettingsToolStripMenuItem
             // 
             this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
-            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
             this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1159,7 +1164,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem,
             this.setListAutorefreshIntervalToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // hideBotEditsToolStripMenuItem
@@ -1168,7 +1173,7 @@ namespace NPWatcher
             this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
             this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
-            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
             this.hideBotEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBotEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1178,7 +1183,7 @@ namespace NPWatcher
             this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
             this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
-            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
             this.hideAdminEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideAdminEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1188,7 +1193,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
             this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
-            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
             this.hidePatrolledEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hidePatrolledEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1197,7 +1202,7 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRefreshTxt});
             this.setListAutorefreshIntervalToolStripMenuItem.Name = "setListAutorefreshIntervalToolStripMenuItem";
-            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
             // toolStripRefreshTxt
@@ -1205,7 +1210,7 @@ namespace NPWatcher
             this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
-            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
+            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 23);
             this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
             this.toolStripRefreshTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripRefreshTxt_KeyDown);
             // 
@@ -1214,13 +1219,13 @@ namespace NPWatcher
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
