@@ -1627,7 +1627,7 @@ namespace NPWatcher
             else {
                 string issuestring = "";
                 foreach (Issue issue in articleIssues){
-                    issuestring += issue.getName();
+                    issuestring += issue.getName() + " ";
                 }
                 foreach (Issue issue in templateIssues){
                     issuestring += issue.getName()+" ";
