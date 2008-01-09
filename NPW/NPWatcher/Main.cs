@@ -34,6 +34,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
+using System.Web;
 
 namespace NPWatcher
 {
@@ -798,86 +799,86 @@ namespace NPWatcher
             {
                 if (afdsuc)
                 {
+                    //add AfD tag, and determine AfD number
+                    removetags();
+                    string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
+                    int number = 1;
+                    while (!string.IsNullOrEmpty(txt))
                     {
-                        removetags();
-                        string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
-                        int number = 1;
-                        while (!string.IsNullOrEmpty(txt))
-                        {
-                            number += 1;
-                            if (number == 2) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)"); }
-                            else if (number == 3) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)"); }
-                            else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)"); }
-                        }
-
-                        string pgtxt = wf.getWikiText(page2);
-                        string numbertxt;
-                        if (number == 2) { numbertxt = "2nd"; }
-                        else if (number == 3) { numbertxt = "3nd"; }
-                        else { numbertxt = number.ToString() + "nd"; }
-
-                        if (number == 1)
-                        {
-                            pgtxt = "{{subst:afd1}}\r\n" + pgtxt;
-                        }
-                        else
-                        {
-                            pgtxt = "{{subst:afdx|" + numbertxt + "\r\n" + pgtxt;
-                        }
-                        Save(page2, pgtxt, "Nominating page for deletion using [[WP:NPW|NPWatcher]]");
-
-
-                        string afdnom = "";
-
-                        afdnom = "{{subst:afd2|pg=" + page2 + "|cat=" + afdCat + "|text=" + afdReason + "}} ~~~~";
-                        string afdnompg = "";
-                        if (number == 1)
-                        {
-                            afdnompg = "Wikipedia:Articles for deletion/" + page2;
-                            if (sortlogin())
-                                wf.Save("Wikipedia:Articles for deletion/" + page2, afdnom, "Nominating [[" + page2 + "]] for deletion using [[WP:NPW|NPWatcher]]");
-                        }
-                        if (number == 2)
-                        {
-                            afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)";
-                            if (sortlogin())
-                                wf.Save("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)", afdnom, "Nominating [[" + page2 + "]] for deletion using [[WP:NPW|NPWatcher]]");
-                        }
-                        else if (number == 3)
-                        {
-                            afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)";
-                            if (sortlogin())
-                                wf.Save("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)", afdnom, "Nominating [[" + page2 + "]] for deletion using [[WP:NPW|NPWatcher]]");
-                        }
-                        else if (number != 1 && number != 2 && number != 3)
-                        {
-                            afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)";
-                            if (sortlogin())
-                                wf.Save("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)", afdnom, "Nominating [[" + page2 + "]] for deletion using [[WP:NPW|NPWatcher]]");
-                        }
-
-                        DateTime now = new DateTime();
-                        now = DateTime.UtcNow;
-
-                        DateTimeFormatInfo dfi = new DateTimeFormatInfo();
-                        dfi.FullDateTimePattern = "yyyy MMMM dd";
-                        string datetoday = now.ToString("F", dfi);
-                        string date2 = datetoday.Substring(datetoday.Length - 1);
-                        datetoday = datetoday.Remove(datetoday.Length - 1);
-                        if (datetoday.EndsWith("0"))
-                        {
-                            datetoday = datetoday.Remove(datetoday.Length - 1);
-                        }
-                        datetoday = datetoday + date2;
-
-                        string logpg = wf.getWikiText("Wikipedia:Articles for deletion/Log/" + datetoday);
-                        logpg = logpg + "\r\n{{" + afdnompg + "}}";
-                        if (sortlogin())
-                            wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" + page2 + "]] to list using [[WP:NPW|NPWatcher]]");
-
-
-                        afdsuc = false;
+                        number += 1;
+                        if (number == 2) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)"); }
+                        else if (number == 3) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)"); }
+                        else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)"); }
                     }
+
+                    string pgtxt = wf.getWikiText(page2);
+                    string numbertxt;
+                    if (number == 2) { numbertxt = "2nd"; }
+                    else if (number == 3) { numbertxt = "3nd"; }
+                    else { numbertxt = number.ToString() + "nd"; }
+
+                    if (number == 1)
+                    {
+                        pgtxt = "{{subst:afd1}}\r\n" + pgtxt;
+                    }
+                    else
+                    {
+                        pgtxt = "{{subst:afdx|" + numbertxt + "\r\n" + pgtxt;
+                    }
+                    Save(page2, pgtxt, "Nominating page for deletion using [[WP:NPW|NPWatcher]]");
+
+
+                    string afdnom = "";
+
+                    afdnom = "{{subst:afd2|pg=" + HttpUtility.UrlDecode(page2) + "|cat=" + afdCat + "|text=" + afdReason + "}} ~~~~";
+                    string afdnompg = "";
+                    if (number == 1)
+                    {
+                        afdnompg = "Wikipedia:Articles for deletion/" + page2;
+                        if (sortlogin())
+                            wf.Save("Wikipedia:Articles for deletion/" + page2, afdnom, "Nominating [[" + HttpUtility.UrlDecode(page2) + "]] for deletion using [[WP:NPW|NPWatcher]]");
+                    }
+                    if (number == 2)
+                    {
+                        afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)";
+                        if (sortlogin())
+                            wf.Save("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)", afdnom, "Nominating [[" + HttpUtility.UrlDecode(page2) + "]] for deletion using [[WP:NPW|NPWatcher]]");
+                    }
+                    else if (number == 3)
+                    {
+                        afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)";
+                        if (sortlogin())
+                            wf.Save("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)", afdnom, "Nominating [[" + HttpUtility.UrlDecode(page2) + "]] for deletion using [[WP:NPW|NPWatcher]]");
+                    }
+                    else if (number != 1 && number != 2 && number != 3)
+                    {
+                        afdnompg = "Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)";
+                        if (sortlogin())
+                            wf.Save("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)", afdnom, "Nominating [[" + HttpUtility.UrlDecode(page2) + "]] for deletion using [[WP:NPW|NPWatcher]]");
+                    }
+
+                    DateTime now = new DateTime();
+                    now = DateTime.UtcNow;
+
+                    DateTimeFormatInfo dfi = new DateTimeFormatInfo();
+                    dfi.FullDateTimePattern = "yyyy MMMM dd";
+                    string datetoday = now.ToString("F", dfi);
+                    string date2 = datetoday.Substring(datetoday.Length - 1);
+                    datetoday = datetoday.Remove(datetoday.Length - 1);
+                    if (datetoday.EndsWith("0"))
+                    {
+                        datetoday = datetoday.Remove(datetoday.Length - 1);
+                    }
+                    datetoday = datetoday + date2;
+
+                    string logpg = wf.getWikiText("Wikipedia:Articles for deletion/Log/" + datetoday);
+                    logpg = Regex.Replace(logpg, "<!-- Add new entries to the TOP of the following list -->", "<!-- Add new entries to the TOP of the following list -->"+"\r\n{{"+afdnompg+"}}");
+                    if (sortlogin())
+                        wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" + HttpUtility.UrlDecode(page2) + "]] to list using [[WP:NPW|NPWatcher]]");
+
+
+                    afdsuc = false;
+
                 }
             }
             webBrowser1.Refresh();
