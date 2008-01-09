@@ -890,34 +890,6 @@ namespace NPWatcher
 
        
         //Doesn't use Mark(..)
-        private void stubBtn_Click(object sender, EventArgs e)
-        {
-            Greyout();
-            if (string.IsNullOrEmpty(stubCombo.Text))
-            {
-                DialogResult dr = MessageBox.Show(this, "You didn't enter a stub type.  Would you like to use the generic tag?",
-                    "Stub types", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (dr == DialogResult.No)
-                {
-                    MessageBox.Show("Please enter a stub-type in the test box, and then click the stub button again", "Custom stubs", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    string template = "{{stub}}";
-                    string txt = wf.getWikiText(page2);
-                    string newtxt = txt + "\r\n" + template;
-                    Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-                }
-            }
-            else
-            {
-                string template = "{{" + stubCombo.Text + "-stub}}";
-                string txt = wf.getWikiText(page2);
-                string newtxt = txt + "\r\n" + template;
-                Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-            }
-            Greyin();
-        }
 
         private void Mark(string template)
         {
@@ -1434,6 +1406,7 @@ namespace NPWatcher
             checkNpov.Checked = checkOrphan.Checked = checkRefImprove.Checked = checkSections.Checked =
             checkStub.Checked = checkTone.Checked = checkuncat.Checked = checkUnsourced.Checked =
             checkWikify.Checked = firstarticle.Checked = notabilitywarn.Checked = false;
+            checkPatrolled.Checked = true;
         }
 
         private void Grey(bool Enabled)
@@ -1448,12 +1421,14 @@ namespace NPWatcher
             DelCustom.Enabled = AfDCustom.Enabled = RmvProd.Enabled = I1Btn.Enabled = I2Btn.Enabled =
             I3Btn.Enabled = I4Btn.Enabled = I5Btn.Enabled = I6Btn.Enabled = I7Btn.Enabled =
             I8Btn.Enabled = IotherBtn.Enabled =
+            //maintenance
             checkAdvert.Enabled = checkCleanup.Enabled = checkContext.Enabled = checkCopyedit.Enabled =
             checkCopypase.Enabled = checkDeadend.Enabled = checkHowto.Enabled = checkInline.Enabled =
             checkIntrorewrite.Enabled = checkInUniverse.Enabled = checkNotability.Enabled = checknotEnglish.Enabled =
             checkNpov.Enabled = checkOrphan.Enabled = checkRefImprove.Enabled = checkSections.Enabled =
             checkStub.Enabled = checkTone.Enabled = checkuncat.Enabled = checkUnsourced.Enabled = 
-            checkWikify.Enabled = Enabled;
+            checkWikify.Enabled =
+            checkPatrolled.Enabled = Enabled;
         }
 
         private void webBrowser1_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
@@ -1572,8 +1547,34 @@ namespace NPWatcher
             }
             if (checkStub.Checked)
             {
-                MessageBox.Show("The stub checkbox is broken, but will be fixed soon", "Oops", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+                //A stub combined with other issues requires an additional pageload. This should be fixed in the
+                //future, creating a whole new page content string.
+                Greyout();
+                if (string.IsNullOrEmpty(stubCombo.Text))
+                {
+                    DialogResult dr = MessageBox.Show(this, "You didn't enter a stub type.  Would you like to use the generic tag?",
+                        "Stub types", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (dr == DialogResult.No)
+                    {
+                        MessageBox.Show("Please enter a stub-type in the test box, and then click the stub button again", "Custom stubs", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    else
+                    {
+                        string template = "{{stub}}";
+                        string txt = wf.getWikiText(page2);
+                        string newtxt = txt + "\r\n" + template;
+                        Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
+                    }
+                }
+                else
+                {
+                    string template = "{{" + stubCombo.Text + "-stub}}";
+                    string txt = wf.getWikiText(page2);
+                    string newtxt = txt + "\r\n" + template;
+                    Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
+                }
+                Greyin();
+            }            
             if (checkTone.Checked)
             {
                 articleIssues.Add(new Issue("tone"));
@@ -1590,12 +1591,20 @@ namespace NPWatcher
             {
                 articleIssues.Add(new Issue("wikify"));
             }
+            if (checkPatrolled.Checked)
+            {
+                markPatrolled();
+            }
             MarkBoxes(articleIssues, templateIssues);
             Greyin();
         }
 
         private void MarkBoxes(ArrayList articleIssues, ArrayList templateIssues)
         {
+            if (articleIssues.Count == 0 && templateIssues.Count == 0)
+            {
+                return;
+            }
             string templates = "";
             string issues = "";
             if (articleIssues.Count > 2)
@@ -1740,6 +1749,11 @@ namespace NPWatcher
 
         private void btnPatrol_Click(object sender, EventArgs e)
         {
+            markPatrolled();
+        }
+
+        private void markPatrolled()
+        {
             if (!string.IsNullOrEmpty(page2))
             {
                 string rcid = wf.getrcid(page2);
@@ -1751,6 +1765,7 @@ namespace NPWatcher
                 }
             }
         }
+
 
          private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
