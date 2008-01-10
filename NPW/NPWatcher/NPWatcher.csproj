@@ -116,6 +116,7 @@
     <Compile Include="NotEnglishLang.Designer.cs">
       <DependentUpon>NotEnglishLang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Page.cs" />
     <Compile Include="Prod.cs">
       <SubType>Form</SubType>
     </Compile>

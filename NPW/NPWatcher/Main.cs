@@ -131,7 +131,7 @@ namespace NPWatcher
                                 }
                                 //asAdmin = wf.CheckIfAdmin();
 
-                                MessageBox.Show("Logged in");
+                                MessageBox.Show("Logged in","Logged in",MessageBoxButtons.OK,MessageBoxIcon.Information);
                             }
                         }
                     }
@@ -479,6 +479,7 @@ namespace NPWatcher
                 Save(page2, newtxt, "Marking page for deletion using [[WP:NPW|NPWatcher]]");
                 if (editsuccess)
                 {
+                    markPatrolled();
                     Msgfa();
                     Msgnn();
                     Msgcw();
@@ -749,6 +750,7 @@ namespace NPWatcher
 
             if (doprod)
             {
+                markPatrolled();
                 string message = prodreasonstr;
 
                 string oldtxt = wf.getWikiText(page2);
@@ -801,6 +803,7 @@ namespace NPWatcher
                 {
                     //add AfD tag, and determine AfD number
                     removetags();
+                    markPatrolled();
                     string txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2);
                     int number = 1;
                     while (!string.IsNullOrEmpty(txt))
