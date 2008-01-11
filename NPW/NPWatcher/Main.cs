@@ -35,20 +35,19 @@ using System.Windows.Forms;
 using System.Threading;
 using System.Globalization;
 using System.Web;
+using System.Net;
 
 namespace NPWatcher
 {
     public partial class Main : Form
     {
+        internal static Boolean asAdmin;
         internal static string username = "";
         internal static string password = "";
-        internal static bool dialogcancel;
-        internal static bool success;
         internal WikiFunctions wf = new WikiFunctions();
         internal string page2 = "";
         internal static string prodreasonstr = "";
         internal static bool doprod;
-        internal static bool asAdmin;
         internal static string dbReason;
         internal static string afdCat;
         internal static string afdReason;
@@ -60,6 +59,7 @@ namespace NPWatcher
         internal static bool editsuccess;
         internal static string cwr;
         private static int refreshInterval;
+        private CookieContainer cc;
 
         string currentSettingsFile;
 
@@ -73,6 +73,7 @@ namespace NPWatcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Load settings and check version
             this.Cursor = Cursors.WaitCursor;
             LoadSettings("DefaultSettings.xml");
             string listofv = wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Versions");
@@ -86,68 +87,27 @@ namespace NPWatcher
             }
 
             //LOGIN AND QUIT ON CANCEL CODE
-            LogOn login = new LogOn();
-            login.ShowDialog();
-
-            if (dialogcancel)
+            LoginManager lm = new LoginManager();
+            lm.startLogin();
+            wf.cc = cc = lm.Cookies;
+            if (lm.Cancelled)
             {
                 Close();
                 Application.Exit();
             }
             else
+            //LOGIN DONE
             {
-                while (!success)
+                if (!wf.checkIfAdmin(cc))
                 {
-                    if (!dialogcancel)
-                    {
-                        this.Cursor = Cursors.WaitCursor;
-                        success = wf.login(username, password);
-                        if (!success)
-                        {
-                            LogOn login1 = new LogOn();
-                            login1.ShowDialog();
-                            if (dialogcancel)
-                                Close();
-                        }
-                        else
-                        {
-                            username = Regex.Escape(username);
-                            username = username.Replace("-", "[-]");
-                            Regex r = new Regex(username, RegexOptions.IgnoreCase);
-                            Match m = r.Match(wf.getWikiText("User:Martinp23/NPWatcher/Checkpage/Users"));
-
-                            this.Cursor = Cursors.Default;
-                            if (!m.Success)
-                            {
-                                MessageBox.Show("You are not approved to use NPWatcher.  Please request approval from Martinp23", "Not Approved", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                Close();
-                            }
-                            else
-                            {
-                                foreach (string admin in wf.adminslist)
-                                {
-                                    if (!asAdmin)
-                                        asAdmin = r.Match(admin).Success;
-                                }
-                                //asAdmin = wf.CheckIfAdmin();
-
-                                MessageBox.Show("Logged in","Logged in",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                            }
-                        }
-                    }
-
-                    //LOGIN DONE
-                    if (!asAdmin)
-                    {
-                        rmvBtn.Visible = false;
-                        tabPage3.Dispose();
-                        tabPage4.Dispose();
-                    }
+                    rmvBtn.Visible = false;
+                    tabPage3.Dispose();
+                    tabPage4.Dispose();
                 }
             }
         }
 
-        void stubCombo_Leave(object sender, EventArgs e)
+         void stubCombo_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(stubCombo.Text) && !stubCombo.Items.Contains(stubCombo.Text))
                 stubCombo.Items.Add(stubCombo.Text);
