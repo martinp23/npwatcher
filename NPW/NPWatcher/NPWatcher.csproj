@@ -73,7 +73,6 @@
     <Compile Include="AFDForm.Designer.cs">
       <DependentUpon>AFDForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CodeFile1.cs" />
     <Compile Include="CustomReason.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,7 +190,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="WikiConstants.cs" />
     <Compile Include="WikiFunctions.cs" />
   </ItemGroup>
   <ItemGroup>
