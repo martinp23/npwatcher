@@ -39,11 +39,11 @@ namespace NPWikiFunctions
         public const string apiurl = "http://en.wikipedia.org/w/api.php";
         public const string queryurl = "http://en.wikipedia.org/w/query.php";
 
-         public static Boolean login(string Username, string Userpass, CookieContainer cookies)
+        public static Boolean login(string Username, string Userpass, CookieContainer cookies)
         {
             string eUsername = HttpUtility.UrlEncode(Username);
             string eUserpass = HttpUtility.UrlEncode(Userpass);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(apiurl + "?action=login&lgname="+eUsername+"&lgpassword="+eUserpass);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(apiurl + "?action=login&lgname=" + eUsername + "&lgpassword=" + eUserpass);
             request = annotateRequest(request, cookies);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader sr = new StreamReader(response.GetResponseStream());
