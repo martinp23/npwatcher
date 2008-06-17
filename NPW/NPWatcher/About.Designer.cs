@@ -134,7 +134,7 @@ namespace NPWatcher
             this.linkReedy.Size = new System.Drawing.Size(84, 13);
             this.linkReedy.TabIndex = 48;
             this.linkReedy.TabStop = true;
-            this.linkReedy.Text = "User:Reedy Boy";
+            this.linkReedy.Text = "User:Reedy";
             this.linkReedy.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkReedy_LinkClicked);
             // 
             // linkMartijn

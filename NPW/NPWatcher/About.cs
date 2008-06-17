@@ -51,7 +51,7 @@ namespace NPWatcher
         private void linkReedy_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkReedy.LinkVisited = true;
-            WikiFunctions.LoadLink("http://en.wikipedia.org/wiki/User:Reedy Boy");
+            WikiFunctions.LoadLink("http://en.wikipedia.org/wiki/User:Reedy");
         }
 
         private void linkMartijn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
