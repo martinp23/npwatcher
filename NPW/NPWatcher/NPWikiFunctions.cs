@@ -2,7 +2,7 @@
 From: http://svn.martinp23.com/npw/
 
 Copyright 2007 Martin Peeks
-Copyright 2007 Reedy_Boy
+Copyright 2007 Reedy
 Copyright 2008 Martijn Hoekstra
 
 This file is part of NPWatcher.
@@ -77,7 +77,5 @@ namespace NPWikiFunctions
             }
             return m.Success;
         }
-
-
     }
 }

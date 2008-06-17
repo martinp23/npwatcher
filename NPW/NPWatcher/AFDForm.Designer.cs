@@ -2,7 +2,7 @@
 From: http://svn.martinp23.com/npw/
 
 Copyright 2007 Martin Peeks
-Copyright 2007 Reedy_Boy
+Copyright 2007 Reedy
 
 This file is part of NPWatcher.
 
