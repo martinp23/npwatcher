@@ -1,8 +1,8 @@
 /*
 From: http://svn.martinp23.com/npw/
 
-Copyright 2007 Martijn Hoekstra
-Copyright 2007 Martin Peeks
+Copyright 2008 Martijn Hoekstra
+Copyright 2008 Martin Peeks
 
 This file is part of NPWatcher.
 
