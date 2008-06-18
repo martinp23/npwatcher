@@ -120,7 +120,7 @@ namespace NPWatcher
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(353, 116);
+            this.ClientSize = new System.Drawing.Size(349, 112);
             this.ControlBox = false;
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginTxt);
@@ -134,7 +134,7 @@ namespace NPWatcher
             this.Name = "LogOn";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.LogOn_Load);
