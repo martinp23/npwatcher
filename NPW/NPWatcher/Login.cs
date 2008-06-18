@@ -3,7 +3,6 @@ From: http://svn.martinp23.com/npw/
 
 Copyright 2008 Martin Peeks
 Copyright 2008 Reedy
-Copyright 2008 Martijn Hoekstra
 
 This file is part of NPWatcher.
 
@@ -29,36 +28,27 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using NPWikiFunctions;
 
 namespace NPWatcher
 {
     public partial class LogOn : Form
     {
-        private LoginManager caller;
-
-        public LogOn(LoginManager caller)
+        public LogOn()
         {
-            this.caller = caller;
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Util.approved(loginTxt.Text))
-            {
-                caller.LoggedIn = caller.login(loginTxt.Text, pwdTxt.Text);
-            }
-            else
-            {
-                caller.Cancelled = true;
-            }
+            Main.username = loginTxt.Text;
+            Main.password = pwdTxt.Text;
+            Main.settings.username = loginTxt.Text;
             this.Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            caller.Cancelled = true;
+            Main.dialogcancel = true;
             this.Close();
         }
 

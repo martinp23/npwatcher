@@ -40,7 +40,7 @@ namespace NPWatcher
         private HttpWebRequest webReq;
         private CookieCollection cookies;
         internal StringCollection adminslist = new StringCollection();
-        public CookieContainer cc = new CookieContainer();
+        private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
         string src;
@@ -56,7 +56,6 @@ namespace NPWatcher
 
         public bool login(string Username, string Userpass)
         {
-            //Moved to NPWikiFunctions.Util/Logic/LoginManager
             //get list of admins first!
             getusergroup("sysop");
 
@@ -121,20 +120,6 @@ namespace NPWatcher
         //    return (Groups.Contains("sysop") || Groups.Contains("staff"));
         //}
 
-        public bool checkIfAdmin(CookieContainer cc)
-        {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(apiurl + "?action=query&meta=userinfo&uiprop=groups");
-            request.CookieContainer = cc;
-            request.Method = "GET";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.UserAgent = "NPWatcher/1.0";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader sr = new StreamReader(response.GetResponseStream());
-            string content = sr.ReadToEnd();
-            Regex regex = new Regex("<g>(sysop|staff)</g>");
-            return regex.Match(content).Success;
-        }
-       
         private string GetScriptingVar(string name)
         {
             string src = "";

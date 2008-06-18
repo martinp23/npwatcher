@@ -86,7 +86,6 @@
       <DependentUpon>CustomWarning.cs</DependentUpon>
     </Compile>
     <Compile Include="Issue.cs" />
-    <Compile Include="LoginManager.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,10 +115,6 @@
     </Compile>
     <Compile Include="NotEnglishLang.Designer.cs">
       <DependentUpon>NotEnglishLang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NPWikiFunctions.cs" />
-    <Compile Include="Page.cs">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Prod.cs">
       <SubType>Form</SubType>
