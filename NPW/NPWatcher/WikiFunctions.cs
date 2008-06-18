@@ -230,7 +230,7 @@ namespace NPWatcher
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
-            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&offset=0&feed=atom");
+            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&feed=atom");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);

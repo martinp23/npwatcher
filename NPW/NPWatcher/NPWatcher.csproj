@@ -191,7 +191,6 @@
     <Content Include="DefaultSettings.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="NPWatcherLogo copy.ico" />
     <Content Include="NPWatcherLogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
