@@ -69,7 +69,7 @@ namespace NPWatcher
         private void linkNPW_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             linkNPW.LinkVisited = true;
-            WikiFunctions.LoadLink("http://en.wikipedia.org/wiki/User:User:Martinp23/NPWatcher");
+            WikiFunctions.LoadLink("http://en.wikipedia.org/wiki/User:Martinp23/NPWatcher");
         }
 
         private void linkBugsFeatures_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
