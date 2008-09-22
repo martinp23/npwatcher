@@ -123,9 +123,6 @@
   <metadata name="limittip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="limittip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="dbattackBtn.ToolTip" xml:space="preserve">
     <value>Pages that serve no purpose but to disparage their subject or some other entity (e.g., "John Q. Doe is an imbecile"). These are sometimes called "attack pages". This includes a biography of a living person that is entirely negative in tone and unsourced, where there is no neutral version in the history to revert to. Administrators deleting such pages should not quote the content of the page in the deletion summary, and if the page is an article about a living person it should not be restored or recreated by any editor until it meets biographical article standards.</value>
   </data>
@@ -138,14 +135,14 @@
   <data name="dbspamBtn.ToolTip" xml:space="preserve">
     <value>Blatant advertising. Pages which exclusively promote some entity and which would need to be fundamentally rewritten to become encyclopedic. Note that simply having a company or product as its subject does not qualify an article for this criterion.</value>
   </data>
+  <data name="dvCvBtn.ToolTip" xml:space="preserve">
+    <value>Blatant copyright infringement. Text pages that meet all of the following: The material was copied from another website or other source (but consider the possibility that the other copy was obtained from Wikipedia—see Wikipedia:Mirrors and forks);There is no non-infringing content on either the page itself, or in the history, worth saving;The material was introduced at once by a single person; There is no credible assertion of public domain, fair use, or a free license.</value>
+  </data>
   <data name="dbforeignBtn.ToolTip" xml:space="preserve">
     <value>Foreign language articles that exist on another Wikimedia project. If the article does not exist on another project, use the template {{notenglish}} instead, and list the page at Wikipedia:Pages needing translation into English for review and possible translation.</value>
   </data>
   <data name="dbbioBtn.ToolTip" xml:space="preserve">
     <value>No indication of importance/significance. An article about a real person, organization (band, club, company, etc.), or web content that does not indicate why its subject is important or significant. This is distinct from questions of notability, verifiability and reliability of sources. A7 applies only to articles about web content or articles on people and organizations themselves, not articles on their books, albums, software and so on.</value>
-  </data>
-  <data name="dvCvBtn.ToolTip" xml:space="preserve">
-    <value>Blatant copyright infringement. Text pages that meet all of the following: The material was copied from another website or other source (but consider the possibility that the other copy was obtained from Wikipedia—see Wikipedia:Mirrors and forks);There is no non-infringing content on either the page itself, or in the history, worth saving;The material was introduced at once by a single person; There is no credible assertion of public domain, fair use, or a free license.</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>107, 17</value>

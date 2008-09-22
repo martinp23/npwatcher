@@ -70,27 +70,32 @@ namespace NPWatcher
             this.dbNonsBtn = new System.Windows.Forms.Button();
             this.dbRepostBtn = new System.Windows.Forms.Button();
             this.dbspamBtn = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnPatrol = new System.Windows.Forms.Button();
-            this.customWarnCB = new System.Windows.Forms.CheckBox();
-            this.db_userreq = new System.Windows.Forms.Button();
-            this.AfDBtn = new System.Windows.Forms.Button();
-            this.rmvBtn = new System.Windows.Forms.Button();
-            this.prodBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cvLinkTxt = new System.Windows.Forms.TextBox();
             this.dvCvBtn = new System.Windows.Forms.Button();
-            this.notabilitywarn = new System.Windows.Forms.CheckBox();
             this.dbR1Btn = new System.Windows.Forms.Button();
             this.dbR2Btn = new System.Windows.Forms.Button();
             this.dbR3Btn = new System.Windows.Forms.Button();
             this.dbforeignBtn = new System.Windows.Forms.Button();
-            this.dbemptyBtn = new System.Windows.Forms.Button();
             this.dbtalkBtn = new System.Windows.Forms.Button();
             this.dbbioBtn = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnPatrol = new System.Windows.Forms.Button();
             this.firstarticle = new System.Windows.Forms.CheckBox();
+            this.notabilitywarn = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cvLinkTxt = new System.Windows.Forms.TextBox();
+            this.customWarnCB = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dbBtn = new System.Windows.Forms.Button();
+            this.rmvBtn = new System.Windows.Forms.Button();
+            this.AfDBtn = new System.Windows.Forms.Button();
+            this.prodBtn = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dbemptyBtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.db_userreq = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pageIssues = new System.Windows.Forms.GroupBox();
             this.checkPatrolled = new System.Windows.Forms.CheckBox();
@@ -157,14 +162,14 @@ namespace NPWatcher
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.mnuPages.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pageIssues.SuspendLayout();
             this.referencesBox.SuspendLayout();
@@ -174,11 +179,6 @@ namespace NPWatcher
             this.tabPage4.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // pageList
@@ -198,25 +198,25 @@ namespace NPWatcher
             this.toolStripSeparator1,
             this.clearAllToolStripMenuItem});
             this.mnuPages.Name = "mnuPages";
-            this.mnuPages.Size = new System.Drawing.Size(179, 54);
+            this.mnuPages.Size = new System.Drawing.Size(188, 54);
             // 
             // removeSelectedToolStripMenuItem
             // 
             this.removeSelectedToolStripMenuItem.Name = "removeSelectedToolStripMenuItem";
             this.removeSelectedToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.removeSelectedToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.removeSelectedToolStripMenuItem.Text = "Remove selected";
             this.removeSelectedToolStripMenuItem.Click += new System.EventHandler(this.removeSelectedToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(175, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(184, 6);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.clearAllToolStripMenuItem.Text = "Clear All";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -351,113 +351,6 @@ namespace NPWatcher
             this.dbspamBtn.UseVisualStyleBackColor = true;
             this.dbspamBtn.Click += new System.EventHandler(this.dbspamBtn_Click);
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(157, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(839, 229);
-            this.tabControl1.TabIndex = 3;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox5);
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(831, 203);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Deletion";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnPatrol
-            // 
-            this.btnPatrol.Location = new System.Drawing.Point(308, 51);
-            this.btnPatrol.Name = "btnPatrol";
-            this.btnPatrol.Size = new System.Drawing.Size(102, 23);
-            this.btnPatrol.TabIndex = 8;
-            this.btnPatrol.Text = "Mark as patrolled";
-            this.btnPatrol.UseVisualStyleBackColor = true;
-            this.btnPatrol.Click += new System.EventHandler(this.btnPatrol_Click);
-            // 
-            // customWarnCB
-            // 
-            this.customWarnCB.AutoSize = true;
-            this.customWarnCB.Location = new System.Drawing.Point(308, 19);
-            this.customWarnCB.Name = "customWarnCB";
-            this.customWarnCB.Size = new System.Drawing.Size(133, 17);
-            this.customWarnCB.TabIndex = 50;
-            this.customWarnCB.Text = "Leave custom warning";
-            this.customWarnCB.UseVisualStyleBackColor = true;
-            // 
-            // db_userreq
-            // 
-            this.db_userreq.Location = new System.Drawing.Point(6, 127);
-            this.db_userreq.Name = "db_userreq";
-            this.db_userreq.Size = new System.Drawing.Size(121, 21);
-            this.db_userreq.TabIndex = 49;
-            this.db_userreq.Text = "G7: User request";
-            this.db_userreq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.db_userreq.UseVisualStyleBackColor = true;
-            this.db_userreq.Click += new System.EventHandler(this.db_userreq_Click);
-            // 
-            // AfDBtn
-            // 
-            this.AfDBtn.Location = new System.Drawing.Point(6, 46);
-            this.AfDBtn.Name = "AfDBtn";
-            this.AfDBtn.Size = new System.Drawing.Size(109, 21);
-            this.AfDBtn.TabIndex = 48;
-            this.AfDBtn.Text = "AfD (and notify)";
-            this.AfDBtn.UseVisualStyleBackColor = true;
-            this.AfDBtn.Click += new System.EventHandler(this.AfDBtn_Click);
-            // 
-            // rmvBtn
-            // 
-            this.rmvBtn.Enabled = false;
-            this.rmvBtn.Location = new System.Drawing.Point(121, 46);
-            this.rmvBtn.Name = "rmvBtn";
-            this.rmvBtn.Size = new System.Drawing.Size(121, 21);
-            this.rmvBtn.TabIndex = 47;
-            this.rmvBtn.Text = "Remove existing tags";
-            this.rmvBtn.UseVisualStyleBackColor = true;
-            this.rmvBtn.Click += new System.EventHandler(this.rmvBtn_Click);
-            // 
-            // prodBtn
-            // 
-            this.prodBtn.Location = new System.Drawing.Point(121, 19);
-            this.prodBtn.Name = "prodBtn";
-            this.prodBtn.Size = new System.Drawing.Size(121, 21);
-            this.prodBtn.TabIndex = 46;
-            this.prodBtn.Text = "Prod (and notify)";
-            this.prodBtn.UseVisualStyleBackColor = true;
-            this.prodBtn.Click += new System.EventHandler(this.prodBtn_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 58);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "URL of copyvio";
-            // 
-            // cvLinkTxt
-            // 
-            this.cvLinkTxt.Location = new System.Drawing.Point(90, 55);
-            this.cvLinkTxt.Name = "cvLinkTxt";
-            this.cvLinkTxt.Size = new System.Drawing.Size(180, 20);
-            this.cvLinkTxt.TabIndex = 44;
-            // 
             // dvCvBtn
             // 
             this.dvCvBtn.Location = new System.Drawing.Point(133, 100);
@@ -469,16 +362,6 @@ namespace NPWatcher
             this.limittip.SetToolTip(this.dvCvBtn, resources.GetString("dvCvBtn.ToolTip"));
             this.dvCvBtn.UseVisualStyleBackColor = true;
             this.dvCvBtn.Click += new System.EventHandler(this.dbCvBtn_Click);
-            // 
-            // notabilitywarn
-            // 
-            this.notabilitywarn.AutoSize = true;
-            this.notabilitywarn.Location = new System.Drawing.Point(162, 18);
-            this.notabilitywarn.Name = "notabilitywarn";
-            this.notabilitywarn.Size = new System.Drawing.Size(140, 17);
-            this.notabilitywarn.TabIndex = 42;
-            this.notabilitywarn.Text = "Leave notability warning";
-            this.notabilitywarn.UseVisualStyleBackColor = true;
             // 
             // dbR1Btn
             // 
@@ -532,17 +415,6 @@ namespace NPWatcher
             this.dbforeignBtn.UseVisualStyleBackColor = true;
             this.dbforeignBtn.Click += new System.EventHandler(this.dbforeignBtn_Click);
             // 
-            // dbemptyBtn
-            // 
-            this.dbemptyBtn.Location = new System.Drawing.Point(6, 46);
-            this.dbemptyBtn.Name = "dbemptyBtn";
-            this.dbemptyBtn.Size = new System.Drawing.Size(121, 21);
-            this.dbemptyBtn.TabIndex = 37;
-            this.dbemptyBtn.Text = "A3: No content";
-            this.dbemptyBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.dbemptyBtn.UseVisualStyleBackColor = true;
-            this.dbemptyBtn.Click += new System.EventHandler(this.dbemptyBtn_Click);
-            // 
             // dbtalkBtn
             // 
             this.dbtalkBtn.Location = new System.Drawing.Point(133, 19);
@@ -569,6 +441,60 @@ namespace NPWatcher
             this.dbbioBtn.UseVisualStyleBackColor = true;
             this.dbbioBtn.Click += new System.EventHandler(this.dbbioBtn_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(157, 27);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(839, 229);
+            this.tabControl1.TabIndex = 3;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.groupBox4);
+            this.tabPage1.Controls.Add(this.groupBox3);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(831, 203);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Deletion";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnPatrol);
+            this.groupBox5.Controls.Add(this.firstarticle);
+            this.groupBox5.Controls.Add(this.notabilitywarn);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Controls.Add(this.cvLinkTxt);
+            this.groupBox5.Controls.Add(this.customWarnCB);
+            this.groupBox5.Location = new System.Drawing.Point(279, 117);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(546, 80);
+            this.groupBox5.TabIndex = 55;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Options";
+            // 
+            // btnPatrol
+            // 
+            this.btnPatrol.Location = new System.Drawing.Point(308, 51);
+            this.btnPatrol.Name = "btnPatrol";
+            this.btnPatrol.Size = new System.Drawing.Size(102, 23);
+            this.btnPatrol.TabIndex = 8;
+            this.btnPatrol.Text = "Mark as patrolled";
+            this.btnPatrol.UseVisualStyleBackColor = true;
+            this.btnPatrol.Click += new System.EventHandler(this.btnPatrol_Click);
+            // 
             // firstarticle
             // 
             this.firstarticle.AutoSize = true;
@@ -579,6 +505,55 @@ namespace NPWatcher
             this.firstarticle.Text = "Leave {{firstarticle}} ~~~~";
             this.firstarticle.UseVisualStyleBackColor = true;
             // 
+            // notabilitywarn
+            // 
+            this.notabilitywarn.AutoSize = true;
+            this.notabilitywarn.Location = new System.Drawing.Point(162, 18);
+            this.notabilitywarn.Name = "notabilitywarn";
+            this.notabilitywarn.Size = new System.Drawing.Size(140, 17);
+            this.notabilitywarn.TabIndex = 42;
+            this.notabilitywarn.Text = "Leave notability warning";
+            this.notabilitywarn.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 58);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 45;
+            this.label2.Text = "URL of copyvio";
+            // 
+            // cvLinkTxt
+            // 
+            this.cvLinkTxt.Location = new System.Drawing.Point(90, 55);
+            this.cvLinkTxt.Name = "cvLinkTxt";
+            this.cvLinkTxt.Size = new System.Drawing.Size(180, 20);
+            this.cvLinkTxt.TabIndex = 44;
+            // 
+            // customWarnCB
+            // 
+            this.customWarnCB.AutoSize = true;
+            this.customWarnCB.Location = new System.Drawing.Point(308, 19);
+            this.customWarnCB.Name = "customWarnCB";
+            this.customWarnCB.Size = new System.Drawing.Size(133, 17);
+            this.customWarnCB.TabIndex = 50;
+            this.customWarnCB.Text = "Leave custom warning";
+            this.customWarnCB.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.dbBtn);
+            this.groupBox4.Controls.Add(this.rmvBtn);
+            this.groupBox4.Controls.Add(this.AfDBtn);
+            this.groupBox4.Controls.Add(this.prodBtn);
+            this.groupBox4.Location = new System.Drawing.Point(573, 7);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(252, 104);
+            this.groupBox4.TabIndex = 54;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Other";
+            // 
             // dbBtn
             // 
             this.dbBtn.Location = new System.Drawing.Point(6, 19);
@@ -588,6 +563,102 @@ namespace NPWatcher
             this.dbBtn.Text = "Custom reason";
             this.dbBtn.UseVisualStyleBackColor = true;
             this.dbBtn.Click += new System.EventHandler(this.dbBtn_Click);
+            // 
+            // rmvBtn
+            // 
+            this.rmvBtn.Enabled = false;
+            this.rmvBtn.Location = new System.Drawing.Point(121, 46);
+            this.rmvBtn.Name = "rmvBtn";
+            this.rmvBtn.Size = new System.Drawing.Size(121, 21);
+            this.rmvBtn.TabIndex = 47;
+            this.rmvBtn.Text = "Remove existing tags";
+            this.rmvBtn.UseVisualStyleBackColor = true;
+            this.rmvBtn.Click += new System.EventHandler(this.rmvBtn_Click);
+            // 
+            // AfDBtn
+            // 
+            this.AfDBtn.Location = new System.Drawing.Point(6, 46);
+            this.AfDBtn.Name = "AfDBtn";
+            this.AfDBtn.Size = new System.Drawing.Size(109, 21);
+            this.AfDBtn.TabIndex = 48;
+            this.AfDBtn.Text = "AfD (and notify)";
+            this.AfDBtn.UseVisualStyleBackColor = true;
+            this.AfDBtn.Click += new System.EventHandler(this.AfDBtn_Click);
+            // 
+            // prodBtn
+            // 
+            this.prodBtn.Location = new System.Drawing.Point(121, 19);
+            this.prodBtn.Name = "prodBtn";
+            this.prodBtn.Size = new System.Drawing.Size(121, 21);
+            this.prodBtn.TabIndex = 46;
+            this.prodBtn.Text = "Prod (and notify)";
+            this.prodBtn.UseVisualStyleBackColor = true;
+            this.prodBtn.Click += new System.EventHandler(this.prodBtn_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dbR3Btn);
+            this.groupBox3.Controls.Add(this.dbR1Btn);
+            this.groupBox3.Controls.Add(this.dbR2Btn);
+            this.groupBox3.Location = new System.Drawing.Point(424, 7);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(143, 104);
+            this.groupBox3.TabIndex = 53;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Redirects";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dbforeignBtn);
+            this.groupBox2.Controls.Add(this.dbemptyBtn);
+            this.groupBox2.Controls.Add(this.dbbioBtn);
+            this.groupBox2.Location = new System.Drawing.Point(279, 7);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(138, 104);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Article criteria";
+            // 
+            // dbemptyBtn
+            // 
+            this.dbemptyBtn.Location = new System.Drawing.Point(6, 46);
+            this.dbemptyBtn.Name = "dbemptyBtn";
+            this.dbemptyBtn.Size = new System.Drawing.Size(121, 21);
+            this.dbemptyBtn.TabIndex = 37;
+            this.dbemptyBtn.Text = "A3: No content";
+            this.dbemptyBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dbemptyBtn.UseVisualStyleBackColor = true;
+            this.dbemptyBtn.Click += new System.EventHandler(this.dbemptyBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dbvandBtn);
+            this.groupBox1.Controls.Add(this.dbTest);
+            this.groupBox1.Controls.Add(this.dbNonsBtn);
+            this.groupBox1.Controls.Add(this.db_userreq);
+            this.groupBox1.Controls.Add(this.dbRepostBtn);
+            this.groupBox1.Controls.Add(this.dvCvBtn);
+            this.groupBox1.Controls.Add(this.dbspamBtn);
+            this.groupBox1.Controls.Add(this.dbBlankBtn);
+            this.groupBox1.Controls.Add(this.dbtalkBtn);
+            this.groupBox1.Controls.Add(this.dbattackBtn);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(266, 191);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Speedy Deletion: General criteria";
+            // 
+            // db_userreq
+            // 
+            this.db_userreq.Location = new System.Drawing.Point(6, 127);
+            this.db_userreq.Name = "db_userreq";
+            this.db_userreq.Size = new System.Drawing.Size(121, 21);
+            this.db_userreq.TabIndex = 49;
+            this.db_userreq.Text = "G7: User request";
+            this.db_userreq.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.db_userreq.UseVisualStyleBackColor = true;
+            this.db_userreq.Click += new System.EventHandler(this.db_userreq_Click);
             // 
             // tabPage2
             // 
@@ -840,7 +911,7 @@ namespace NPWatcher
             // checkInUniverse
             // 
             this.checkInUniverse.AutoSize = true;
-            this.checkInUniverse.Location = new System.Drawing.Point(74, 88);
+            this.checkInUniverse.Location = new System.Drawing.Point(76, 88);
             this.checkInUniverse.Name = "checkInUniverse";
             this.checkInUniverse.Size = new System.Drawing.Size(79, 17);
             this.checkInUniverse.TabIndex = 9;
@@ -1140,44 +1211,44 @@ namespace NPWatcher
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveSettingsToolStripMenuItem
             // 
             this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.saveSettingsToolStripMenuItem.Text = "Save Settings";
             this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.saveSettingsToolStripMenuItem_Click);
             // 
             // loadSettToolStripMenuItem
             // 
             this.loadSettToolStripMenuItem.Name = "loadSettToolStripMenuItem";
-            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.loadSettToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.loadSettToolStripMenuItem.Text = "Load Settings";
             this.loadSettToolStripMenuItem.Click += new System.EventHandler(this.loadSettToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(144, 6);
             // 
             // resetSettingsToolStripMenuItem
             // 
             this.resetSettingsToolStripMenuItem.Name = "resetSettingsToolStripMenuItem";
-            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.resetSettingsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.resetSettingsToolStripMenuItem.Text = "Reset Settings";
             this.resetSettingsToolStripMenuItem.Click += new System.EventHandler(this.resetSettingsToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(144, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1192,7 +1263,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem,
             this.setListAutorefreshIntervalToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // hideBotEditsToolStripMenuItem
@@ -1201,7 +1272,7 @@ namespace NPWatcher
             this.hideBotEditsToolStripMenuItem.CheckOnClick = true;
             this.hideBotEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideBotEditsToolStripMenuItem.Name = "hideBotEditsToolStripMenuItem";
-            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hideBotEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideBotEditsToolStripMenuItem.Text = "Hide bot creations";
             this.hideBotEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideBotEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1211,7 +1282,7 @@ namespace NPWatcher
             this.hideAdminEditsToolStripMenuItem.CheckOnClick = true;
             this.hideAdminEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hideAdminEditsToolStripMenuItem.Name = "hideAdminEditsToolStripMenuItem";
-            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hideAdminEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hideAdminEditsToolStripMenuItem.Text = "Hide admin creations";
             this.hideAdminEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hideAdminEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1221,7 +1292,7 @@ namespace NPWatcher
             this.hidePatrolledEditsToolStripMenuItem.CheckOnClick = true;
             this.hidePatrolledEditsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.hidePatrolledEditsToolStripMenuItem.Name = "hidePatrolledEditsToolStripMenuItem";
-            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.hidePatrolledEditsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.hidePatrolledEditsToolStripMenuItem.Text = "Hide patrolled creations";
             this.hidePatrolledEditsToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hidePatrolledEditsToolStripMenuItem_CheckedChanged);
             // 
@@ -1230,7 +1301,7 @@ namespace NPWatcher
             this.setListAutorefreshIntervalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripRefreshTxt});
             this.setListAutorefreshIntervalToolStripMenuItem.Name = "setListAutorefreshIntervalToolStripMenuItem";
-            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.setListAutorefreshIntervalToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.setListAutorefreshIntervalToolStripMenuItem.Text = "Set list autorefresh interval";
             // 
             // toolStripRefreshTxt
@@ -1238,7 +1309,7 @@ namespace NPWatcher
             this.toolStripRefreshTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.toolStripRefreshTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.toolStripRefreshTxt.Name = "toolStripRefreshTxt";
-            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 21);
+            this.toolStripRefreshTxt.Size = new System.Drawing.Size(150, 23);
             this.toolStripRefreshTxt.Text = "Enter a value in seconds here";
             this.toolStripRefreshTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripRefreshTxt_KeyDown);
             // 
@@ -1247,90 +1318,19 @@ namespace NPWatcher
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // timerRefresh
             // 
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dbvandBtn);
-            this.groupBox1.Controls.Add(this.dbTest);
-            this.groupBox1.Controls.Add(this.dbNonsBtn);
-            this.groupBox1.Controls.Add(this.db_userreq);
-            this.groupBox1.Controls.Add(this.dbRepostBtn);
-            this.groupBox1.Controls.Add(this.dvCvBtn);
-            this.groupBox1.Controls.Add(this.dbspamBtn);
-            this.groupBox1.Controls.Add(this.dbBlankBtn);
-            this.groupBox1.Controls.Add(this.dbtalkBtn);
-            this.groupBox1.Controls.Add(this.dbattackBtn);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(266, 191);
-            this.groupBox1.TabIndex = 51;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Speedy Deletion: General criteria";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dbforeignBtn);
-            this.groupBox2.Controls.Add(this.dbemptyBtn);
-            this.groupBox2.Controls.Add(this.dbbioBtn);
-            this.groupBox2.Location = new System.Drawing.Point(279, 7);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(138, 104);
-            this.groupBox2.TabIndex = 52;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Article criteria";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dbR3Btn);
-            this.groupBox3.Controls.Add(this.dbR1Btn);
-            this.groupBox3.Controls.Add(this.dbR2Btn);
-            this.groupBox3.Location = new System.Drawing.Point(424, 7);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(143, 104);
-            this.groupBox3.TabIndex = 53;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Redirects";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.dbBtn);
-            this.groupBox4.Controls.Add(this.rmvBtn);
-            this.groupBox4.Controls.Add(this.AfDBtn);
-            this.groupBox4.Controls.Add(this.prodBtn);
-            this.groupBox4.Location = new System.Drawing.Point(573, 7);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(252, 104);
-            this.groupBox4.TabIndex = 54;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Other";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.btnPatrol);
-            this.groupBox5.Controls.Add(this.firstarticle);
-            this.groupBox5.Controls.Add(this.notabilitywarn);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.cvLinkTxt);
-            this.groupBox5.Controls.Add(this.customWarnCB);
-            this.groupBox5.Location = new System.Drawing.Point(279, 117);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(546, 80);
-            this.groupBox5.TabIndex = 55;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Options";
             // 
             // Main
             // 
@@ -1354,6 +1354,12 @@ namespace NPWatcher
             this.mnuPages.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.pageIssues.ResumeLayout(false);
             this.pageIssues.PerformLayout();
@@ -1370,12 +1376,6 @@ namespace NPWatcher
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

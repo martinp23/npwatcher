@@ -301,7 +301,7 @@ namespace NPWatcher
 
         public void getusergroup(string group)
         {
-
+            //TODO:API
             string src = "";
             webRequest(wikiurl + "Special:Listusers&group=" + group + "&limit=5000");
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
@@ -312,7 +312,7 @@ namespace NPWatcher
             src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
             src = src.Substring(0, src.IndexOf("<!-- end content -->"));
             src = "<div>" + src + "</div>";
-            StringReader sr = new StringReader(src);
+            StringReader sr = new StringReader(src.Replace("&nbsp;", ""));
             XmlDocument xml = new XmlDocument();
             xml.Load(sr);
 
