@@ -43,7 +43,6 @@ namespace NPWatcher
         private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
-        string src;
         private DateTime dt = new DateTime();
         private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
         private static string apiurl = "http://en.wikipedia.org/w/api.php";
@@ -78,17 +77,13 @@ namespace NPWatcher
             cookies = webResp.Cookies;
             webResp.Close();
 
-            src = "";
-
             webRequest(apiurl + "?action=query&list=watchlist&wllimit=3&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
 
-            if (src.Contains("wlnotloggedin"))
+            if (work.ReadToEnd().Contains("wlnotloggedin"))
             {
                 try
                 {
@@ -223,7 +218,6 @@ namespace NPWatcher
             return a;
         }
 
-
         public StringCollection getNPs(string limit)
         {
             Main.settings.pagelimit = limit;
@@ -262,12 +256,11 @@ namespace NPWatcher
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
-            // src = HttpUtility.HtmlDecode(src);
+            //src = HttpUtility.HtmlDecode(work.ReadToEnd());
             //src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
             //src = src.Substring(0, src.IndexOf("<!-- end content -->"));
             //src = "<div>" + src + "</div>";
-            StringReader sr = new StringReader(src);
+            StringReader sr = new StringReader(work.ReadToEnd());
             XmlDocument xml = new XmlDocument();
             xml.Load(sr);
             string rcid = "not found";
@@ -278,7 +271,6 @@ namespace NPWatcher
             }
 
             return rcid;
-
         }
 
         private string getCreationTime(string page)
@@ -287,8 +279,7 @@ namespace NPWatcher
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
-            StringReader sr = new StringReader(src);
+            StringReader sr = new StringReader(work.ReadToEnd());
             XmlDocument xml = new XmlDocument();
             xml.Load(sr);
             string time = "";
@@ -324,7 +315,6 @@ namespace NPWatcher
 
         public string getWikiText(string page)
         {
-
             string src = "";
             webRequest(wikiurl + page + "&action=raw&ctype=text/plain&dontcountme=s");
             try
@@ -338,8 +328,7 @@ namespace NPWatcher
             }
             catch
             {
-                src = "";
-                return src;
+                return "";
             }
         }
 
@@ -445,7 +434,6 @@ namespace NPWatcher
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
-
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
@@ -461,7 +449,6 @@ namespace NPWatcher
                 string editTime = m1.Value;
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
-
 
                 webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
                 webReq.UserAgent = "NPWatcher/1.0";
@@ -499,7 +486,6 @@ namespace NPWatcher
                 System.Windows.Forms.MessageBox.Show("Something sinister has happened.  The user has not been warned - please contact Martinp23 with code E1, and mention the page (" + page + ").  Sorry!");
             }
         }
-
 
         public void Deletepg(string page, string editsummary)
         {
