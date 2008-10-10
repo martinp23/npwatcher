@@ -43,13 +43,13 @@ namespace NPWatcher
             Main.doprod = true;
             Main.prodreasonstr = prodTxt.Text;
 
-            Close();
+            this.Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             Main.doprod = false;
-            Close();
+            this.Close();
         }
 
         internal void prod()

@@ -40,23 +40,14 @@ namespace NPWatcher
 {
     public partial class Main : Form
     {
-        internal static string username = "";
-        internal static string password = "";
+        internal static string username = "", password = "";
         internal static bool dialogcancel;
         internal static bool success;
         internal WikiFunctions wf = new WikiFunctions();
         internal string page2 = "";
         internal static string prodreasonstr = "";
-        internal static bool doprod;
-        internal static bool asAdmin;
-        internal static string dbReason;
-        internal static string afdCat;
-        internal static string afdReason;
-        internal static string nntag = "";
-        internal static bool crsuc;
-        internal static bool afdsuc;
-        internal static bool nnchoicessuc;
-        internal static string wikitextpage2 = "";
+        internal static bool doprod, asAdmin, crsuc, afdsuc, nnchoicessuc;
+        internal static string dbReason, afdCat, afdReason, nntag = "", wikitextpage2 = "";
         internal static bool editsuccess;
         internal static string cwr;
         private static int refreshInterval;
@@ -131,7 +122,7 @@ namespace NPWatcher
                                 }
                                 //asAdmin = wf.CheckIfAdmin();
 
-                                MessageBox.Show("Logged in","Logged in",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                MessageBox.Show("Logged in", "Logged in", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
@@ -147,7 +138,7 @@ namespace NPWatcher
             }
         }
 
-        void stubCombo_Leave(object sender, EventArgs e)
+        private void stubCombo_Leave(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(stubCombo.Text) && !stubCombo.Items.Contains(stubCombo.Text))
                 stubCombo.Items.Add(stubCombo.Text);
@@ -294,7 +285,7 @@ namespace NPWatcher
         private void dbspamBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-spam", "Blatant advertising, [[WP:CSD#G11]]");
             Greyin();
         }
@@ -302,7 +293,7 @@ namespace NPWatcher
         private void db_userreq_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-spam", "Author request, [[WP:CSD#G7]]");
             Greyin();
         }
@@ -310,7 +301,7 @@ namespace NPWatcher
         private void dbforeignBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-foreign", "Article is not in English");
             Greyin();
         }
@@ -318,7 +309,7 @@ namespace NPWatcher
         private void dbRepostBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-repost", "Repost of previously deleted material");
             Greyin();
         }
@@ -359,7 +350,7 @@ namespace NPWatcher
         private void dbBlankBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-blank", "Page blanked by only editor");
             Greyin();
         }
@@ -367,7 +358,7 @@ namespace NPWatcher
         private void dbtalkBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-talk", "Talk page of non-existant article");
 
             Greyin();
@@ -387,7 +378,7 @@ namespace NPWatcher
         private void dbemptyBtn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-empty", "Empty page");
 
             Greyin();
@@ -396,7 +387,7 @@ namespace NPWatcher
         private void dbR1Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-redirnone", "Redirect to non-existant page, [[WP:CSD#R1]]");
 
             Greyin();
@@ -405,7 +396,7 @@ namespace NPWatcher
         private void dbR2Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-rediruser", "Redirect to user space [[WP:CSD#R2]]");
 
             Greyin();
@@ -414,7 +405,7 @@ namespace NPWatcher
         private void dbR3Btn_Click(object sender, EventArgs e)
         {
             Greyout();
-            if (!string.IsNullOrEmpty(page2)) 
+            if (!string.IsNullOrEmpty(page2))
                 Delete("db-redirtypo", "Implausibe typo, [[WP:CSD#R3]]");
 
             Greyin();
@@ -578,7 +569,7 @@ namespace NPWatcher
                     if (sortlogin())
                         wf.Save(creator, newtxt, "Posting {{nn-warn}} using [[WP:NPW|NPWatcher]].");
                 }
-                if (asAdmin)
+                else
                 {
                     newtxt = wikitext + "\r\n\r\n{{subst:nn-warn-deletion|" + System.Web.HttpUtility.UrlDecode(page2) + "|header=1}} ~~~~";
                     if (sortlogin())
@@ -607,7 +598,7 @@ namespace NPWatcher
                         if (sortlogin())
                             wf.Save(creator, newtxt, "Posting {{" + warning + "}} using [[WP:NPW|NPWatcher]].");
                     }
-                    if (asAdmin)
+                    else
                     {
                         if (!wikitext.Contains("<!-- Template:" + warning + " -->"))
                         {
@@ -687,7 +678,6 @@ namespace NPWatcher
             }
             else
             {
-
                 if (!wikitext.Contains("<!-- Template:Test2article (second level warning) -->"))
                 {
                     newtxt = wikitext + "\r\n{{subst:test2article-n|" + System.Web.HttpUtility.UrlDecode(page2) + "}} ~~~~";
@@ -857,7 +847,7 @@ namespace NPWatcher
                     datetoday = datetoday + date2;
 
                     string logpg = wf.getWikiText("Wikipedia:Articles for deletion/Log/" + datetoday);
-                    logpg = Regex.Replace(logpg, "<!-- Add new entries to the TOP of the following list -->", "<!-- Add new entries to the TOP of the following list -->"+"\r\n{{"+afdnompg+"}}");
+                    logpg = Regex.Replace(logpg, "<!-- Add new entries to the TOP of the following list -->", "<!-- Add new entries to the TOP of the following list -->" + "\r\n{{" + afdnompg + "}}");
                     if (sortlogin())
                         wf.Save("Wikipedia:Articles for deletion/Log/" + datetoday, logpg, "Adding [[" + HttpUtility.UrlDecode(page2) + "]] to list using [[WP:NPW|NPWatcher]]");
 
@@ -872,8 +862,6 @@ namespace NPWatcher
         #endregion
 
         #region Maintainance tags
-
-       
         //Doesn't use Mark(..)
 
         private void Mark(string template)
@@ -1325,7 +1313,6 @@ namespace NPWatcher
             Image = Regex.Replace(Image, "^Image:", "", RegexOptions.IgnoreCase).Replace("_", " ");
             Image = Regex.Escape(Image).Replace("\\ ", "[ _]");
 
-
             Regex r = new Regex("\\[\\[[Ii]mage:" + Image + ".*\\]\\]", RegexOptions.IgnoreCase);
             MatchCollection n = r.Matches(ArticleText);
 
@@ -1406,12 +1393,12 @@ namespace NPWatcher
             DelCustom.Enabled = AfDCustom.Enabled = RmvProd.Enabled = I1Btn.Enabled = I2Btn.Enabled =
             I3Btn.Enabled = I4Btn.Enabled = I5Btn.Enabled = I6Btn.Enabled = I7Btn.Enabled =
             I8Btn.Enabled = IotherBtn.Enabled =
-            //maintenance
+                //maintenance
             checkAdvert.Enabled = checkCleanup.Enabled = checkContext.Enabled = checkCopyedit.Enabled =
             checkCopypase.Enabled = checkDeadend.Enabled = checkHowto.Enabled = checkInline.Enabled =
             checkIntrorewrite.Enabled = checkInUniverse.Enabled = checkNotability.Enabled = checknotEnglish.Enabled =
             checkNpov.Enabled = checkOrphan.Enabled = checkRefImprove.Enabled = checkSections.Enabled =
-            checkStub.Enabled = checkTone.Enabled = checkuncat.Enabled = checkUnsourced.Enabled = 
+            checkStub.Enabled = checkTone.Enabled = checkuncat.Enabled = checkUnsourced.Enabled =
             checkWikify.Enabled =
             checkPatrolled.Enabled = Enabled;
         }
@@ -1461,7 +1448,7 @@ namespace NPWatcher
             //there is probably a more elegant way to handle this all those ifs.
             if (checkAdvert.Checked)
             {
-                articleIssues.Add(new Issue("advert"));   
+                articleIssues.Add(new Issue("advert"));
             }
             if (checkCleanup.Checked)
             {
@@ -1495,7 +1482,8 @@ namespace NPWatcher
             {
                 templateIssues.Add(new Issue("introrewrite"));
             }
-            if (checkInUniverse.Checked){
+            if (checkInUniverse.Checked)
+            {
                 templateIssues.Add(new Issue("in-universe"));
             }
             if (checkNotability.Checked)
@@ -1559,7 +1547,7 @@ namespace NPWatcher
                     Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
                 }
                 Greyin();
-            }            
+            }
             if (checkTone.Checked)
             {
                 articleIssues.Add(new Issue("tone"));
@@ -1612,20 +1600,23 @@ namespace NPWatcher
                 templates += issue.getTemplate();
                 templates += "\r\n";
             }
-            
+
             string txt = wf.getWikiText(page2);
             string newtxt = templates + issues + "\r\n" + txt;
             if (articleIssues.Count + templateIssues.Count > 3)
             {
                 Save(page2, newtxt, "Marking page for more than 3 issues using [[WP:NPW|NPWatcher]]");
             }
-            else {
+            else
+            {
                 string issuestring = "";
-                foreach (Issue issue in articleIssues){
+                foreach (Issue issue in articleIssues)
+                {
                     issuestring += issue.getName() + " ";
                 }
-                foreach (Issue issue in templateIssues){
-                    issuestring += issue.getName()+" ";
+                foreach (Issue issue in templateIssues)
+                {
+                    issuestring += issue.getName() + " ";
                 }
                 Save(page2, newtxt, "Marking page for the following issues: " + issuestring + "using [[WP:NPW|NPWatcher]]");
             }
@@ -1751,8 +1742,7 @@ namespace NPWatcher
             }
         }
 
-
-         private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        private void hideBotEditsToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             settings.hideBots = hideBotEditsToolStripMenuItem.Checked;
         }
@@ -1767,7 +1757,6 @@ namespace NPWatcher
             settings.hidePatrolled = hidePatrolledEditsToolStripMenuItem.Checked;
         }
 
-      
         private void settimer()
         {
             if (refreshInterval != 0)
@@ -1777,7 +1766,6 @@ namespace NPWatcher
             }
             else
                 timerRefresh.Stop();
-
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e)
@@ -1810,6 +1798,5 @@ namespace NPWatcher
         {
             new About().ShowDialog();
         }
-
     }
 }

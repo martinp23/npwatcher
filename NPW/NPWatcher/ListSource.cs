@@ -61,7 +61,7 @@ namespace NPWatcher
 
             hidebot = chkHideBot.Checked;
             hidepatrolled = chkHidePatrolled.Checked;
-            Close();
+            this.Close();
         }
 
         private void ListSource_Load(object sender, EventArgs e)

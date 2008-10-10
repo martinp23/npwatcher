@@ -56,7 +56,5 @@ namespace NPWatcher
         {
             loginTxt.Text = Main.settings.username;
         }
-
-      
     }
 }

@@ -53,28 +53,31 @@ namespace NPWatcher
                 string cat = catTxt.SelectedItem.ToString();
                 string catcode = "U";
 
-                if (cat == "Media and music")
-                { catcode = "M"; }
-                else if (cat == "Organisation, corporation, or product")
-                { catcode = "O"; }
-                else if (cat == "Biographical")
-                { catcode = "B"; }
-                else if (cat == "Society topics")
-                { catcode = "S"; }
-                else if (cat == "Web or internet")
-                { catcode = "W"; }
-                else if (cat == "Games or sports")
-                { catcode = "G"; }
-                else if (cat == "Science and technology")
-                { catcode = "T"; }
-                else if (cat == "Fiction and the arts")
-                { catcode = "F"; }
-                else if (cat == "Places and transportation")
-                { catcode = "P"; }
-                else if (cat == "Indiscernable or unclassifiable topic")
-                { catcode = "I"; }
-                else if (cat == "Unknown")
-                { catcode = "?"; }
+                switch (cat)
+                {
+                    case "Media and music":
+                        catcode = "M"; break;
+                    case "Organisation, corporation, or product":
+                        catcode = "O"; break;
+                    case "Biographical":
+                        catcode = "B"; break;
+                    case "Society topics":
+                        catcode = "S"; break;
+                    case "Web or internet":
+                        catcode = "W"; break;
+                    case "Games or sports":
+                        catcode = "G"; break;
+                    case "Science and technology":
+                        catcode = "T"; break;
+                    case "Fiction and the arts":
+                        catcode = "F"; break;
+                    case "Places and transportation":
+                        catcode = "P"; break;
+                    case "Indiscernable or unclassifiable topic":
+                        catcode = "I"; break;
+                    case "Unknown":
+                        catcode = "?"; break;
+                }
 
                 Main.afdCat = catcode;
             }

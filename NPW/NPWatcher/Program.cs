@@ -39,14 +39,6 @@ namespace NPWatcher
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main());
-            
         }
-
-        //internal static void quit()
-        //{
-        //    Application.ExitThread();
-        //    Application.Exit();
-        //}
-        
     }
 }

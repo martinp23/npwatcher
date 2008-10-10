@@ -557,7 +557,6 @@ namespace NPWatcher
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = HttpUtility.HtmlDecode(work.ReadToEnd());
-
             }
             catch
             {
