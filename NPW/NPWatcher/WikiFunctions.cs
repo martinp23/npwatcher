@@ -83,23 +83,11 @@ namespace NPWatcher
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
 
-            if (work.ReadToEnd().Contains("wlnotloggedin"))
-            {
-                try
-                {
-                    throw new WikiBotException("login failed");
-                }
-                catch { }
-                return false;
-            }
-            else
-            { return true; }
-
+            return (!work.ReadToEnd().Contains("wlnotloggedin"));
         }
 
         //public bool CheckIfAdmin()
         //{
-
         //    string userGroups;
         //    List<string> Groups = new List<string>();
 
