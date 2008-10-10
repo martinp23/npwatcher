@@ -218,13 +218,18 @@ namespace NPWatcher
             return a;
         }
 
-        public StringCollection getNPs(string limit)
+        public StringCollection getNPs(string limit, bool oldest)
         {
             Main.settings.pagelimit = limit;
             dt = DateTime.Now.ToUniversalTime();
             string src = "";
             StringCollection strCol = new StringCollection();
-            webRequest(wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&feed=atom");
+            string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&feed=atom";
+
+            if (oldest)
+                tehurl += "&dir=prev";
+
+            webRequest(tehurl);
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);

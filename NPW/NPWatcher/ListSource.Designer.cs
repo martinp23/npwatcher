@@ -59,6 +59,7 @@ namespace NPWatcher
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.chkHidePatrolled = new System.Windows.Forms.CheckBox();
             this.chkHideBot = new System.Windows.Forms.CheckBox();
+            this.NPRadOld = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // NPRad
@@ -75,7 +76,7 @@ namespace NPWatcher
             // CSDRad
             // 
             this.CSDRad.AutoSize = true;
-            this.CSDRad.Location = new System.Drawing.Point(22, 82);
+            this.CSDRad.Location = new System.Drawing.Point(22, 105);
             this.CSDRad.Name = "CSDRad";
             this.CSDRad.Size = new System.Drawing.Size(71, 17);
             this.CSDRad.TabIndex = 1;
@@ -86,7 +87,7 @@ namespace NPWatcher
             // CustomRad
             // 
             this.CustomRad.AutoSize = true;
-            this.CustomRad.Location = new System.Drawing.Point(22, 106);
+            this.CustomRad.Location = new System.Drawing.Point(22, 129);
             this.CustomRad.Name = "CustomRad";
             this.CustomRad.Size = new System.Drawing.Size(108, 17);
             this.CustomRad.TabIndex = 2;
@@ -98,14 +99,14 @@ namespace NPWatcher
             // 
             this.CatTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CatTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
-            this.CatTxt.Location = new System.Drawing.Point(135, 105);
+            this.CatTxt.Location = new System.Drawing.Point(135, 128);
             this.CatTxt.Name = "CatTxt";
             this.CatTxt.Size = new System.Drawing.Size(164, 20);
             this.CatTxt.TabIndex = 3;
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(192, 140);
+            this.loadBtn.Location = new System.Drawing.Point(192, 154);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(108, 24);
             this.loadBtn.TabIndex = 4;
@@ -149,12 +150,24 @@ namespace NPWatcher
             this.chkHideBot.Text = "Hide pages created by bots";
             this.chkHideBot.UseVisualStyleBackColor = true;
             // 
+            // NPRadOld
+            // 
+            this.NPRadOld.AutoSize = true;
+            this.NPRadOld.Location = new System.Drawing.Point(22, 81);
+            this.NPRadOld.Name = "NPRadOld";
+            this.NPRadOld.Size = new System.Drawing.Size(102, 17);
+            this.NPRadOld.TabIndex = 9;
+            this.NPRadOld.TabStop = true;
+            this.NPRadOld.Text = "New pages (old)";
+            this.NPRadOld.UseVisualStyleBackColor = true;
+            // 
             // ListSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 176);
+            this.ClientSize = new System.Drawing.Size(311, 186);
             this.ControlBox = false;
+            this.Controls.Add(this.NPRadOld);
             this.Controls.Add(this.chkHideBot);
             this.Controls.Add(this.chkHidePatrolled);
             this.Controls.Add(this.textBox2);
@@ -183,5 +196,6 @@ namespace NPWatcher
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox chkHidePatrolled;
         private System.Windows.Forms.CheckBox chkHideBot;
+        private System.Windows.Forms.RadioButton NPRadOld;
     }
 }

@@ -41,10 +41,9 @@ namespace NPWatcher
         {
             InitializeComponent();
             CatTxt.Click += new EventHandler(CatTxt_Click);
-            
         }
 
-        void CatTxt_Click(object sender, EventArgs e)
+        private void CatTxt_Click(object sender, EventArgs e)
         {
             CustomRad.Checked = true;
         }
@@ -53,9 +52,11 @@ namespace NPWatcher
         {
             if (NPRad.Checked)
                 category = "NPRad";
+            else if (NPRadOld.Checked)
+                category = "NPRadOld";
             else if (CSDRad.Checked)
                 category = "CSDRad";
-            else if (CustomRad.Checked)
+            else
                 category = CatTxt.Text;
 
             hidebot = chkHideBot.Checked;
@@ -65,6 +66,7 @@ namespace NPWatcher
 
         private void ListSource_Load(object sender, EventArgs e)
         {
+            CSDRad.Enabled = CustomRad.Enabled = CatTxt.Enabled = Main.asAdmin;
            // chkHideBot.Checked = Main.settings.hideBots;
            // chkHidePatrolled.Checked = Main.settings.hidePatrolled;
         }

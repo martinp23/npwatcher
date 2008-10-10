@@ -161,54 +161,21 @@ namespace NPWatcher
 
         private void populatelist(bool frombtn)
         {
-            if (asAdmin)
-            {
+            StringCollection nps = new StringCollection();
 
-                string category = "";
-                if(frombtn)
+            string limit;
+            string category = "";
+            if (frombtn)
                 listsource.ShowDialog();
-                category = listsource.category;
-                settings.hidePatrolled = listsource.hidepatrolled;
-                settings.hideBots = listsource.hidebot;
-                StringCollection nps = new StringCollection();
-                if (category == "NPRad")
-                {
-                    string limit = "20";
-                    try
-                    {
-                        limit = limitCB.SelectedItem.ToString();
-                    }
-                    catch (NullReferenceException)
-                    {
-                        limit = "20";
-                        limitCB.SelectedItem = "20";
-                    }
+            category = listsource.category;
+            settings.hidePatrolled = listsource.hidepatrolled;
+            settings.hideBots = listsource.hidebot;
 
-                    nps = wf.getNPs(limit);
-                    pageList.Items.Clear();
-                    foreach (string p in nps) { pageList.Items.Add(p); }
-                }
-                else if (category == "CSDRad")
-                {
-                    string limit = "100";
-                    try
+            switch (category)
+            {
+                case "NPRad":
+                case "NPRadOld":
                     {
-                        limit = limitCB.SelectedItem.ToString();
-                    }
-                    catch (NullReferenceException)
-                    {
-                        limit = "100";
-                        limitCB.SelectedItem = "100";
-                    }
-                    nps = wf.getCat(limit, "Candidates for speedy deletion");
-                    pageList.Items.Clear();
-                    foreach (string p in nps) { pageList.Items.Add(p); }
-                }
-                else
-                {
-                    if (category != null)
-                    {
-                        string limit = "20";
                         try
                         {
                             limit = limitCB.SelectedItem.ToString();
@@ -218,35 +185,50 @@ namespace NPWatcher
                             limit = "20";
                             limitCB.SelectedItem = "20";
                         }
-                        nps = wf.getCat(limit, category);
-                        pageList.Items.Clear();
-                        foreach (string p in nps) { pageList.Items.Add(p); }
+
+                        nps = wf.getNPs(limit, category.Contains("Old"));
+                        break;
                     }
-                    else
+                case "CSDRad":
                     {
-                        MessageBox.Show("Please choose a list source");
+                        try
+                        {
+                            limit = limitCB.SelectedItem.ToString();
+                        }
+                        catch (NullReferenceException)
+                        {
+                            limit = "100";
+                            limitCB.SelectedItem = "100";
+                        }
+                        nps = wf.getCat(limit, "Candidates for speedy deletion");
+                        break;
                     }
-                }
+                default:
+                    {
+                        if (category != null)
+                        {
+                            try
+                            {
+                                limit = limitCB.SelectedItem.ToString();
+                            }
+                            catch (NullReferenceException)
+                            {
+                                limit = "20";
+                                limitCB.SelectedItem = "20";
+                            }
+                            nps = wf.getCat(limit, category);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please choose a list source");
+                        }
+                        break;
+                    }
             }
-            else
-            {
-                StringCollection nps = new StringCollection();
 
-                string limit = "20";
-                try
-                {
-                    limit = limitCB.SelectedItem.ToString();
-                }
-                catch (NullReferenceException)
-                {
-                    limit = "20";
-                    limitCB.SelectedItem = "20";
-                }
-
-                nps = wf.getNPs(limit);
-                pageList.Items.Clear();
-                foreach (string p in nps) { pageList.Items.Add(p); }
-            }
+            pageList.Items.Clear();
+            foreach (string p in nps)
+                pageList.Items.Add(p);
         }
 
         private void pageList_MouseClick(object sender, MouseEventArgs e)
