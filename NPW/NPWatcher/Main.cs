@@ -167,11 +167,9 @@ namespace NPWatcher
                 case "NPRad":
                 case "NPRadOld":
                     {
-                        try
-                        {
+                        if (limitCB.SelectedItem != null)
                             limit = limitCB.SelectedItem.ToString();
-                        }
-                        catch (NullReferenceException)
+                        else
                         {
                             limit = "20";
                             limitCB.SelectedItem = "20";
@@ -182,11 +180,9 @@ namespace NPWatcher
                     }
                 case "CSDRad":
                     {
-                        try
-                        {
+                        if (limitCB.SelectedItem != null)
                             limit = limitCB.SelectedItem.ToString();
-                        }
-                        catch (NullReferenceException)
+                        else
                         {
                             limit = "100";
                             limitCB.SelectedItem = "100";
@@ -198,11 +194,9 @@ namespace NPWatcher
                     {
                         if (category != null)
                         {
-                            try
-                            {
+                            if (limitCB.SelectedItem != null)
                                 limit = limitCB.SelectedItem.ToString();
-                            }
-                            catch (NullReferenceException)
+                            else
                             {
                                 limit = "20";
                                 limitCB.SelectedItem = "20";
