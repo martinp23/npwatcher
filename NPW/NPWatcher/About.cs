@@ -22,11 +22,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NPWatcher
@@ -38,8 +33,8 @@ namespace NPWatcher
             InitializeComponent();
 
             lblNPWVersion.Text = "NPW Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            lblOSVersion.Text = "Windows version: " + Environment.OSVersion.Version.Major.ToString() + "." + Environment.OSVersion.Version.Minor.ToString();
-            lblNETVersion.Text = ".NET Version: " + Environment.Version.ToString();
+            lblOSVersion.Text = "Windows version: " + Environment.OSVersion.Version.Major + "." + Environment.OSVersion.Version.Minor;
+            lblNETVersion.Text = ".NET Version: " + Environment.Version;
         }
 
         private void linkMartinp23_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -23,7 +23,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 using System.IO;
 using System.Xml.Serialization;
@@ -44,33 +43,25 @@ namespace NPWatcher
 
         public static void SavePrefs(Settings settings, string file)
         {
-            try
+            using (FileStream fStream = new FileStream(file, FileMode.Create))
             {
-                using (FileStream fStream = new FileStream(file, FileMode.Create))
-                {
-                    XmlSerializer xs = new XmlSerializer(typeof(Settings));
-                    xs.Serialize(fStream, settings);
-                }
+                XmlSerializer xs = new XmlSerializer(typeof(Settings));
+                xs.Serialize(fStream, settings);
             }
-            catch { throw; }
         }
 
         public static Settings LoadPrefs(string file)
         {
-            if (System.IO.File.Exists(file))
+            if (File.Exists(file))
             {
-                try
+                using (FileStream fStream = new FileStream(file, FileMode.Open))
                 {
-                    using (FileStream fStream = new FileStream(file, FileMode.Open))
-                    {
-                        XmlSerializer xs = new XmlSerializer(typeof(Settings));
-                        return (Settings)xs.Deserialize(fStream);
-                    }
+                    XmlSerializer xs = new XmlSerializer(typeof(Settings));
+                    return (Settings)xs.Deserialize(fStream);
                 }
-                catch { throw; }
             }
-            else
-                return new Settings();
+            
+            return new Settings();
         }
     }
 }

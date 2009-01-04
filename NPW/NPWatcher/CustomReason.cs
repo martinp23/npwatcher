@@ -22,11 +22,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NPWatcher
@@ -43,13 +38,13 @@ namespace NPWatcher
             if (ReasonTxt.Text != null)
                 Main.dbReason = ReasonTxt.Text;
             Main.crsuc = true;
-            this.Close();
+            Close();
         }
 
         private void Cancelbtn_Click(object sender, EventArgs e)
         {
             Main.crsuc = false;
-            this.Close();
+            Close();
         }
     }
 }

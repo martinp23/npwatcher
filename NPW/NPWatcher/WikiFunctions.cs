@@ -22,14 +22,11 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.Web;
 using System.Net;
-using System.Threading;
-using System.Data;
 using System.IO;
 using System.Xml;
 
@@ -105,14 +102,13 @@ namespace NPWatcher
 
         private string GetScriptingVar(string name)
         {
-            string src = "";
             webRequest("http://en.wikipedia.org/");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
+            string src = work.ReadToEnd();
 
             try
             {
@@ -142,14 +138,13 @@ namespace NPWatcher
         public StringCollection getCat(string limit, string category)
         {
             Main.settings.pagelimit = limit;
-            string src = "";
             webRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
+            string src = work.ReadToEnd();
             src = HttpUtility.HtmlDecode(src);
 
             StringCollection a = new StringCollection();
@@ -173,7 +168,7 @@ namespace NPWatcher
             Regex nextPortionRE = new Regex("&amp;from=(.*?)\" title=\"");
             StringCollection a = new StringCollection();
             MatchCollection mcpt;
-            string src = "";
+            string src;
 
             do
             {
@@ -210,9 +205,8 @@ namespace NPWatcher
         {
             Main.settings.pagelimit = limit;
             dt = DateTime.Now.ToUniversalTime();
-            string src = "";
             StringCollection strCol = new StringCollection();
-            string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots.ToString() + "&feed=atom";
+            string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots + "&feed=atom";
 
             if (oldest)
                 tehurl += "&dir=prev";
@@ -221,7 +215,7 @@ namespace NPWatcher
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
+            string src = work.ReadToEnd();
             StringReader sr = new StringReader(src);
             XmlDocument xml = new XmlDocument();
             xml.Load(sr);
@@ -260,7 +254,7 @@ namespace NPWatcher
             foreach (XmlNode n in xml.GetElementsByTagName("rc"))
             {
                 if (n.Attributes.GetNamedItem("title").InnerText == HttpUtility.UrlDecode(page))
-                { rcid = n.Attributes.GetNamedItem("rcid").InnerText.ToString(); }
+                { rcid = n.Attributes.GetNamedItem("rcid").InnerText; }
             }
 
             return rcid;
@@ -278,7 +272,7 @@ namespace NPWatcher
             string time = "";
             foreach (XmlNode n in xml.GetElementsByTagName("rev"))
             {
-                time = n.Attributes.GetNamedItem("timestamp").InnerText.ToString();
+                time = n.Attributes.GetNamedItem("timestamp").InnerText;
             }
             return time;
         }
@@ -308,7 +302,6 @@ namespace NPWatcher
 
         public string getWikiText(string page)
         {
-            string src = "";
             webRequest(wikiurl + page + "&action=raw&ctype=text/plain&dontcountme=s");
             try
             {
@@ -316,8 +309,7 @@ namespace NPWatcher
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
-                src = work.ReadToEnd();
-                return src;
+                return work.ReadToEnd();
             }
             catch
             {
@@ -327,14 +319,13 @@ namespace NPWatcher
 
         public string GetCreator(string page)
         {
-            string src = "";
             webRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = HttpUtility.HtmlDecode(work.ReadToEnd());
+            string src = HttpUtility.HtmlDecode(work.ReadToEnd());
 
             Regex getuser = new Regex("user=\"(.+?)\"");
             Match m2 = getuser.Match(src);
@@ -356,14 +347,13 @@ namespace NPWatcher
         {
             try
             {
-                string src = "";
                 webRequest(wikiurl + page + "&action=edit");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
-                src = work.ReadToEnd();
+                string src = work.ReadToEnd();
 
                 Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
 
@@ -422,14 +412,13 @@ namespace NPWatcher
         {
             try
             {
-                string src = "";
                 webRequest(wikiurl + page + "&action=edit");
 
                 HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
-                src = work.ReadToEnd();
+                string src = work.ReadToEnd();
 
                 Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
 
@@ -453,10 +442,7 @@ namespace NPWatcher
                 webReq.CookieContainer = cc;
                 webReq.Credentials = CredentialCache.DefaultCredentials;
                 webReq.Proxy = WebRequest.GetSystemWebProxy();
-                if (watchthis)
-                { watch = "checked"; }
-                else
-                { watch = "off"; }
+                watch = watchthis ? "checked" : "off";
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
                     "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
@@ -482,14 +468,13 @@ namespace NPWatcher
 
         public void Deletepg(string page, string editsummary)
         {
-            string src = "";
             webRequest(wikiurl + page + "&action=edit");
 
             HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
-            src = HttpUtility.HtmlDecode(work.ReadToEnd());
+            string src = HttpUtility.HtmlDecode(work.ReadToEnd());
 
             Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
 
@@ -536,7 +521,7 @@ namespace NPWatcher
         {
             Regex LoginRegex = new Regex("var wgUserName = (.*?);", RegexOptions.Compiled);
 
-            string src = "";
+            string src;
             webRequest(wikiurl + "Wikipedia:Sandbox&action=edit");
             try
             {
@@ -585,7 +570,7 @@ namespace NPWatcher
         }
     }
 
-    [global::System.Serializable]
+    [Serializable]
     public class WikiBotException : Exception
     {
         // For guidelines regarding the creation of new exception types, see

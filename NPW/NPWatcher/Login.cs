@@ -22,11 +22,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NPWatcher
@@ -43,13 +38,13 @@ namespace NPWatcher
             Main.username = loginTxt.Text;
             Main.password = pwdTxt.Text;
             Main.settings.username = loginTxt.Text;
-            this.Close();
+            Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
             Main.dialogcancel = true;
-            this.Close();
+            Close();
         }
 
         private void LogOn_Load(object sender, EventArgs e)

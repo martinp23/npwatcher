@@ -22,11 +22,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NPWatcher
@@ -40,7 +35,7 @@ namespace NPWatcher
         public ListSource()
         {
             InitializeComponent();
-            CatTxt.Click += new EventHandler(CatTxt_Click);
+            CatTxt.Click += CatTxt_Click;
         }
 
         private void CatTxt_Click(object sender, EventArgs e)
@@ -61,7 +56,7 @@ namespace NPWatcher
 
             hidebot = chkHideBot.Checked;
             hidepatrolled = chkHidePatrolled.Checked;
-            this.Close();
+            Close();
         }
 
         private void ListSource_Load(object sender, EventArgs e)

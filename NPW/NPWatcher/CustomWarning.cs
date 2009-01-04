@@ -22,11 +22,6 @@ along with NPWatcher.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace NPWatcher
@@ -47,9 +42,9 @@ namespace NPWatcher
                     if (!ReasonTxt.Text.Contains("|"))
                     {
                         Main.cwr = ReasonTxt.Text;
-                        this.DialogResult = DialogResult.OK;
+                        DialogResult = DialogResult.OK;
                         
-                        this.Hide();
+                        Hide();
                     }
                 }
                 else
@@ -61,8 +56,8 @@ namespace NPWatcher
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Hide();
+            DialogResult = DialogResult.Cancel;
+            Hide();
         }
     }
 }
