@@ -53,7 +53,7 @@ namespace NPWatcher
         public bool login(string Username, string Userpass)
         {
             //get list of admins first!
-            getusergroup("sysop");
+            adminslist = getusergroup("sysop");
 
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
@@ -127,7 +127,7 @@ namespace NPWatcher
             catch { return ""; }
         }
 
-        private string StringBetween(string source, string start, string end)
+        private static string StringBetween(string source, string start, string end)
         {
             try { return source.Substring(source.IndexOf(start), source.IndexOf(end) - source.IndexOf(start)); }
             catch { return ""; }
@@ -277,27 +277,45 @@ namespace NPWatcher
             return time;
         }
 
-        public void getusergroup(string group)
+        public StringCollection getusergroup(string group)
         {
-            //TODO:API
-            string src = "";
-            webRequest(wikiurl + "Special:Listusers&group=" + group + "&limit=5000");
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-            Stream srcstrm = webResp1.GetResponseStream();
-            StreamReader work = new StreamReader(srcstrm);
-            src = work.ReadToEnd();
-            // src = HttpUtility.HtmlDecode(src);
-            src = src.Substring(src.IndexOf("<!-- start content -->") + 22);
-            src = src.Substring(0, src.IndexOf("<!-- end content -->"));
-            src = "<div>" + src + "</div>";
-            StringReader sr = new StringReader(src.Replace("&nbsp;", ""));
-            XmlDocument xml = new XmlDocument();
-            xml.Load(sr);
+            string postfix = "";
+            StringCollection ret = new StringCollection();
 
-            foreach (XmlNode n in xml.GetElementsByTagName("li"))
+            do
             {
-                adminslist.Add(n.FirstChild.InnerText);
-            }
+                webRequest(apiurl + "?action=query&list=allusers&augroup=" + group + "&aulimit=max&format=xml" + postfix);
+                postfix = "";
+                HttpWebResponse webResp1 = (HttpWebResponse) webReq.GetResponse();
+                Stream srcstrm = webResp1.GetResponseStream();
+
+                XmlTextReader xml = new XmlTextReader(new StringReader(new StreamReader(srcstrm).ReadToEnd()));
+                xml.MoveToContent();
+
+                while (xml.Read())
+                {
+                    if (xml.Name == "query-continue")
+                    {
+                        XmlReader r = xml.ReadSubtree();
+
+                        r.Read();
+
+                        while (r.Read())
+                        {
+                            if (!r.IsStartElement()) continue;
+                            r.MoveToFirstAttribute();
+                            postfix += "&aufrom=" + HttpUtility.UrlEncode(r.Value);
+                        }
+                    }
+                    else if (xml.Name == "u" && xml.IsStartElement())
+                    {
+                        ret.Add(xml.GetAttribute("name"));
+                    }
+                }
+
+            } while (!string.IsNullOrEmpty(postfix));
+
+            return ret;
         }
 
         public string getWikiText(string page)

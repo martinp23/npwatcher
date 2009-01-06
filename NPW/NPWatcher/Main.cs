@@ -85,7 +85,7 @@ namespace NPWatcher
                 {
                     if (!dialogcancel)
                     {
-                        this.Cursor = Cursors.WaitCursor;
+                        Cursor = Cursors.WaitCursor;
                         success = wf.login(username, password);
                         if (!success)
                         {
@@ -984,7 +984,7 @@ namespace NPWatcher
                         number += 1;
                         if (number == 2) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)"); }
                         else if (number == 3) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)"); }
-                        else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number.ToString() + "th nomination)"); }
+                        else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number + "th nomination)"); }
                     }
                     string afdnom = "{{subst:afd2|pg=" + page2 + "|cat=" + afdCat + "|text=" + afdReason + "}} ~~~~";
                     string afdnompg = "";
