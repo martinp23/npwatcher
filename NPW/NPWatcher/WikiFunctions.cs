@@ -40,7 +40,6 @@ namespace NPWatcher
         private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
-        private DateTime dt;
         private const string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
         private const string apiurl = "http://en.wikipedia.org/w/api.php";
         private const string queryurl = "http://en.wikipedia.org/w/query.php";
@@ -207,7 +206,6 @@ namespace NPWatcher
         public StringCollection getNPs(string limit, bool oldest)
         {
             Main.settings.pagelimit = limit;
-            dt = DateTime.Now.ToUniversalTime();
             StringCollection strCol = new StringCollection();
             string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled + "&hidebots=" + Main.settings.hideBots + "&feed=atom";
 
