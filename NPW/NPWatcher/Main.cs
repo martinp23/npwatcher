@@ -766,9 +766,18 @@ namespace NPWatcher
                     while (!string.IsNullOrEmpty(txt))
                     {
                         number += 1;
-                        if (number == 2) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)"); }
-                        else if (number == 3) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)"); }
-                        else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number + "th nomination)"); }
+                        switch (number)
+                        {
+                            case 2:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)");
+                                break;
+                            case 3:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)");
+                                break;
+                            default:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number + "th nomination)");
+                                break;
+                        }
                     }
 
                     string pgtxt = wf.getWikiText(page2);
@@ -846,12 +855,12 @@ namespace NPWatcher
         #region Maintainance tags
         //Doesn't use Mark(..)
 
-        private void Mark(string template)
-        {
-            string txt = wf.getWikiText(page2);
-            string newtxt = template + "\r\n" + txt;
-            Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
-        }
+        //private void Mark(string template)
+        //{
+        //    string txt = wf.getWikiText(page2);
+        //    string newtxt = template + "\r\n" + txt;
+        //    Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");
+        //}
 
         #endregion
 
@@ -889,8 +898,7 @@ namespace NPWatcher
                     if (wikitext.Contains("<!-- Do not use the \"dated prod\" tem")) { endindex = wikitext.IndexOf("<!-- Do not use the \"dated prod\" tem"); }
                     else
                     {
-                        if (wikitext.Contains("{{prod2a|")) { endindex = wikitext.IndexOf("{{prod2a|"); }
-                        else { endindex = wikitext.IndexOf("{{prod2|"); }
+                        endindex = wikitext.Contains("{{prod2a|") ? wikitext.IndexOf("{{prod2a|") : wikitext.IndexOf("{{prod2|");
                     }
                     string prod = wikitext.Substring(startindex, endindex - startindex);
                     startindex = prod.IndexOf("{{{concern");
@@ -982,9 +990,18 @@ namespace NPWatcher
                     while (!string.IsNullOrEmpty(txt))
                     {
                         number += 1;
-                        if (number == 2) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)"); }
-                        else if (number == 3) { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)"); }
-                        else { txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number + "th nomination)"); }
+                        switch (number)
+                        {
+                            case 2:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (2nd nomination)");
+                                break;
+                            case 3:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (3rd nomination)");
+                                break;
+                            default:
+                                txt = wf.getWikiText("Wikipedia:Articles for deletion/" + page2 + " (" + number + "th nomination)");
+                                break;
+                        }
                     }
                     string afdnom = "{{subst:afd2|pg=" + page2 + "|cat=" + afdCat + "|text=" + afdReason + "}} ~~~~";
                     string afdnompg = "";
@@ -1064,8 +1081,7 @@ namespace NPWatcher
 
             if (doprod)
             {
-                string reason = "";
-                reason = prodreasonstr;
+                string reason = prodreasonstr;
                 prodreasonstr = "";
                 if (string.IsNullOrEmpty(reason))
                 {
@@ -1088,7 +1104,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I1|CSD I1]] - image is redundant";
+                const string rat = "Per [[WP:CSD#I1|CSD I1]] - image is redundant";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1105,7 +1121,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I2|CSD I2]] - image is corrupt/empty";
+                const string rat = "Per [[WP:CSD#I2|CSD I2]] - image is corrupt/empty";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1122,7 +1138,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I3|CSD I3]] - image has an invalid license";
+                const string rat = "Per [[WP:CSD#I3|CSD I3]] - image has an invalid license";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 I3Warn(page2);
                 Delete(page2, rat);
@@ -1149,7 +1165,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I4|CSD I4]] - image has no license";
+                const string rat = "Per [[WP:CSD#I4|CSD I4]] - image has no license";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1166,7 +1182,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I5|CSD I5]] - image is unfree and is unused";
+                const string rat = "Per [[WP:CSD#I5|CSD I5]] - image is unfree and is unused";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1183,7 +1199,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I6|CSD I6]] - image has no fair use rationale";
+                const string rat = "Per [[WP:CSD#I6|CSD I6]] - image has no fair use rationale";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1200,7 +1216,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I7|CSD I7]] - image has an invalid fair use claim";
+                const string rat = "Per [[WP:CSD#I7|CSD I7]] - image has an invalid fair use claim";
                 if (orphanCB.Checked) { OrphanImage(page2, rat); }
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1217,7 +1233,7 @@ namespace NPWatcher
             Greyout();
             if (page2.Contains("Image:"))
             {
-                string rat = "Per [[WP:CSD#I8|CSD I8]] - image exists on commons";
+                const string rat = "Per [[WP:CSD#I8|CSD I8]] - image exists on commons";
 
                 Delete(page2, rat);
                 webBrowser1.Refresh();
@@ -1260,8 +1276,7 @@ namespace NPWatcher
 
         public void OrphanImage(string image, string reason)
         {
-            StringCollection imagelinks = new StringCollection();
-            imagelinks = wf.getImgLinks(page2);
+            StringCollection imagelinks = wf.getImgLinks(page2);
 
             foreach (string p in imagelinks)
             {
@@ -1498,7 +1513,7 @@ namespace NPWatcher
                     }
                     else
                     {
-                        string template = "{{stub}}";
+                        const string template = "{{stub}}";
                         string txt = wf.getWikiText(page2);
                         string newtxt = txt + "\r\n" + template;
                         Save(page2, newtxt, "Marking page with " + template + " using [[WP:NPW|NPWatcher]]");

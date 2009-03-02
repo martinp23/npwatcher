@@ -41,9 +41,9 @@ namespace NPWatcher
         public static string watch = "0";
         //internal static bool asAdmin;
         private DateTime dt;
-        private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
-        private static string apiurl = "http://en.wikipedia.org/w/api.php";
-        private static string queryurl = "http://en.wikipedia.org/w/query.php";
+        private const string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
+        private const string apiurl = "http://en.wikipedia.org/w/api.php";
+        private const string queryurl = "http://en.wikipedia.org/w/query.php";
 
         public string Url
         {
@@ -62,7 +62,7 @@ namespace NPWatcher
             webReq.Expect = "";
 
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
-                new string[] { Username, Userpass });
+                new [] { Username, Userpass });
             webReq.Method = "POST";
             webReq.ContentType = "application/x-www-form-urlencoded";
             webReq.UserAgent = "NPWatcher/1.0";
@@ -105,38 +105,38 @@ namespace NPWatcher
         //    return (Groups.Contains("sysop") || Groups.Contains("staff"));
         //}
 
-        private string GetScriptingVar(string name)
-        {
-            webRequest("http://en.wikipedia.org/");
+        //private string GetScriptingVar(string name)
+        //{
+        //    webRequest("http://en.wikipedia.org/");
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+        //    HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
 
-            Stream srcstrm = webResp1.GetResponseStream();
-            StreamReader work = new StreamReader(srcstrm);
-            string src = work.ReadToEnd();
+        //    Stream srcstrm = webResp1.GetResponseStream();
+        //    StreamReader work = new StreamReader(srcstrm);
+        //    string src = work.ReadToEnd();
 
-            try
-            {
-                Regex r = new Regex("var " + name + " = (.*?);\n");
-                src = StringBetween(src, "<head>", "</head>");
-                Match m = r.Match(src);
+        //    try
+        //    {
+        //        Regex r = new Regex("var " + name + " = (.*?);\n");
+        //        src = StringBetween(src, "<head>", "</head>");
+        //        Match m = r.Match(src);
 
-                if (!m.Groups[1].Success)
-                    return "";
+        //        if (!m.Groups[1].Success)
+        //            return "";
 
-                string s = m.Groups[1].Value.Trim('"');
-                s = s.Replace("\\\"", "\"").Replace("\\'", "'");
+        //        string s = m.Groups[1].Value.Trim('"');
+        //        s = s.Replace("\\\"", "\"").Replace("\\'", "'");
 
-                return s;
-            }
-            catch { return ""; }
-        }
+        //        return s;
+        //    }
+        //    catch { return ""; }
+        //}
 
-        private static string StringBetween(string source, string start, string end)
-        {
-            try { return source.Substring(source.IndexOf(start), source.IndexOf(end) - source.IndexOf(start)); }
-            catch { return ""; }
-        }
+        //private static string StringBetween(string source, string start, string end)
+        //{
+        //    try { return source.Substring(source.IndexOf(start), source.IndexOf(end) - source.IndexOf(start)); }
+        //    catch { return ""; }
+        //}
 
         ///Get newpages from 
         ///http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=20&offset=0&feed=atom
@@ -154,8 +154,7 @@ namespace NPWatcher
 
             StringCollection a = new StringCollection();
             Regex ptitle = new Regex("<title>([^<]*?)</title>");
-            MatchCollection mcpt;
-            mcpt = ptitle.Matches(src);
+            MatchCollection mcpt = ptitle.Matches(src);
             foreach (Match m in mcpt)
             {
                 string ms = m.Value;
@@ -172,7 +171,6 @@ namespace NPWatcher
         {
             Regex nextPortionRE = new Regex("&amp;from=(.*?)\" title=\"");
             StringCollection a = new StringCollection();
-            MatchCollection mcpt;
             string src;
 
             do
@@ -188,7 +186,7 @@ namespace NPWatcher
                 Regex ptitle = new Regex("<il n?s?=?\"?[0|1|2|3|4|5|6|7|8|9]*?\"? ?id=\"[0|1|2|3|4|5|6|7|8|9]*\">([^<]*?)</il>");
 
 
-                mcpt = ptitle.Matches(src);
+                MatchCollection mcpt = ptitle.Matches(src);
                 foreach (Match m in mcpt)
                 {
                     string ms = m.Value;
@@ -211,7 +209,7 @@ namespace NPWatcher
             Main.settings.pagelimit = limit;
             dt = DateTime.Now.ToUniversalTime();
             StringCollection strCol = new StringCollection();
-            string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled.ToString() + "&hidebots=" + Main.settings.hideBots + "&feed=atom";
+            string tehurl = wikiurl + "Special:Newpages&namespace=0&limit=" + limit + "&hidepatrolled=" + Main.settings.hidePatrolled + "&hidebots=" + Main.settings.hideBots + "&feed=atom";
 
             if (oldest)
                 tehurl += "&dir=prev";
@@ -410,7 +408,7 @@ namespace NPWatcher
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=0" +
                     "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
-                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                    new [] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
                 HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
 
                 byte[] postBytes = Encoding.UTF8.GetBytes(postData);
@@ -469,7 +467,7 @@ namespace NPWatcher
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
                     "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
-                    new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                    new [] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
                 HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
 
                 byte[] postBytes = Encoding.UTF8.GetBytes(postData);
@@ -525,7 +523,7 @@ namespace NPWatcher
 
             string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
                 "&wpReason={2}&wpConfirmB=Delete%20Page&wpEditToken={3}",
-                new string[] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
+                new [] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
                  HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken) });
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
