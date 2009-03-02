@@ -40,7 +40,7 @@ namespace NPWatcher
         private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
         //internal static bool asAdmin;
-        private DateTime dt = new DateTime();
+        private DateTime dt;
         private static string wikiurl = "http://en.wikipedia.org/w/index.php?title=";
         private static string apiurl = "http://en.wikipedia.org/w/api.php";
         private static string queryurl = "http://en.wikipedia.org/w/query.php";
@@ -55,7 +55,12 @@ namespace NPWatcher
             //get list of admins first!
             adminslist = getusergroup("sysop");
 
+            ServicePointManager.Expect100Continue = false;
             webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
+
+            webReq.ServicePoint.Expect100Continue = false;
+            webReq.Expect = "";
+
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
                 new string[] { Username, Userpass });
             webReq.Method = "POST";
