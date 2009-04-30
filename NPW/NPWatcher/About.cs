@@ -77,5 +77,11 @@ namespace NPWatcher
         {
             Close();
         }
+
+        private void linkManual_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkManual.LinkVisited = true;
+            WikiFunctions.LoadLink("User:Martinp23/NPWatcher/Manual");
+        }
     }
 }

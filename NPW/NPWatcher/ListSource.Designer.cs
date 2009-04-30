@@ -123,8 +123,8 @@ namespace NPWatcher
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(278, 48);
             this.textBox2.TabIndex = 6;
-            this.textBox2.Text = "Choose from below where you would like to get the list of pages from.  Custom cat" +
-                "egory can be used for image deletion and prod sorting.";
+            this.textBox2.Text = "Choose from below where you would like to get the list of pages from. Custom cate" +
+                "gory can be used for image deletion and prod sorting.";
             // 
             // chkHidePatrolled
             // 

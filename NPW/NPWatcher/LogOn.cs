@@ -35,6 +35,12 @@ namespace NPWatcher
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(pwdTxt.Text))
+            {
+                pwdTxt.Focus();
+                return;
+            }
+
             Main.username = loginTxt.Text;
             Main.password = pwdTxt.Text;
             Main.settings.username = loginTxt.Text;

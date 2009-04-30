@@ -61,7 +61,7 @@ namespace NPWatcher
             // 
             // loginBtn
             // 
-            this.loginBtn.Location = new System.Drawing.Point(186, 84);
+            this.loginBtn.Location = new System.Drawing.Point(258, 73);
             this.loginBtn.Name = "loginBtn";
             this.loginBtn.Size = new System.Drawing.Size(75, 23);
             this.loginBtn.TabIndex = 3;
@@ -106,7 +106,7 @@ namespace NPWatcher
             // cancelBtn
             // 
             this.cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBtn.Location = new System.Drawing.Point(267, 84);
+            this.cancelBtn.Location = new System.Drawing.Point(177, 73);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(75, 23);
             this.cancelBtn.TabIndex = 4;
@@ -120,7 +120,7 @@ namespace NPWatcher
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(349, 112);
+            this.ClientSize = new System.Drawing.Size(345, 108);
             this.ControlBox = false;
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.loginTxt);

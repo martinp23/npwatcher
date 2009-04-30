@@ -140,11 +140,11 @@ namespace NPWatcher
 
         private void getlistBtn_Click(object sender, EventArgs e)
         {
-            populatelist(true);
+            PopulateList(true);
             settimer();
         }
 
-        private void populatelist(bool frombtn)
+        private void PopulateList(bool frombtn)
         {
             StringCollection nps = new StringCollection();
 
@@ -1751,7 +1751,7 @@ namespace NPWatcher
         private void timerRefresh_Tick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            populatelist(false);
+            PopulateList(false);
             Cursor = Cursors.Default;
         }
 
@@ -1777,6 +1777,11 @@ namespace NPWatcher
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new About().ShowDialog();
+        }
+
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            WikiFunctions.LoadLink("User:Martinp23/NPWatcher/Manual");
         }
     }
 }

@@ -65,6 +65,7 @@ namespace NPWatcher
             this.linkNPW = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.linkBugsFeatures = new System.Windows.Forms.LinkLabel();
+            this.linkManual = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // btnOk
@@ -131,7 +132,7 @@ namespace NPWatcher
             this.linkReedy.BackColor = System.Drawing.Color.Transparent;
             this.linkReedy.Location = new System.Drawing.Point(97, 121);
             this.linkReedy.Name = "linkReedy";
-            this.linkReedy.Size = new System.Drawing.Size(84, 13);
+            this.linkReedy.Size = new System.Drawing.Size(63, 13);
             this.linkReedy.TabIndex = 48;
             this.linkReedy.TabStop = true;
             this.linkReedy.Text = "User:Reedy";
@@ -201,12 +202,24 @@ namespace NPWatcher
             this.linkBugsFeatures.Text = "Bugs/Feature Requests";
             this.linkBugsFeatures.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkBugsFeatures_LinkClicked);
             // 
+            // linkManual
+            // 
+            this.linkManual.AutoSize = true;
+            this.linkManual.Location = new System.Drawing.Point(207, 215);
+            this.linkManual.Name = "linkManual";
+            this.linkManual.Size = new System.Drawing.Size(67, 13);
+            this.linkManual.TabIndex = 56;
+            this.linkManual.TabStop = true;
+            this.linkManual.Text = "User Manual";
+            this.linkManual.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkManual_LinkClicked);
+            // 
             // About
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 278);
+            this.Controls.Add(this.linkManual);
             this.Controls.Add(this.linkBugsFeatures);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkNPW);
@@ -247,5 +260,6 @@ namespace NPWatcher
         private System.Windows.Forms.LinkLabel linkNPW;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkBugsFeatures;
+        private System.Windows.Forms.LinkLabel linkManual;
     }
 }
