@@ -31,6 +31,7 @@ namespace NPWatcher
         internal string category;
         internal bool hidebot;
         internal bool hidepatrolled;
+        internal bool hideadmin;
 
         public ListSource()
         {
@@ -56,14 +57,14 @@ namespace NPWatcher
 
             hidebot = chkHideBot.Checked;
             hidepatrolled = chkHidePatrolled.Checked;
+            hideadmin = chkHideAdmins.Checked;
             Close();
         }
 
         private void ListSource_Load(object sender, EventArgs e)
         {
             CSDRad.Enabled = CustomRad.Enabled = CatTxt.Enabled = Main.asAdmin;
-           // chkHideBot.Checked = Main.settings.hideBots;
-           // chkHidePatrolled.Checked = Main.settings.hidePatrolled;
+            loadBtn.Focus();
         }
     }
 }

@@ -60,6 +60,7 @@ namespace NPWatcher
             this.chkHidePatrolled = new System.Windows.Forms.CheckBox();
             this.chkHideBot = new System.Windows.Forms.CheckBox();
             this.NPRadOld = new System.Windows.Forms.RadioButton();
+            this.chkHideAdmins = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // NPRad
@@ -161,12 +162,25 @@ namespace NPWatcher
             this.NPRadOld.Text = "New pages (old)";
             this.NPRadOld.UseVisualStyleBackColor = true;
             // 
+            // chkHideAdmins
+            // 
+            this.chkHideAdmins.AutoSize = true;
+            this.chkHideAdmins.Checked = true;
+            this.chkHideAdmins.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHideAdmins.Location = new System.Drawing.Point(135, 105);
+            this.chkHideAdmins.Name = "chkHideAdmins";
+            this.chkHideAdmins.Size = new System.Drawing.Size(125, 17);
+            this.chkHideAdmins.TabIndex = 10;
+            this.chkHideAdmins.Text = "Hide admin creations";
+            this.chkHideAdmins.UseVisualStyleBackColor = true;
+            // 
             // ListSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 186);
             this.ControlBox = false;
+            this.Controls.Add(this.chkHideAdmins);
             this.Controls.Add(this.NPRadOld);
             this.Controls.Add(this.chkHideBot);
             this.Controls.Add(this.chkHidePatrolled);
@@ -197,5 +211,6 @@ namespace NPWatcher
         private System.Windows.Forms.CheckBox chkHidePatrolled;
         private System.Windows.Forms.CheckBox chkHideBot;
         private System.Windows.Forms.RadioButton NPRadOld;
+        private System.Windows.Forms.CheckBox chkHideAdmins;
     }
 }

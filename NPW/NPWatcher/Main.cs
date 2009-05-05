@@ -154,6 +154,7 @@ namespace NPWatcher
             string category = listsource.category;
             settings.hidePatrolled = listsource.hidepatrolled;
             settings.hideBots = listsource.hidebot;
+            settings.hideAdmins = listsource.hideadmin;
 
             switch (category)
             {

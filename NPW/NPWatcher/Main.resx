@@ -123,9 +123,6 @@
   <metadata name="limittip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="limittip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="dbattackBtn.ToolTip" xml:space="preserve">
     <value>Pages that serve no purpose but to disparage their subject or some other entity (e.g., "John Q. Doe is an imbecile"). These are sometimes called "attack pages". This includes a biography of a living person that is entirely negative in tone and unsourced, where there is no neutral version in the history to revert to. Administrators deleting such pages should not quote the content of the page in the deletion summary, and if the page is an article about a living person it should not be restored or recreated by any editor until it meets biographical article standards.</value>
   </data>
