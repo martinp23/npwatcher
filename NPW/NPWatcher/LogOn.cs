@@ -56,6 +56,9 @@ namespace NPWatcher
         private void LogOn_Load(object sender, EventArgs e)
         {
             loginTxt.Text = Main.settings.username;
+
+            if (!string.IsNullOrEmpty(loginTxt.Text))
+                pwdTxt.Focus();
         }
     }
 }
