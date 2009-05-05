@@ -34,8 +34,8 @@ namespace NPWatcher
 {
     class WikiFunctions
     {
-        private HttpWebRequest webReq;
-        private CookieCollection cookies;
+        private HttpWebRequest WebReq;
+        private CookieCollection Cookies;
         internal StringCollection adminslist = new StringCollection();
         private CookieContainer cc = new CookieContainer();
         public static string watch = "0";
@@ -49,38 +49,38 @@ namespace NPWatcher
             get { return wikiurl; }
         }
 
-        public bool login(string Username, string Userpass)
+        public bool Login(string username, string userpass)
         {
             //get list of admins first!
-            adminslist = getusergroup("sysop");
+            adminslist = GetUserGroup("sysop");
 
             ServicePointManager.Expect100Continue = false;
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=login");
+            WebReq = (HttpWebRequest)System.Net.WebRequest.Create(wikiurl + "Special:Userlogin&action=submitlogin&type=Login");
 
-            webReq.ServicePoint.Expect100Continue = false;
-            webReq.Expect = "";
+            WebReq.ServicePoint.Expect100Continue = false;
+            WebReq.Expect = "";
 
             string postData = String.Format("wpName=+{0}&wpPassword={1}&wpRemember=1&wpLoginattempt=Log+in",
-                new [] { Username, Userpass });
-            webReq.Method = "POST";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.Proxy = WebRequest.GetSystemWebProxy();
-            webReq.CookieContainer = new CookieContainer();
-            webReq.AllowAutoRedirect = false;
+                new [] { username, userpass });
+            WebReq.Method = "POST";
+            WebReq.ContentType = "application/x-www-form-urlencoded";
+            WebReq.UserAgent = "NPWatcher/1.0";
+            WebReq.Proxy = System.Net.WebRequest.GetSystemWebProxy();
+            WebReq.CookieContainer = new CookieContainer();
+            WebReq.AllowAutoRedirect = false;
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
-            webReq.ContentLength = postBytes.Length;
-            Stream reqStrm = webReq.GetRequestStream();
+            WebReq.ContentLength = postBytes.Length;
+            Stream reqStrm = WebReq.GetRequestStream();
             reqStrm.Write(postBytes, 0, postBytes.Length);
             reqStrm.Close();
 
-            HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
-            cookies = webResp.Cookies;
+            HttpWebResponse webResp = (HttpWebResponse)WebReq.GetResponse();
+            Cookies = webResp.Cookies;
             webResp.Close();
 
-            webRequest(apiurl + "?action=query&list=watchlist&wllimit=3&format=xml");
+            WebRequest(apiurl + "?action=query&list=watchlist&wllimit=3&format=xml");
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
 
@@ -106,9 +106,9 @@ namespace NPWatcher
 
         //private string GetScriptingVar(string name)
         //{
-        //    webRequest("http://en.wikipedia.org/");
+        //    WebRequest("http://en.wikipedia.org/");
 
-        //    HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+        //    HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
         //    Stream srcstrm = webResp1.GetResponseStream();
         //    StreamReader work = new StreamReader(srcstrm);
@@ -139,12 +139,12 @@ namespace NPWatcher
 
         ///Get newpages from 
         ///http://en.wikipedia.org/w/index.php?title=Special:Newpages&namespace=0&limit=20&offset=0&feed=atom
-        public StringCollection getCat(string limit, string category)
+        public StringCollection GetCat(string limit, string category)
         {
             Main.settings.pagelimit = limit;
-            webRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
+            WebRequest(queryurl + "?what=category&cptitle=" + category + "&cplimit=" + limit + "&format=xml");
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -166,26 +166,25 @@ namespace NPWatcher
             return a;
         }
 
-        public StringCollection getImgLinks(string image)
+        readonly Regex NextPortion = new Regex("&amp;from=(.*?)\" title=\"", RegexOptions.Compiled);
+        readonly Regex Ptitle = new Regex("<il n?s?=?\"?[0|1|2|3|4|5|6|7|8|9]*?\"? ?id=\"[0|1|2|3|4|5|6|7|8|9]*\">([^<]*?)</il>", RegexOptions.Compiled);
+
+        public StringCollection GetImgLinks(string image)
         {
-            Regex nextPortionRE = new Regex("&amp;from=(.*?)\" title=\"");
             StringCollection a = new StringCollection();
             string src;
 
             do
             {
-                webRequest(queryurl + "?what=imagelinks&titles=" + image + "&format=xml");
+                WebRequest(queryurl + "?what=imagelinks&titles=" + image + "&format=xml");
 
-                HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+                HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 src = work.ReadToEnd();
 
-                Regex ptitle = new Regex("<il n?s?=?\"?[0|1|2|3|4|5|6|7|8|9]*?\"? ?id=\"[0|1|2|3|4|5|6|7|8|9]*\">([^<]*?)</il>");
-
-
-                MatchCollection mcpt = ptitle.Matches(src);
+                MatchCollection mcpt = Ptitle.Matches(src);
                 foreach (Match m in mcpt)
                 {
                     string ms = m.Value;
@@ -196,14 +195,14 @@ namespace NPWatcher
 
                 }
             }
-            while (nextPortionRE.IsMatch(src));
+            while (NextPortion.IsMatch(src));
 
             a.Remove(image);
 
             return a;
         }
 
-        public StringCollection getNPs(string limit, bool oldest)
+        public StringCollection GetNPs(string limit, bool oldest)
         {
             Main.settings.pagelimit = limit;
             StringCollection strCol = new StringCollection();
@@ -212,8 +211,8 @@ namespace NPWatcher
             if (oldest)
                 tehurl += "&dir=prev";
 
-            webRequest(tehurl);
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            WebRequest(tehurl);
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             string src = work.ReadToEnd();
@@ -236,12 +235,12 @@ namespace NPWatcher
             return strCol;
         }
 
-        public string getrcid(string page)
+        public string Getrcid(string page)
         {
-            string timestamp = getCreationTime(page);
+            string timestamp = GetCreationTime(page);
             //string t = dt.ToString("yyyyMMddhhmm");
-            webRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcprop=title|ids&rclimit=5&rcstart=" + timestamp + "&format=xml");
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            WebRequest(apiurl + "?action=query&list=recentchanges&rctype=new&rcprop=title|ids&rclimit=5&rcstart=" + timestamp + "&format=xml");
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             //src = HttpUtility.HtmlDecode(work.ReadToEnd());
@@ -261,10 +260,10 @@ namespace NPWatcher
             return rcid;
         }
 
-        private string getCreationTime(string page)
+        private string GetCreationTime(string page)
         {
-            webRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvdir=newer&rvlimit=1&rvprop=timestamp&format=xml");
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            WebRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvdir=newer&rvlimit=1&rvprop=timestamp&format=xml");
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             StringReader sr = new StringReader(work.ReadToEnd());
@@ -278,16 +277,16 @@ namespace NPWatcher
             return time;
         }
 
-        public StringCollection getusergroup(string group)
+        public StringCollection GetUserGroup(string group)
         {
             string postfix = "";
             StringCollection ret = new StringCollection();
 
             do
             {
-                webRequest(apiurl + "?action=query&list=allusers&augroup=" + group + "&aulimit=max&format=xml" + postfix);
+                WebRequest(apiurl + "?action=query&list=allusers&augroup=" + group + "&aulimit=max&format=xml" + postfix);
                 postfix = "";
-                HttpWebResponse webResp1 = (HttpWebResponse) webReq.GetResponse();
+                HttpWebResponse webResp1 = (HttpWebResponse) WebReq.GetResponse();
                 Stream srcstrm = webResp1.GetResponseStream();
 
                 XmlTextReader xml = new XmlTextReader(new StringReader(new StreamReader(srcstrm).ReadToEnd()));
@@ -319,12 +318,12 @@ namespace NPWatcher
             return ret;
         }
 
-        public string getWikiText(string page)
+        public string GetWikiText(string page)
         {
-            webRequest(wikiurl + page + "&action=raw&ctype=text/plain&dontcountme=s");
+            WebRequest(wikiurl + page + "&action=raw&ctype=text/plain&dontcountme=s");
             try
             {
-                HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+                HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
@@ -338,9 +337,9 @@ namespace NPWatcher
 
         public string GetCreator(string page)
         {
-            webRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
+            WebRequest(apiurl + "?action=query&prop=revisions&titles=" + page + "&rvlimit=5&rvprop=user&rvlimit=1&rvdir=newer&format=xml");
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
@@ -364,103 +363,44 @@ namespace NPWatcher
 
         public void Save(string page, string newtxt, string editsummary)
         {
-            try
-            {
-                webRequest(wikiurl + page + "&action=edit");
-
-                HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
-
-                Stream srcstrm = webResp1.GetResponseStream();
-                StreamReader work = new StreamReader(srcstrm);
-                string src = work.ReadToEnd();
-
-                Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
-
-                Match m = editSessionTokenRE1.Match(src);
-                string editToken = m.Value;
-                editToken = editToken.Substring(7);
-                editToken = editToken.Substring(0, editToken.Length - 20);
-                Regex editSessionTimeRE = new Regex("value=\"([^\"]*?)\" name=\"wpEdittime\"");
-                Match m1 = editSessionTimeRE.Match(src);
-                string editTime = m1.Value;
-                editTime = editTime.Substring(7);
-                editTime = editTime.Substring(0, editTime.Length - 19);
-
-                //Regex editAutoSummaryRE = new Regex("name=\"wpAutoSummary\" type=\"hidden\" value=\"([^\"]*?)\"");
-                //Match m2 = editAutoSummaryRE.Match(src);
-                //string autosummary = m2.Value;
-                //autosummary = autosummary.Substring(42);
-                //autosummary = autosummary.Substring(0, autosummary.Length - 1);
-
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
-                webReq.UserAgent = "NPWatcher/1.0";
-                webReq.ContentType = "application/x-www-form-urlencoded";
-                webReq.Method = "POST";
-                //CookieContainer cc = new CookieContainer();
-
-                //cc.Add(cookies);
-                webReq.CookieContainer = cc;
-                webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy = WebRequest.GetSystemWebProxy();
-                watch = "";
-
-                string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=0" +
-                    "&wpTextbox1={2}&wpWatchThis={5}&wpSummary={3}&wpSave=Save%20Page&wpEditToken={4}",
-                    new [] { DateTime.Now.ToUniversalTime().ToString("yyyyMMddHHmmss"), HttpUtility.UrlEncode(editTime),
-                HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
-
-                byte[] postBytes = Encoding.UTF8.GetBytes(postData);
-                webReq.ContentLength = postBytes.Length;
-                Stream reqStrm = webReq.GetRequestStream();
-                reqStrm.Write(postBytes, 0, postBytes.Length);
-                reqStrm.Close();
-                HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
-                StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
-                strmReader.ReadToEnd();
-                strmReader.Close();
-                webResp.Close();
-
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("Something sinister has happened.  The page has been deleted/marked for deletion, but the program was unable to leave a user warning.  If possible, please could you report the page you just deleted/tagged to Martinp23, so he can look into it.  Sorry!");
-            }
+            Save(page, newtxt, editsummary, false);
         }
+
+        private readonly Regex WpEditTokenRegex = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"", RegexOptions.Compiled);
+        private readonly Regex WpEditTimeRegex = new Regex("value=\"([^\"]*?)\" name=\"wpEdittime\"", RegexOptions.Compiled);
 
         public void Save(string page, string newtxt, string editsummary, bool watchthis)
         {
             try
             {
-                webRequest(wikiurl + page + "&action=edit");
+                WebRequest(wikiurl + page + "&action=edit");
 
-                HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+                HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
                 string src = work.ReadToEnd();
 
-                Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
-
-                Match m = editSessionTokenRE1.Match(src);
+                Match m = WpEditTokenRegex.Match(src);
                 string editToken = m.Value;
                 editToken = editToken.Substring(7);
                 editToken = editToken.Substring(0, editToken.Length - 20);
-                Regex editSessionTimeRE = new Regex("value=\"([^\"]*?)\" name=\"wpEdittime\"");
-                Match m1 = editSessionTimeRE.Match(src);
+
+                Match m1 = WpEditTimeRegex.Match(src);
                 string editTime = m1.Value;
                 editTime = editTime.Substring(7);
                 editTime = editTime.Substring(0, editTime.Length - 19);
 
-                webReq = (HttpWebRequest)WebRequest.Create(wikiurl + page + "&action=submit");
-                webReq.UserAgent = "NPWatcher/1.0";
-                webReq.ContentType = "application/x-www-form-urlencoded";
-                webReq.Method = "POST";
+                WebReq = (HttpWebRequest)System.Net.WebRequest.Create(wikiurl + page + "&action=submit");
+                WebReq.UserAgent = "NPWatcher/1.0";
+                WebReq.ContentType = "application/x-www-form-urlencoded";
+                WebReq.Method = "POST";
                 //CookieContainer cc = new CookieContainer();
 
-                //cc.Add(cookies);
-                webReq.CookieContainer = cc;
-                webReq.Credentials = CredentialCache.DefaultCredentials;
-                webReq.Proxy = WebRequest.GetSystemWebProxy();
+                //cc.Add(Cookies);
+                WebReq.CookieContainer = cc;
+                WebReq.Credentials = CredentialCache.DefaultCredentials;
+                WebReq.Proxy = System.Net.WebRequest.GetSystemWebProxy();
                 watch = watchthis ? "checked" : "off";
 
                 string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
@@ -469,11 +409,11 @@ namespace NPWatcher
                 HttpUtility.UrlEncode(newtxt), HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken), watch });
 
                 byte[] postBytes = Encoding.UTF8.GetBytes(postData);
-                webReq.ContentLength = postBytes.Length;
-                Stream reqStrm = webReq.GetRequestStream();
+                WebReq.ContentLength = postBytes.Length;
+                Stream reqStrm = WebReq.GetRequestStream();
                 reqStrm.Write(postBytes, 0, postBytes.Length);
                 reqStrm.Close();
-                HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
+                HttpWebResponse webResp = (HttpWebResponse)WebReq.GetResponse();
                 StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
                 strmReader.ReadToEnd();
                 strmReader.Close();
@@ -487,36 +427,34 @@ namespace NPWatcher
 
         public void Deletepg(string page, string editsummary)
         {
-            webRequest(wikiurl + page + "&action=edit");
+            WebRequest(wikiurl + page + "&action=edit");
 
-            HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
             Stream srcstrm = webResp1.GetResponseStream();
             StreamReader work = new StreamReader(srcstrm);
             string src = HttpUtility.HtmlDecode(work.ReadToEnd());
 
-            Regex editSessionTokenRE1 = new Regex("value=\"([^\"]*?)\" name=\"wpEditToken\"");
-
-            Match m = editSessionTokenRE1.Match(src);
+            Match m = WpEditTokenRegex.Match(src);
             string editToken = m.Value;
             editToken = editToken.Substring(7);
             editToken = editToken.Substring(0, editToken.Length - 20);
-            Regex editSessionTimeRE = new Regex("value=\"([^\"]*?)\" name=\"wpEdittime\"");
-            Match m1 = editSessionTimeRE.Match(src);
+
+            Match m1 = WpEditTimeRegex.Match(src);
             string editTime = m1.Value;
             editTime = editTime.Substring(7);
             editTime = editTime.Substring(0, editTime.Length - 19);
 
-            webReq = (HttpWebRequest)WebRequest.Create(wikiurl + "" + page + "&action=delete");
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
-            webReq.Method = "POST";
+            WebReq = (HttpWebRequest)System.Net.WebRequest.Create(wikiurl + "" + page + "&action=delete");
+            WebReq.UserAgent = "NPWatcher/1.0";
+            WebReq.ContentType = "application/x-www-form-urlencoded";
+            WebReq.Method = "POST";
             //CookieContainer cc = new CookieContainer();
 
-            //cc.Add(cookies);
-            webReq.CookieContainer = cc;
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy = WebRequest.GetSystemWebProxy();
+            //cc.Add(Cookies);
+            WebReq.CookieContainer = cc;
+            WebReq.Credentials = CredentialCache.DefaultCredentials;
+            WebReq.Proxy = System.Net.WebRequest.GetSystemWebProxy();
             watch = "true";
 
             string postData = string.Format("wpSection=&wpStarttime={0}&wpEdittime={1}&wpScrolltop=" +
@@ -525,26 +463,25 @@ namespace NPWatcher
                  HttpUtility.UrlEncode(editsummary), HttpUtility.UrlEncode(editToken) });
 
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
-            webReq.ContentLength = postBytes.Length;
-            Stream reqStrm = webReq.GetRequestStream();
+            WebReq.ContentLength = postBytes.Length;
+            Stream reqStrm = WebReq.GetRequestStream();
             reqStrm.Write(postBytes, 0, postBytes.Length);
             reqStrm.Close();
-            HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
+            HttpWebResponse webResp = (HttpWebResponse)WebReq.GetResponse();
             StreamReader strmReader = new StreamReader(webResp.GetResponseStream());
             strmReader.ReadToEnd();
             strmReader.Close();
             webResp.Close();
         }
 
-        public bool getLogInStatus()
+        private readonly Regex LoginRegex = new Regex("var wgUserName = (.*?);", RegexOptions.Compiled);
+        public bool GetLogInStatus()
         {
-            Regex LoginRegex = new Regex("var wgUserName = (.*?);", RegexOptions.Compiled);
-
             string src;
-            webRequest(wikiurl + "Wikipedia:Sandbox&action=edit");
+            WebRequest(wikiurl + "Wikipedia:Sandbox&action=edit");
             try
             {
-                HttpWebResponse webResp1 = (HttpWebResponse)webReq.GetResponse();
+                HttpWebResponse webResp1 = (HttpWebResponse)WebReq.GetResponse();
 
                 Stream srcstrm = webResp1.GetResponseStream();
                 StreamReader work = new StreamReader(srcstrm);
@@ -560,23 +497,23 @@ namespace NPWatcher
             return !(!m.Success || m.Groups[1].Value == "null");
         }
 
-        private void webRequest(string URL)
+        private void WebRequest(string URL)
         {
-            webReq = (HttpWebRequest)WebRequest.Create(URL);
-            webReq.UserAgent = "NPWatcher/1.0";
-            webReq.ContentType = "application/x-www-form-urlencoded";
+            WebReq = (HttpWebRequest)System.Net.WebRequest.Create(URL);
+            WebReq.UserAgent = "NPWatcher/1.0";
+            WebReq.ContentType = "application/x-www-form-urlencoded";
             cc = new CookieContainer();
 
-            webReq.Credentials = CredentialCache.DefaultCredentials;
-            webReq.Proxy = WebRequest.GetSystemWebProxy();
+            WebReq.Credentials = CredentialCache.DefaultCredentials;
+            WebReq.Proxy = System.Net.WebRequest.GetSystemWebProxy();
 
-            if (cookies == null)
+            if (Cookies == null)
             {
-                HttpWebResponse webResp = (HttpWebResponse)webReq.GetResponse();
-                cookies = webResp.Cookies;
+                HttpWebResponse webResp = (HttpWebResponse)WebReq.GetResponse();
+                Cookies = webResp.Cookies;
             }
-            cc.Add(cookies);
-            webReq.CookieContainer = cc;
+            cc.Add(Cookies);
+            WebReq.CookieContainer = cc;
         }
 
         public static void LoadLink(string link)
@@ -602,7 +539,7 @@ namespace NPWatcher
         public WikiBotException(string message)
             : base(message)
         {
-            if (message == "login failed")
+            if (message == "Login failed")
             {
                 System.Windows.Forms.MessageBox.Show("Login Failed, please check your username and password, and that you are " +
                     "connected to the internet", "Login Failure", System.Windows.Forms.MessageBoxButtons.OK,

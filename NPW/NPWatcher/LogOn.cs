@@ -49,8 +49,8 @@ namespace NPWatcher
 
         private void cancelBtn_Click(object sender, EventArgs e)
         {
-            Main.dialogcancel = true;
             Close();
+            Application.Exit();
         }
 
         private void LogOn_Load(object sender, EventArgs e)
